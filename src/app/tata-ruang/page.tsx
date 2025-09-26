@@ -1,4 +1,5 @@
-import TataRuang from "@/pages/landing/TataRuang";
+import TataRuangClient from "./TataRuangClient";
+
 export default function Page() {
-    return <TataRuang />;
+  return <TataRuangClient />;
 }
