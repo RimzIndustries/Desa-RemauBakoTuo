@@ -16,6 +16,25 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// In a real app, this would come from a database or API
+const adminUsers = [
+  {
+    email: 'admin@desaspasial.id',
+    password: 'password',
+    role: 'admin'
+  },
+  {
+    email: 'rimzindustries@gmail.com',
+    password: 'rimzindustries@gmail.com',
+    role: 'admin'
+  },
+  {
+    email: 'admin@desaremaubakotuo.spasial.net',
+    password: 'admin@desaremaubakotuo.spasial.net',
+    role: 'admin'
+  }
+];
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const { toast } = useToast();
@@ -28,18 +47,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // Admin credentials
-  const adminUser = {
-    email: 'admin@desaremaubakotuo.spasial.net',
-    password: 'admin@desaremaubakotuo.spasial.net',
-    role: 'admin'
-  };
-
   // Login function
   const login = (email: string, password: string): boolean => {
-    // Simple authentication check
-    if (email === adminUser.email && password === adminUser.password) {
-      const userData = { email: adminUser.email, role: adminUser.role };
+    const foundUser = adminUsers.find(u => u.email === email && u.password === password);
+
+    if (foundUser) {
+      const userData = { email: foundUser.email, role: foundUser.role };
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
       toast({
