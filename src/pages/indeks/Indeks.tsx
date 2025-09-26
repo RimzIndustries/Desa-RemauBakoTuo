@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Indeks = () => {
   const indeksItems = [
@@ -40,7 +40,7 @@ const Indeks = () => {
       <h1 className="text-3xl font-bold mb-6">Indeks Desa</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {indeksItems.map((item) => (
-          <Link to={item.path} key={item.path}>
+          <Link href={item.path} key={item.path}>
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
@@ -59,4 +59,4 @@ const Indeks = () => {
   );
 };
 
-export default Indeks; 
+export default Indeks;

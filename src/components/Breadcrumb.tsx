@@ -1,5 +1,5 @@
 import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface BreadcrumbItem {
   title: string;
@@ -13,14 +13,14 @@ interface BreadcrumbProps {
 const Breadcrumb = ({ items }: BreadcrumbProps) => {
   return (
     <nav className="flex items-center space-x-1 text-sm text-muted-foreground mb-4">
-      <Link to="/" className="hover:text-foreground transition-colors">
+      <Link href="/" className="hover:text-foreground transition-colors">
         Beranda
       </Link>
       {items.map((item, index) => (
         <div key={index} className="flex items-center space-x-1">
           <ChevronRight className="h-4 w-4" />
           {item.path ? (
-            <Link to={item.path} className="hover:text-foreground transition-colors">
+            <Link href={item.path} className="hover:text-foreground transition-colors">
               {item.title}
             </Link>
           ) : (
@@ -32,4 +32,4 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
   );
 };
 
-export default Breadcrumb; 
+export default Breadcrumb;

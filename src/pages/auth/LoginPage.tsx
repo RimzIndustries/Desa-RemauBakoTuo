@@ -1,22 +1,24 @@
-
+'use client';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { ArrowLeft, LogIn } from "lucide-react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const router = useRouter();
   const { login, isAuthenticated } = useAuth();
 
   if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
+    router.replace("/dashboard");
+    return null;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,14 +32,14 @@ const LoginPage = () => {
 
     const success = login(email, password);
     if (success) {
-      navigate("/dashboard");
+      router.push("/dashboard");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md">
-        <Link to="/" className="inline-flex items-center mb-6 text-sm text-gray-600 hover:text-primary">
+        <Link href="/" className="inline-flex items-center mb-6 text-sm text-gray-600 hover:text-primary">
           <ArrowLeft size={16} className="mr-2" />
           Kembali ke Beranda
         </Link>

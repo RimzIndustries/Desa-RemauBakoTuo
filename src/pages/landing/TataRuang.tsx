@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, useMap, Marker, Popup, Polygon } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -5,7 +6,7 @@ import '@/styles/map.css';
 import { LatLngTuple, LatLngBounds, Icon } from 'leaflet';
 import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Clock, Phone, Mail, Globe, Users, Home, Building2, TreePine, Warehouse, Ruler, MapPin } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -17,9 +18,9 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 delete (Icon.Default.prototype as any)._getIconUrl;
 Icon.Default.mergeOptions({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
+  iconUrl: markerIcon.src,
+  iconRetinaUrl: markerIcon2x.src,
+  shadowUrl: markerShadow.src,
 });
 
 // Koordinat desa (ganti dengan koordinat yang sesuai)
@@ -448,10 +449,6 @@ const LayerInfo: React.FC<LayerInfoProps> = ({ isOpen, onClose, markerInfo }) =>
     </Sheet>
   );
 };
-
-interface TataRuangProps {
-  // Add props if needed
-}
 
 interface MapControlsProps {
   activeLayer: keyof typeof BASE_LAYERS;
@@ -984,7 +981,7 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
   [104.394354, -1.19066]
 ].map(([lng, lat]) => [lat, lng] as [number, number]);
 
-const TataRuang: React.FC<TataRuangProps> = () => {
+const TataRuang = () => {
   const [activeLayer, setActiveLayer] = useState<keyof typeof BASE_LAYERS>('satellite');
   const [activeLayers, setActiveLayers] = useState<string[]>([]);
   const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
@@ -994,8 +991,6 @@ const TataRuang: React.FC<TataRuangProps> = () => {
     description: string;
     type?: 'marker' | 'boundary';
   } | null>(null);
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const handleLayerToggle = (layer: string) => {
     setActiveLayers(prev =>

@@ -1,4 +1,4 @@
-
+'use client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +34,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 
 const Keuangan = () => {
@@ -73,7 +73,7 @@ const Keuangan = () => {
           </p>
         </div>
         <div className="flex gap-2">
-         <Link to="/keuangan/laporan">
+         <Link href="/keuangan/laporan">
           <Button variant="outline" size="sm">
             <GanttChartSquare className="h-4 w-4 mr-2" />
             Laporan
