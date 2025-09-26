@@ -42,11 +42,15 @@ const PublicLayout = ({
 
   return (
     <div className="flex flex-col min-h-screen">
-      <TopNav hasNewNews={false} />
-      <main className={`flex-grow ${needsSidebar ? 'md:pl-72 pl-12' : ''}`}>
+      <div className="relative z-50">
+        <TopNav hasNewNews={false} />
+      </div>
+      <main className={`flex-grow relative z-20 ${needsSidebar ? 'md:pl-72 pl-12' : ''}`}>
         {children}
       </main>
-      <BottomNav />
+      <div className="relative z-40">
+        <BottomNav />
+      </div>
     </div>
   );
 };
