@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
+import DashboardPageTemplate from "@/components/DashboardPageTemplate";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Users, Activity, Map, Globe, AppWindow, Settings2, Home, Building2, HeartHandshake, Store } from "lucide-react";
-import { Link } from "react-router-dom";
+import { FileText, Users, Activity } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const DashboardHome = () => {
@@ -26,7 +25,6 @@ const DashboardHome = () => {
     }
   ];
 
-  // Data untuk chart penduduk berdasarkan usia
   const pendudukData = [
     { name: '0-14', value: 450 },
     { name: '15-24', value: 380 },
@@ -35,7 +33,6 @@ const DashboardHome = () => {
     { name: '65+', value: 120 },
   ];
 
-  // Data untuk chart ekonomi
   const ekonomiData = [
     { name: 'Pertanian', value: 45 },
     { name: 'Perdagangan', value: 25 },
@@ -43,7 +40,6 @@ const DashboardHome = () => {
     { name: 'Industri', value: 10 },
   ];
 
-  // Data untuk chart fasilitas
   const fasilitasData = [
     { name: 'Jan', value: 4 },
     { name: 'Feb', value: 3 },
@@ -53,7 +49,6 @@ const DashboardHome = () => {
     { name: 'Jun', value: 4 },
   ];
 
-  // Data untuk chart layanan
   const layananData = [
     { name: 'Surat Keterangan', value: 65 },
     { name: 'Surat Nikah', value: 25 },
@@ -64,33 +59,12 @@ const DashboardHome = () => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <p className="text-black/60">
-            Selamat datang di panel admin Desa Remau Bakotuo. 
-            Kelola informasi dan layanan desa dari sini.
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {statsItems.map((item, index) => (
-          <Card key={index} className="shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-black">
-                {item.title}
-              </CardTitle>
-              <item.icon className={`h-4 w-4 ${item.color}`} />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-black">{item.value}</div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <DashboardPageTemplate
+      title="Dashboard"
+      description="Selamat datang di panel admin Desa Remau Bakotuo. Kelola informasi dan layanan desa dari sini."
+      stats={statsItems}
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle className="text-black text-sm">Demografi Penduduk</CardTitle>
@@ -190,7 +164,7 @@ const DashboardHome = () => {
         </Card>
       </div>
 
-      <Card className="shadow-sm">
+      <Card className="shadow-sm mt-6">
         <CardHeader>
           <CardTitle className="text-black">Aktivitas Terbaru</CardTitle>
           <CardDescription className="text-black/60">
@@ -215,7 +189,7 @@ const DashboardHome = () => {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </DashboardPageTemplate>
   );
 };
 
