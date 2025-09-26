@@ -1,7 +1,7 @@
 
 import {genkit} from '@genkit-ai/next';
 import {googleAI} from '@genkit-ai/googleai';
-import {firebase} from '@genkit-ai/firebase';
+import {firebase} from '@genkit-ai/firebase/plugin';
 import { GoogleAuth } from 'google-auth-library';
 import {ai, definePrompt} from '@genkit-ai/ai';
 
