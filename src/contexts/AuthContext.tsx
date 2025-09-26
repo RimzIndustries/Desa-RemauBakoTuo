@@ -41,9 +41,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   
   // Check if user is already logged in from localStorage
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    try {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+    } catch (error) {
+        console.error("Failed to parse user from localStorage", error)
     }
   }, []);
 
