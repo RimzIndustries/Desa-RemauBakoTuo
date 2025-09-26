@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -13,17 +14,6 @@ import '@/styles/map.css';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
-// Fix for default icon paths in Next.js
-if (typeof window !== 'undefined') {
-  delete (Icon.Default.prototype as any)._getIconUrl;
-  Icon.Default.mergeOptions({
-    iconUrl: markerIcon.src,
-    iconRetinaUrl: markerIcon2x.src,
-    shadowUrl: markerShadow.src,
-  });
-}
-
 
 const DESA_CENTER: LatLngTuple = [-1.2224187831143103, 104.38307336564955];
 const DEFAULT_ZOOM = 16;
@@ -88,7 +78,7 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
     [-1.262161, 104.410462], [-1.261162, 104.411105], [-1.260519, 104.411212],
     [-1.260333, 104.411135], [-1.260116, 104.411043], [-1.259451, 104.410741],
     [-1.259115, 104.410565], [-1.258782, 104.410392], [-1.258342, 104.410169],
-    [-1.258035, 104.410073], [-1.257842, 104.409991], [-1.257638, 104.409915],
+    [-1.258035, 104.400073], [-1.257842, 104.409991], [-1.257638, 104.409915],
     [-1.257493, 104.409843], [-1.257364, 104.409782], [-1.257233, 104.409719],
     [-1.257052, 104.409618], [-1.257013, 104.409601], [-1.256893, 104.409547],
     [-1.256733, 104.409489], [-1.256573, 104.409437], [-1.256451, 104.409404],
@@ -380,24 +370,69 @@ const MapControls: React.FC<{
 };
 
 const MapComponent = () => {
-    const mapRef = useRef<LeafletMap | null>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const mapRef = useRef<HTMLDivElement>(null);
+    const [mapInstance, setMapInstance] = useState<LeafletMap | null>(null);
     const [activeBaseLayer, setActiveBaseLayer] = useState<string>('satellite');
     const [activeOverlays, setActiveOverlays] = useState<string[]>(['Peta Administrasi']);
     const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
     const [selectedMarker, setSelectedMarker] = useState<{ title: string; coordinates?: LatLngTuple; description: string; type?: 'marker' | 'boundary'; } | null>(null);
 
     useEffect(() => {
-        if (containerRef.current && !mapRef.current) {
-            const mapInstance = L.map(containerRef.current, {
+        if (mapRef.current && !mapInstance) {
+            const map = L.map(mapRef.current, {
                 center: DESA_CENTER,
                 zoom: DEFAULT_ZOOM,
                 zoomControl: false,
                 maxBounds: DESA_BOUNDS,
                 maxBoundsViscosity: 1.0,
             });
-            mapRef.current = mapInstance;
 
+            const defaultIcon = new L.Icon({
+                iconUrl: markerIcon.src,
+                iconRetinaUrl: markerIcon2x.src,
+                shadowUrl: markerShadow.src,
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            L.marker(DESA_CENTER, { icon: defaultIcon }).on('click', () => {
+                setSelectedMarker({
+                    title: 'Kantor Desa Remau Bako Tuo',
+                    coordinates: DESA_CENTER,
+                    description: 'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
+                    type: 'marker',
+                });
+            }).addTo(map);
+
+            setMapInstance(map);
+        }
+
+        return () => {
+            if (mapInstance) {
+                mapInstance.remove();
+                setMapInstance(null);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (mapInstance) {
+            const currentLayer = Object.values(mapInstance._layers).find(layer => layer instanceof L.TileLayer);
+            if (currentLayer) {
+              mapInstance.removeLayer(currentLayer);
+            }
+
+            const baseLayerData = BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS];
+            L.tileLayer(baseLayerData.url, {
+                attribution: baseLayerData.attribution
+            }).addTo(mapInstance).bringToBack();
+        }
+    }, [activeBaseLayer, mapInstance]);
+
+    useEffect(() => {
+        if (mapInstance) {
             const adminBoundary = L.polygon(ADMINISTRATIVE_BOUNDARY as LatLngTuple[], {
                 color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8,
             }).on('click', () => {
@@ -406,66 +441,25 @@ const MapComponent = () => {
                     description: 'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
                     type: 'boundary',
                 });
-            }).addTo(mapInstance);
-
-            L.marker(DESA_CENTER).on('click', () => {
-                setSelectedMarker({
-                    title: 'Kantor Desa Remau Bako Tuo',
-                    coordinates: DESA_CENTER,
-                    description: 'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
-                    type: 'marker',
-                });
-            }).addTo(mapInstance);
-        }
-
-        return () => {
-            if (mapRef.current) {
-                if (typeof mapRef.current.remove === 'function') {
-                    mapRef.current.remove();
-                }
-                mapRef.current = null;
-            }
-        };
-    }, []); 
-
-    useEffect(() => {
-        const map = mapRef.current;
-        if (map) {
-            // Remove all non-base layers
-            map.eachLayer((layer) => {
-                if (layer instanceof L.TileLayer && !Object.values(BASE_LAYERS).some(base => base.url === (layer as any)._url)) {
-                    map.removeLayer(layer);
-                }
             });
-    
-            // Add the new base layer
-            const baseLayerData = BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS];
-            L.tileLayer(baseLayerData.url, {
-                attribution: baseLayerData.attribution
-            }).addTo(map).bringToBack();
-        }
-    }, [activeBaseLayer]);
-    
-    useEffect(() => {
-        const map = mapRef.current;
-        if (map) {
-            map.eachLayer(layer => {
-                if (layer instanceof L.Polygon || layer instanceof L.Marker) {
-                    if (activeOverlays.includes('Peta Administrasi')) {
-                        if (!map.hasLayer(layer)) {
-                            layer.addTo(map);
-                        }
-                    } else {
-                        map.removeLayer(layer);
+
+            if (activeOverlays.includes('Peta Administrasi')) {
+                if (!mapInstance.hasLayer(adminBoundary)) {
+                    adminBoundary.addTo(mapInstance);
+                }
+            } else {
+                 Object.values(mapInstance._layers).forEach(layer => {
+                    if (layer instanceof L.Polygon) {
+                       mapInstance.removeLayer(layer);
                     }
-                }
-            });
+                });
+            }
         }
-    }, [activeOverlays]);
+    }, [activeOverlays, mapInstance]);
 
     const handleLayerToggle = (layerName: string) => {
-        setActiveOverlays(prev => 
-            prev.includes(layerName) 
+        setActiveOverlays(prev =>
+            prev.includes(layerName)
             ? prev.filter(l => l !== layerName)
             : [...prev, layerName]
         );
@@ -473,9 +467,9 @@ const MapComponent = () => {
 
     return (
         <div className="fixed inset-0">
-            <div ref={containerRef} className="w-full h-full" />
+            <div ref={mapRef} className="w-full h-full" />
             <MapControls
-                map={mapRef.current}
+                map={mapInstance}
                 activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
                 setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
                 layerPanelExpanded={layerPanelExpanded}
@@ -497,3 +491,5 @@ const MapComponent = () => {
 };
 
 export default MapComponent;
+
+    
