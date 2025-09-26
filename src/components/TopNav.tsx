@@ -1,3 +1,4 @@
+
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -24,7 +25,8 @@ import {
   Calendar,
   ListTodo,
   Library,
-  FileSpreadsheet
+  FileSpreadsheet,
+  LayoutDashboard
 } from 'lucide-react';
 import {
   Sheet,
@@ -41,6 +43,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useAuth } from '@/contexts/AuthContext';
 
 interface TopNavProps {
   className?: string;
@@ -95,6 +98,7 @@ const menuItems = [
 const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated } = useAuth();
 
   const SidebarLayanan = () => {
     const isLayananRoute = pathname.startsWith('/layanan');
@@ -394,10 +398,17 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       variant="ghost" 
                       className="flex-1 justify-start text-black hover:text-black hover:bg-black/10 transition-all text-xs sm:text-sm"
                     >
-                      <Link href="/login" className="flex items-center" onClick={() => setIsMainMenuOpen(false)}>
-                        <User className="h-7 w-7 sm:h-9 sm:w-9 mr-2" />
-                        <span>Masuk</span>
-                      </Link>
+                      {isAuthenticated ? (
+                        <Link href="/dashboard" className="flex items-center" onClick={() => setIsMainMenuOpen(false)}>
+                          <LayoutDashboard className="h-7 w-7 sm:h-9 sm:w-9 mr-2" />
+                          <span>Dashboard</span>
+                        </Link>
+                      ) : (
+                        <Link href="/login" className="flex items-center" onClick={() => setIsMainMenuOpen(false)}>
+                          <User className="h-7 w-7 sm:h-9 sm:w-9 mr-2" />
+                          <span>Masuk</span>
+                        </Link>
+                      )}
                     </Button>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 border-t border-black/10">
