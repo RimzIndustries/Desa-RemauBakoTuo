@@ -10,10 +10,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import 'leaflet/dist/leaflet.css';
 import '@/styles/map.css';
 
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
 const DESA_CENTER: LatLngTuple = [-1.2224187831143103, 104.38307336564955];
 const DEFAULT_ZOOM = 16;
 const DESA_BOUNDS_COORDS: [[number, number], [number, number]] = [
@@ -388,17 +384,7 @@ const MapComponent = () => {
             });
             mapInstanceRef.current = map;
 
-            const defaultIcon = new L.Icon({
-                iconUrl: markerIcon.src,
-                iconRetinaUrl: markerIcon2x.src,
-                shadowUrl: markerShadow.src,
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34],
-                shadowSize: [41, 41]
-            });
-
-            L.marker(DESA_CENTER, { icon: defaultIcon }).on('click', () => {
+            L.marker(DESA_CENTER).on('click', () => {
                 setSelectedMarker({
                     title: 'Kantor Desa Remau Bako Tuo',
                     coordinates: DESA_CENTER,
@@ -489,5 +475,3 @@ const MapComponent = () => {
 };
 
 export default MapComponent;
-
-    
