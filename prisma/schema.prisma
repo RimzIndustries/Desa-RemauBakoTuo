@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id    String @id @default(cuid())
+  email String @unique
+  name  String?
+  role  String @default("user") // admin, user
+  berita Berita[]
+}
+
+model ProfilDesa {
+  id        String   @id @default(cuid())
+  visi      String
+  misi      String
+  sejarah   String
+  updatedAt DateTime @updatedAt
+}
+
+model PerangkatDesa {
+  id       String  @id @default(cuid())
+  nama     String
+  jabatan  String
+  npi      String? @unique
+  kontak   String?
+  foto     String?
+  isPublik Boolean @default(true)
+}
+
+model BPD {
+  id       String  @id @default(cuid())
+  nama     String
+  jabatan  String
+  kontak   String?
+  foto     String?
+  isPublik Boolean @default(true)
+}
+
+model LembagaDesa {
+  id      String  @id @default(cuid())
+  nama    String
+  ketua   String
+  kontak  String?
+  deskripsi String?
+}
+
+model Berita {
+  id          String   @id @default(cuid())
+  judul       String
+  konten      String
+  kategori    String
+  gambar      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  penulisId   String
+  penulis     User      @relation(fields: [penulisId], references: [id])
+  status      String    @default("draft") // draft, published
+  tags        String?   // comma separated
+}
+
+model Wilayah {
+  id       String  @id @default(cuid())
+  nama     String
+  tipe     String // Dusun, RT, RW
+  parent   String?
+  geometri String?
+}
+
+model Aset {
+  id       String  @id @default(cuid())
+  nama     String
+  jenis    String // Tanah, Bangunan, Kendaraan
+  kode     String? @unique
+  lokasi   String
+  nilai    Float
+  geometri String?
+}
+
+model Program {
+  id              String   @id @default(cuid())
+  nama            String
+  deskripsi       String?
+  kategori        String // Infrastruktur, Ekonomi, Sosial, dll
+  status          String // Direncanakan, Berjalan, Selesai
+  anggaran        Float
+  sumberDana      String
+  tahun           Int
+  penanggungJawab String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Keuangan {
+  id          String   @id @default(cuid())
+  tanggal     DateTime
+  jenis       String   // Pemasukan, Pengeluaran
+  kategori    String
+  deskripsi   String
+  jumlah      Float
+  createdAt   DateTime @default(now())
+}
+
+model Penduduk {
+  id            String   @id @default(cuid())
+  nik           String   @unique
+  nama          String
+  jenisKelamin  String
+  tempatLahir   String
+  tanggalLahir  DateTime
+  alamat        String
+  rt            String
+  rw            String
+  agama         String
+  statusKawin   String
+  pekerjaan     String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
