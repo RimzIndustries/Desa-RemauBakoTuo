@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { MapContainer, TileLayer, useMap, Marker, Popup, Polygon } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import '@/styles/map.css';
-import { LatLngTuple, LatLngBounds, Icon } from 'leaflet';
+import { LatLngTuple, LatLngBounds, Icon, Map as LeafletMap } from 'leaflet';
 import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Clock, Phone, Mail, Globe, Users, Home, Building2, TreePine, Warehouse, Ruler, MapPin } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { usePathname, useRouter } from 'next/navigation';
@@ -993,62 +993,74 @@ const MapWrapper = ({
   layerPanelExpanded: boolean;
   setLayerPanelExpanded: (expanded: boolean) => void;
 }) => {
-  return (
-    <MapContainer
-      center={DESA_CENTER}
-      zoom={DEFAULT_ZOOM}
-      className="w-full h-full"
-      zoomControl={false}
-      maxBounds={DESA_BOUNDS}
-      maxBoundsViscosity={1.0}
-    >
-      <TileLayer
-        attribution={BASE_LAYERS[activeLayer].attribution}
-        url={BASE_LAYERS[activeLayer].url}
-      />
-      {activeLayers.includes('Peta Administrasi') && (
-        <Polygon
-          positions={ADMINISTRATIVE_BOUNDARY}
-          pathOptions={{
-            color: 'white',
-            weight: 2,
-            fillColor: '#10b981',
-            fillOpacity: 0.2,
-            opacity: 0.8,
-          }}
+  const [map, setMap] = useState<LeafletMap | null>(null);
+
+  const displayMap = useMemo(
+    () => (
+      <MapContainer
+        center={DESA_CENTER}
+        zoom={DEFAULT_ZOOM}
+        className="w-full h-full"
+        zoomControl={false}
+        maxBounds={DESA_BOUNDS}
+        maxBoundsViscosity={1.0}
+        whenCreated={setMap}
+      >
+        <TileLayer
+          attribution={BASE_LAYERS[activeLayer].attribution}
+          url={BASE_LAYERS[activeLayer].url}
+        />
+        {activeLayers.includes('Peta Administrasi') && (
+          <Polygon
+            positions={ADMINISTRATIVE_BOUNDARY}
+            pathOptions={{
+              color: 'white',
+              weight: 2,
+              fillColor: '#10b981',
+              fillOpacity: 0.2,
+              opacity: 0.8,
+            }}
+            eventHandlers={{
+              click: () => {
+                setSelectedMarker({
+                  title: 'Batas Administrasi Desa Remau Bako Tuo',
+                  description:
+                    'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
+                  type: 'boundary',
+                });
+              },
+            }}
+          />
+        )}
+        <Marker
+          position={DESA_CENTER}
           eventHandlers={{
             click: () => {
               setSelectedMarker({
-                title: 'Batas Administrasi Desa Remau Bako Tuo',
+                title: 'Kantor Desa Remau Bako Tuo',
+                coordinates: DESA_CENTER,
                 description:
-                  'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
-                type: 'boundary',
+                  'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
+                type: 'marker',
               });
             },
           }}
         />
-      )}
-      <Marker
-        position={DESA_CENTER}
-        eventHandlers={{
-          click: () => {
-            setSelectedMarker({
-              title: 'Kantor Desa Remau Bako Tuo',
-              coordinates: DESA_CENTER,
-              description:
-                'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
-              type: 'marker',
-            });
-          },
-        }}
-      />
-      <MapControls
+      </MapContainer>
+    ),
+    [activeLayer, activeLayers, setSelectedMarker]
+  );
+  
+  return (
+    <div className='w-full h-full'>
+      {map ? <MapControls
         activeLayer={activeLayer}
         setActiveLayer={setActiveLayer}
         layerPanelExpanded={layerPanelExpanded}
         setLayerPanelExpanded={setLayerPanelExpanded}
-      />
-    </MapContainer>
+      /> : null}
+      {displayMap}
+    </div>
   );
 };
 
