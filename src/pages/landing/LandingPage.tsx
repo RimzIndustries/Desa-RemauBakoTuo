@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect } from 'react';
 import Hero from '@/components/Hero';
 
@@ -37,4 +38,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage; 
+export default LandingPage;
