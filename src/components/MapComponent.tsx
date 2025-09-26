@@ -381,6 +381,7 @@ const MapControls: React.FC<{
 const MapComponent = () => {
     const mapRef = useRef<LeafletMap | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const [map, setMap] = useState<LeafletMap | null>(null);
     const [activeBaseLayer, setActiveBaseLayer] = useState<string>('satellite');
     const [activeOverlays, setActiveOverlays] = useState<string[]>(['Peta Administrasi']);
     const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
@@ -388,17 +389,15 @@ const MapComponent = () => {
 
     useEffect(() => {
         if (containerRef.current && !mapRef.current) {
-            mapRef.current = L.map(containerRef.current, {
+            const mapInstance = L.map(containerRef.current, {
                 center: DESA_CENTER,
                 zoom: DEFAULT_ZOOM,
                 zoomControl: false,
                 maxBounds: DESA_BOUNDS,
                 maxBoundsViscosity: 1.0,
             });
-
-            L.tileLayer(BASE_LAYERS.satellite.url, {
-                attribution: BASE_LAYERS.satellite.attribution
-            }).addTo(mapRef.current);
+            mapRef.current = mapInstance;
+            setMap(mapInstance);
 
             const adminBoundary = L.polygon(ADMINISTRATIVE_BOUNDARY as LatLngTuple[], {
                 color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8,
@@ -408,7 +407,7 @@ const MapComponent = () => {
                     description: 'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
                     type: 'boundary',
                 });
-            }).addTo(mapRef.current);
+            }).addTo(mapInstance);
 
             L.marker(DESA_CENTER).on('click', () => {
                 setSelectedMarker({
@@ -417,23 +416,26 @@ const MapComponent = () => {
                     description: 'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
                     type: 'marker',
                 });
-            }).addTo(mapRef.current);
+            }).addTo(mapInstance);
         }
 
         return () => {
             if (mapRef.current) {
-                mapRef.current.remove();
+                // Check if the remove method exists to avoid errors on fast re-renders
+                if (typeof mapRef.current.remove === 'function') {
+                    mapRef.current.remove();
+                }
                 mapRef.current = null;
             }
         };
     }, []); 
 
     useEffect(() => {
-        if (mapRef.current) {
+        if (map) {
             // Remove all non-base layers
-            mapRef.current.eachLayer((layer) => {
+            map.eachLayer((layer) => {
                 if (layer instanceof L.TileLayer && !Object.values(BASE_LAYERS).some(base => base.url === (layer as any)._url)) {
-                    mapRef.current?.removeLayer(layer);
+                    map.removeLayer(layer);
                 }
             });
     
@@ -441,25 +443,25 @@ const MapComponent = () => {
             const baseLayerData = BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS];
             L.tileLayer(baseLayerData.url, {
                 attribution: baseLayerData.attribution
-            }).addTo(mapRef.current).bringToBack();
+            }).addTo(map).bringToBack();
         }
-    }, [activeBaseLayer]);
+    }, [activeBaseLayer, map]);
     
     useEffect(() => {
-        if (mapRef.current) {
-            mapRef.current.eachLayer(layer => {
+        if (map) {
+            map.eachLayer(layer => {
                 if (layer instanceof L.Polygon || layer instanceof L.Marker) {
                     if (activeOverlays.includes('Peta Administrasi')) {
-                        if (!mapRef.current?.hasLayer(layer)) {
-                            layer.addTo(mapRef.current);
+                        if (!map.hasLayer(layer)) {
+                            layer.addTo(map);
                         }
                     } else {
-                        mapRef.current.removeLayer(layer);
+                        map.removeLayer(layer);
                     }
                 }
             });
         }
-    }, [activeOverlays]);
+    }, [activeOverlays, map]);
 
     const handleLayerToggle = (layerName: string) => {
         setActiveOverlays(prev => 
@@ -473,7 +475,7 @@ const MapComponent = () => {
         <div className="fixed inset-0">
             <div ref={containerRef} className="w-full h-full" />
             <MapControls
-                map={mapRef.current}
+                map={map}
                 activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
                 setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
                 layerPanelExpanded={layerPanelExpanded}
