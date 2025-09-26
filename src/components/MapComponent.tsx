@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -385,61 +386,62 @@ const MapComponent = () => {
     const [activeOverlays, setActiveOverlays] = useState<string[]>(['Peta Administrasi']);
     const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
     const [selectedMarker, setSelectedMarker] = useState<{ title: string; coordinates?: LatLngTuple; description: string; type?: 'marker' | 'boundary'; } | null>(null);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const handleLayerToggle = (layer: string) => {
         setActiveOverlays(prev => prev.includes(layer) ? prev.filter(l => l !== layer) : [...prev, layer]);
     };
-    
-    // This effect runs once on mount to handle client-side only map initialization
-    useEffect(() => {
-        // Since this component is dynamically imported with ssr: false,
-        // we can safely assume 'window' is available here.
-    }, []);
 
     return (
         <div className="fixed inset-0">
-            <MapContainer
-                center={DESA_CENTER}
-                zoom={DEFAULT_ZOOM}
-                className="w-full h-full"
-                zoomControl={false}
-                maxBounds={DESA_BOUNDS}
-                maxBoundsViscosity={1.0}
-                whenCreated={setMap}
-            >
-                <TileLayer
-                    attribution={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].attribution}
-                    url={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].url}
-                />
-                {activeOverlays.includes('Peta Administrasi') && (
-                    <Polygon
-                        positions={ADMINISTRATIVE_BOUNDARY}
-                        pathOptions={{ color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8, }}
+            {isClient && (
+                <MapContainer
+                    center={DESA_CENTER}
+                    zoom={DEFAULT_ZOOM}
+                    className="w-full h-full"
+                    zoomControl={false}
+                    maxBounds={DESA_BOUNDS}
+                    maxBoundsViscosity={1.0}
+                    whenCreated={setMap}
+                >
+                    <TileLayer
+                        attribution={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].attribution}
+                        url={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].url}
+                    />
+                    {activeOverlays.includes('Peta Administrasi') && (
+                        <Polygon
+                            positions={ADMINISTRATIVE_BOUNDARY}
+                            pathOptions={{ color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8, }}
+                            eventHandlers={{
+                                click: () => {
+                                    setSelectedMarker({
+                                        title: 'Batas Administrasi Desa Remau Bako Tuo',
+                                        description: 'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
+                                        type: 'boundary',
+                                    });
+                                },
+                            }}
+                        />
+                    )}
+                    <Marker
+                        position={DESA_CENTER}
                         eventHandlers={{
                             click: () => {
                                 setSelectedMarker({
-                                    title: 'Batas Administrasi Desa Remau Bako Tuo',
-                                    description: 'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
-                                    type: 'boundary',
+                                    title: 'Kantor Desa Remau Bako Tuo',
+                                    coordinates: DESA_CENTER,
+                                    description: 'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
+                                    type: 'marker',
                                 });
                             },
                         }}
                     />
-                )}
-                <Marker
-                    position={DESA_CENTER}
-                    eventHandlers={{
-                        click: () => {
-                            setSelectedMarker({
-                                title: 'Kantor Desa Remau Bako Tuo',
-                                coordinates: DESA_CENTER,
-                                description: 'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
-                                type: 'marker',
-                            });
-                        },
-                    }}
-                />
-            </MapContainer>
+                </MapContainer>
+            )}
             {map && (
                 <>
                     <MapControls
