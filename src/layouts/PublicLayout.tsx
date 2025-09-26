@@ -14,16 +14,40 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     setIsMounted(true);
   }, []);
 
+  const isTataRuangRoute = pathname?.startsWith('/tata-ruang');
+
+  if (isTataRuangRoute) {
+    // For the map page, we render it directly with its own layout structure
+    // to avoid re-initialization issues with the PublicLayout's main structure.
+    return (
+      <>
+        {children}
+        <div className="fixed top-0 left-0 right-0 z-[1000]">
+          <TopNav hasNewNews={false} />
+        </div>
+        <div className="fixed bottom-0 left-0 right-0 z-[1000]">
+          <BottomNav />
+        </div>
+        {isMounted && (
+          <>
+            <Toaster />
+            <Sonner />
+          </>
+        )}
+      </>
+    );
+  }
+
   if (!isMounted) {
+    // Render a simple version for SSR to avoid hydration errors
     return (
       <div className="flex flex-col min-h-screen">
         <main className="flex-grow">{children}</main>
       </div>
     );
   }
-  
-  const isTataRuangRoute = pathname?.startsWith('/tata-ruang');
-  const needsSidebar = !isTataRuangRoute && (
+
+  const needsSidebar = (
     pathname?.startsWith('/profil') ||
     pathname?.startsWith('/pembangunan') ||
     pathname?.startsWith('/dana-desa') ||
@@ -34,22 +58,6 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     pathname?.startsWith('/aktivitas') ||
     pathname?.startsWith('/pustaka')
   );
-
-  if (isTataRuangRoute) {
-    return (
-      <div className="fixed inset-0">
-        {children}
-        <div className="fixed top-0 left-0 right-0 z-[1000]">
-          <TopNav hasNewNews={false} />
-        </div>
-        <div className="fixed bottom-0 left-0 right-0 z-[1000]">
-          <BottomNav />
-        </div>
-        <Toaster />
-        <Sonner />
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col min-h-screen">
