@@ -5,6 +5,4 @@ import {googleAI} from '@genkit-ai/googleai';
 // It is required that this file is imported before any other Genkit files.
 export const ai = genkit({
   plugins: [googleAI()],
-  logLevel: 'debug',
-  enableTracingAndMetrics: true,
 });
