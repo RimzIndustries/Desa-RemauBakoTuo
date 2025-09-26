@@ -13,6 +13,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { login, isAuthenticated } = useAuth();
 
@@ -30,7 +31,10 @@ const LoginPage = () => {
       return;
     }
 
-    const success = login(email, password);
+    setLoading(true);
+    const success = await login(email, password);
+    setLoading(false);
+
     if (success) {
       router.push("/dashboard");
     }
@@ -62,6 +66,7 @@ const LoginPage = () => {
                     placeholder="admin@desaremaubakotuo.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
                   />
                 </div>
                 <div className="grid gap-2">
@@ -71,14 +76,19 @@ const LoginPage = () => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    disabled={loading}
                   />
                 </div>
                 {error && (
                   <div className="text-red-500 text-sm">{error}</div>
                 )}
-                <Button type="submit" className="w-full flex items-center gap-2">
-                  <LogIn size={18} />
-                  <span>Login</span>
+                <Button type="submit" className="w-full flex items-center gap-2" disabled={loading}>
+                  {loading ? 'Loading...' : (
+                    <>
+                      <LogIn size={18} />
+                      <span>Login</span>
+                    </>
+                  )}
                 </Button>
               </div>
             </form>

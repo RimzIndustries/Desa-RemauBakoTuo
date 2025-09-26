@@ -11,92 +11,90 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(cuid())
-  email String @unique
-  name  String?
-  role  String @default("user") // admin, user
-  berita Berita[]
-}
-
-model ProfilDesa {
   id        String   @id @default(cuid())
-  visi      String
-  misi      String
-  sejarah   String
+  email     String   @unique
+  nama      String?
+  password  String
+  role      String   @default("user") // admin, user
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  berita    Berita[]
 }
 
-model PerangkatDesa {
-  id       String  @id @default(cuid())
-  nama     String
-  jabatan  String
-  npi      String? @unique
-  kontak   String?
-  foto     String?
-  isPublik Boolean @default(true)
+model Menu {
+  id        String     @id @default(cuid())
+  name      String     @unique
+  menuItems MenuItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 }
 
-model BPD {
-  id       String  @id @default(cuid())
-  nama     String
-  jabatan  String
-  kontak   String?
-  foto     String?
-  isPublik Boolean @default(true)
-}
-
-model LembagaDesa {
-  id      String  @id @default(cuid())
-  nama    String
-  ketua   String
-  kontak  String?
-  deskripsi String?
+model MenuItem {
+  id        String    @id @default(cuid())
+  title     String
+  path      String
+  icon      String?
+  parentId  String?
+  menuId    String
+  menu      Menu      @relation(fields: [menuId], references: [id])
+  parent    MenuItem? @relation("SubMenu", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children  MenuItem[] @relation("SubMenu")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Berita {
   id          String   @id @default(cuid())
   judul       String
+  slug        String   @unique
   konten      String
-  kategori    String
   gambar      String?
+  kategori    String
+  penulisId   String
+  penulis     User     @relation(fields: [penulisId], references: [id])
+  status      String   @default("draft") // draft, published
+  publishedAt DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  penulisId   String
-  penulis     User      @relation(fields: [penulisId], references: [id])
-  status      String    @default("draft") // draft, published
-  tags        String?   // comma separated
-}
-
-model Wilayah {
-  id       String  @id @default(cuid())
-  nama     String
-  tipe     String // Dusun, RT, RW
-  parent   String?
-  geometri String?
-}
-
-model Aset {
-  id       String  @id @default(cuid())
-  nama     String
-  jenis    String // Tanah, Bangunan, Kendaraan
-  kode     String? @unique
-  lokasi   String
-  nilai    Float
-  geometri String?
 }
 
 model Program {
-  id              String   @id @default(cuid())
-  nama            String
-  deskripsi       String?
-  kategori        String // Infrastruktur, Ekonomi, Sosial, dll
-  status          String // Direncanakan, Berjalan, Selesai
-  anggaran        Float
-  sumberDana      String
-  tahun           Int
-  penanggungJawab String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id               String   @id @default(cuid())
+  nama             String
+  deskripsi        String
+  kategori         String
+  status           String
+  anggaran         Float
+  sumberDana       String
+  tanggalMulai     DateTime
+  tanggalSelesai   DateTime
+  penanggungJawab  String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Wilayah {
+  id         String @id @default(cuid())
+  nama       String
+  kode       String @unique
+  level      Int    // 1: Provinsi, 2: Kabupaten, 3: Kecamatan, 4: Desa
+  parent     String?
+  geometri   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Aset {
+  id         String @id @default(cuid())
+  nama       String
+  kode       String @unique
+  jenis      String
+  lokasi     String
+  tanggalPerolehan DateTime
+  nilai      Float
+  geometri   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Keuangan {
@@ -107,21 +105,15 @@ model Keuangan {
   deskripsi   String
   jumlah      Float
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model Penduduk {
-  id            String   @id @default(cuid())
-  nik           String   @unique
-  nama          String
-  jenisKelamin  String
-  tempatLahir   String
-  tanggalLahir  DateTime
-  alamat        String
-  rt            String
-  rw            String
-  agama         String
-  statusKawin   String
-  pekerjaan     String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+model Laporan {
+  id         String   @id @default(cuid())
+  judul      String
+  jenis      String
+  periode    String
+  fileUrl    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

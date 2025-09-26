@@ -2,6 +2,7 @@
 
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useToast } from "@/components/ui/use-toast";
+import { findUserByEmail } from '@/ai/flows/user-flow';
 
 interface User {
   email: string;
@@ -10,7 +11,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => boolean;
+  login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -21,7 +22,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const { toast } = useToast();
   
-  // Check if user is already logged in from localStorage
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -29,36 +29,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // Admin credentials
-  const adminUser = {
-    email: 'admin@desaremaubakotuo.spasial.net',
-    password: 'admin@desaremaubakotuo.spasial.net',
-    role: 'admin'
-  };
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const dbUser = await findUserByEmail(email);
 
-  // Login function
-  const login = (email: string, password: string): boolean => {
-    // Simple authentication check
-    if (email === adminUser.email && password === adminUser.password) {
-      const userData = { email: adminUser.email, role: adminUser.role };
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
-      toast({
-        title: "Login Berhasil",
-        description: "Selamat datang kembali!",
-      });
-      return true;
-    } else {
+      if (dbUser && dbUser.password === password) {
+        const userData = { email: dbUser.email, role: dbUser.role };
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
+        toast({
+          title: "Login Berhasil",
+          description: "Selamat datang kembali!",
+        });
+        return true;
+      } else {
+        toast({
+          title: "Login Gagal",
+          description: "Email atau password salah!",
+          variant: "destructive",
+        });
+        return false;
+      }
+    } catch (error) {
+      console.error("Login error:", error);
       toast({
         title: "Login Gagal",
-        description: "Email atau password salah!",
+        description: "Terjadi kesalahan pada server.",
         variant: "destructive",
       });
       return false;
     }
   };
 
-  // Logout function
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
