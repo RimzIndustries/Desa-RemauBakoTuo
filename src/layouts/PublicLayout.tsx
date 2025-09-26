@@ -20,17 +20,15 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (isTataRuangRoute) {
     return (
-      <>
-        <div className="fixed inset-0">
-          {children}
-        </div>
+      <div className="fixed inset-0">
+        {children}
         <div className="fixed top-0 left-0 right-0 z-[1000]">
           <TopNav hasNewNews={false} />
         </div>
         <div className="fixed bottom-0 left-0 right-0 z-[1000]">
           <BottomNav />
         </div>
-      </>
+      </div>
     );
   }
 
