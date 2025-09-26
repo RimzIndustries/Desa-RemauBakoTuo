@@ -15,10 +15,15 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const isTataRuangRoute = pathname?.startsWith('/tata-ruang');
-
+  
   if (isTataRuangRoute) {
-    // For the map page, we render it directly with its own layout structure
-    // to avoid re-initialization issues with the PublicLayout's main structure.
+    if (!isMounted) {
+      return (
+        <div className="fixed inset-0 bg-gray-200 flex items-center justify-center"><p>Loading Map...</p></div>
+      );
+    }
+    // For the map page, we let it handle its own layout. The children already contain the full-screen map.
+    // The TopNav and BottomNav are added on top.
     return (
       <>
         {children}
@@ -28,18 +33,14 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="fixed bottom-0 left-0 right-0 z-[1000]">
           <BottomNav />
         </div>
-        {isMounted && (
-          <>
-            <Toaster />
-            <Sonner />
-          </>
-        )}
+        <Toaster />
+        <Sonner />
       </>
     );
   }
 
   if (!isMounted) {
-    // Render a simple version for SSR to avoid hydration errors
+    // Render a simple version for SSR to avoid hydration errors on non-map pages
     return (
       <div className="flex flex-col min-h-screen">
         <main className="flex-grow">{children}</main>
