@@ -1,18 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 import { LatLngTuple, LatLngBounds, Icon } from 'leaflet';
-import { TileLayer, useMap, Marker, Polygon } from 'react-leaflet';
-import dynamic from 'next/dynamic';
+import { MapContainer, TileLayer, useMap, Marker, Polygon } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import '@/styles/map.css';
-import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Clock, Phone, Mail, Globe, Users, Home, Building2, TreePine, Warehouse, Ruler, MapPin } from 'lucide-react';
+import { Map as MapIcon, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Clock, Phone, Mail, Globe, Users, Home, Building2, TreePine, Warehouse, Ruler, MapPin } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-
-// Dynamically import MapContainer
-const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
-
 
 // Fix Leaflet default marker issue
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -26,7 +21,6 @@ Icon.Default.mergeOptions({
   shadowUrl: markerShadow.src,
 });
 
-// Your existing constants and components from TataRuang.tsx
 const DESA_CENTER: LatLngTuple = [-1.2224187831143103, 104.38307336564955];
 const DEFAULT_ZOOM = 16;
 const DESA_BOUNDS = new LatLngBounds(
@@ -38,7 +32,7 @@ const BASE_LAYERS = {
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     name: 'Street',
-    icon: Map
+    icon: MapIcon
   },
   satellite: {
     url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
@@ -738,7 +732,6 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
     [104.404079, -1.246235],
     [104.404063, -1.246189],
     [104.404045, -1.246136],
-    [104.403995, -1.246002],
     [104.3996, -1.236832],
     [104.399624, -1.236786],
     [104.399603, -1.236712],
@@ -789,164 +782,164 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
     [104.395827, -1.225178],
     [104.395832, -1.225074],
     [104.395839, -1.224945],
-    [104.395822, -1.224793],
-    [104.395782, -1.224635],
-    [104.395723, -1.224489],
-    [104.395674, -1.224406],
-    [104.395632, -1.224363],
-    [104.395462, -1.224179],
-    [104.395376, -1.22399],
-    [104.395307, -1.223746],
-    [104.395071, -1.223059],
-    [104.394835, -1.22248],
-    [104.394672, -1.222066],
-    [104.394663, -1.221995],
-    [104.394653, -1.221882],
+    [104.395782, -1.224793],
+    [104.395723, -1.224635],
+    [104.395674, -1.224489],
+    [104.395632, -1.224406],
+    [104.395462, -1.224363],
+    [104.395376, -1.224179],
+    [104.395307, -1.22399],
+    [104.395071, -1.223746],
+    [104.394835, -1.223059],
+    [104.394672, -1.22248],
+    [104.394663, -1.222066],
+    [104.394653, -1.221995],
+    [104.394645, -1.221882],
     [104.394655, -1.221776],
     [104.394652, -1.221742],
-    [104.394645, -1.221642],
-    [104.39463, -1.221544],
-    [104.394623, -1.221495],
-    [104.394591, -1.221361],
-    [104.394545, -1.221225],
-    [104.394493, -1.221096],
-    [104.394446, -1.220986],
-    [104.394412, -1.22086],
-    [104.39436, -1.22065],
-    [104.394261, -1.220346],
-    [104.394187, -1.220192],
-    [104.394097, -1.220027],
-    [104.394027, -1.219929],
-    [104.393966, -1.219814],
-    [104.393934, -1.219666],
-    [104.393905, -1.219527],
-    [104.39387, -1.219381],
-    [104.393725, -1.219038],
-    [104.393655, -1.218921],
-    [104.393617, -1.218859],
-    [104.393515, -1.218672],
-    [104.393456, -1.218521],
-    [104.393422, -1.218394],
-    [104.39337, -1.218243],
-    [104.393296, -1.218078],
-    [104.393215, -1.217948],
-    [104.393136, -1.217848],
-    [104.393072, -1.217771],
-    [104.39295, -1.217517],
-    [104.392888, -1.217408],
-    [104.392787, -1.217323],
-    [104.392662, -1.217277],
-    [104.392531, -1.21726],
-    [104.392399, -1.217242],
-    [104.3923, -1.217228],
-    [104.392136, -1.217189],
-    [104.392034, -1.217121],
-    [104.391966, -1.217031],
-    [104.391938, -1.216894],
-    [104.391949, -1.21677],
-    [104.392033, -1.216328],
-    [104.392093, -1.216109],
-    [104.392158, -1.216001],
-    [104.392181, -1.215988],
-    [104.392279, -1.215933],
-    [104.392408, -1.215857],
-    [104.392504, -1.215695],
-    [104.392519, -1.215523],
-    [104.392504, -1.215329],
-    [104.392447, -1.215098],
-    [104.392365, -1.214836],
-    [104.392283, -1.214552],
-    [104.392247, -1.214232],
-    [104.392237, -1.213948],
-    [104.392269, -1.213707],
-    [104.392273, -1.213689],
-    [104.392333, -1.213448],
-    [104.392362, -1.213272],
-    [104.392358, -1.213092],
-    [104.392323, -1.212934],
-    [104.39223, -1.212477],
-    [104.392223, -1.21224],
-    [104.392241, -1.211887],
-    [104.392252, -1.211761],
-    [104.392288, -1.211501],
-    [104.392278, -1.211487],
-    [104.39232, -1.211229],
-    [104.39237, -1.211028],
-    [104.392448, -1.210816],
-    [104.392495, -1.210693],
-    [104.392538, -1.210629],
-    [104.392641, -1.210488],
-    [104.39272, -1.21037],
-    [104.392745, -1.210233],
-    [104.392741, -1.210197],
-    [104.39272, -1.210157],
-    [104.392598, -1.210147],
-    [104.392459, -1.210143],
-    [104.39232, -1.210114],
-    [104.39222, -1.209999],
-    [104.39217, -1.209841],
-    [104.392177, -1.209636],
-    [104.392231, -1.20942],
-    [104.392252, -1.209212],
-    [104.392238, -1.208931],
-    [104.392152, -1.208737],
-    [104.392052, -1.208575],
-    [104.391999, -1.208413],
-    [104.391974, -1.208219],
-    [104.391977, -1.207967],
-    [104.392106, -1.207446],
-    [104.392147, -1.206598],
-    [104.392263, -1.205692],
-    [104.392271, -1.205624],
+    [104.39463, -1.221642],
+    [104.394623, -1.221544],
+    [104.394591, -1.221495],
+    [104.394545, -1.221361],
+    [104.394493, -1.221225],
+    [104.394446, -1.221096],
+    [104.394412, -1.220986],
+    [104.39436, -1.22086],
+    [104.394261, -1.22065],
+    [104.394187, -1.220346],
+    [104.394097, -1.220192],
+    [104.394027, -1.220027],
+    [104.393966, -1.219929],
+    [104.393934, -1.219814],
+    [104.393905, -1.219666],
+    [104.39387, -1.219527],
+    [104.393725, -1.219381],
+    [104.393655, -1.219038],
+    [104.393617, -1.218921],
+    [104.393515, -1.218859],
+    [104.393456, -1.218672],
+    [104.393422, -1.218521],
+    [104.39337, -1.218394],
+    [104.393296, -1.218243],
+    [104.393215, -1.218078],
+    [104.393136, -1.217948],
+    [104.393072, -1.217848],
+    [104.39295, -1.217771],
+    [104.392888, -1.217517],
+    [104.392787, -1.217408],
+    [104.392662, -1.217323],
+    [104.392531, -1.217277],
+    [104.392399, -1.21726],
+    [104.3923, -1.217242],
+    [104.392136, -1.217228],
+    [104.392034, -1.217189],
+    [104.391966, -1.217121],
+    [104.391938, -1.217031],
+    [104.391949, -1.216894],
+    [104.392033, -1.21677],
+    [104.392093, -1.216328],
+    [104.392158, -1.216109],
+    [104.392181, -1.216001],
+    [104.392279, -1.215988],
+    [104.392408, -1.215933],
+    [104.392504, -1.215857],
+    [104.392519, -1.215695],
+    [104.392504, -1.215523],
+    [104.392447, -1.215329],
+    [104.392365, -1.215098],
+    [104.392283, -1.214836],
+    [104.392247, -1.214552],
+    [104.392237, -1.214232],
+    [104.392269, -1.213948],
+    [104.392273, -1.213707],
+    [104.392333, -1.213689],
+    [104.392362, -1.213448],
+    [104.392358, -1.213272],
+    [104.392323, -1.213092],
+    [104.39223, -1.212934],
+    [104.392223, -1.212477],
+    [104.392241, -1.21224],
+    [104.392252, -1.211887],
+    [104.392288, -1.211761],
+    [104.392278, -1.211501],
+    [104.39232, -1.211487],
+    [104.39237, -1.211229],
+    [104.392448, -1.211028],
+    [104.392495, -1.210816],
+    [104.392538, -1.210693],
+    [104.392641, -1.210629],
+    [104.39272, -1.210488],
+    [104.392745, -1.21037],
+    [104.392741, -1.210233],
+    [104.39272, -1.210197],
+    [104.392598, -1.210157],
+    [104.392459, -1.210147],
+    [104.39232, -1.210143],
+    [104.39222, -1.210114],
+    [104.39217, -1.209999],
+    [104.392177, -1.209841],
+    [104.392231, -1.209636],
+    [104.392252, -1.20942],
+    [104.392238, -1.209212],
+    [104.392152, -1.208931],
+    [104.392052, -1.208737],
+    [104.391999, -1.208575],
+    [104.391974, -1.208413],
+    [104.391977, -1.208219],
+    [104.392106, -1.207967],
+    [104.392147, -1.207446],
+    [104.392263, -1.206598],
+    [104.392271, -1.205692],
+    [104.392282, -1.205624],
     [104.392282, -1.205279],
-    [104.392282, -1.205228],
-    [104.392282, -1.204909],
-    [104.392286, -1.204557],
-    [104.392333, -1.204187],
-    [104.392392, -1.203902],
-    [104.392439, -1.20359],
-    [104.392447, -1.203341],
-    [104.392443, -1.202714],
-    [104.392436, -1.20233],
-    [104.392425, -1.201897],
-    [104.392429, -1.201553],
-    [104.392447, -1.201201],
-    [104.392473, -1.200883],
-    [104.392502, -1.200604],
-    [104.39256, -1.20023],
-    [104.392618, -1.199897],
-    [104.392702, -1.199597],
-    [104.392819, -1.199245],
-    [104.392928, -1.198878],
-    [104.392997, -1.198604],
-    [104.393066, -1.198285],
-    [104.393117, -1.197992],
-    [104.393252, -1.197211],
-    [104.393329, -1.196819],
-    [104.393424, -1.196372],
-    [104.3935, -1.195984],
-    [104.393537, -1.195658],
-    [104.393569, -1.195292],
-    [104.393595, -1.19498],
-    [104.393621, -1.19468],
-    [104.393661, -1.194394],
-    [104.393701, -1.194181],
-    [104.393777, -1.193866],
-    [104.393872, -1.193559],
-    [104.393912, -1.193383],
-    [104.39397, -1.192917],
-    [104.394012, -1.192541],
-    [104.394021, -1.192456],
-    [104.394102, -1.191976],
-    [104.394178, -1.191631],
-    [104.394244, -1.191353],
-    [104.394288, -1.191122],
-    [104.39432, -1.190932],
-    [104.394339, -1.190745],
+    [104.392286, -1.205228],
+    [104.392333, -1.204909],
+    [104.392392, -1.204557],
+    [104.392439, -1.204187],
+    [104.392447, -1.203902],
+    [104.392443, -1.20359],
+    [104.392425, -1.203341],
+    [104.392429, -1.202714],
+    [104.392447, -1.20233],
+    [104.392473, -1.201897],
+    [104.392502, -1.201553],
+    [104.39256, -1.201201],
+    [104.392618, -1.200883],
+    [104.392702, -1.200604],
+    [104.392819, -1.20023],
+    [104.392928, -1.199897],
+    [104.392997, -1.199597],
+    [104.393066, -1.199245],
+    [104.393117, -1.198878],
+    [104.393252, -1.198604],
+    [104.393329, -1.198285],
+    [104.393424, -1.197992],
+    [104.3935, -1.197211],
+    [104.393537, -1.196819],
+    [104.393569, -1.196372],
+    [104.393595, -1.195984],
+    [104.393621, -1.195658],
+    [104.393661, -1.195292],
+    [104.393701, -1.19498],
+    [104.393777, -1.19468],
+    [104.393872, -1.194394],
+    [104.393912, -1.194181],
+    [104.39397, -1.193866],
+    [104.40982, -1.193559],
+    [104.410462, -1.193383],
+    [104.411105, -1.192917],
+    [104.411212, -1.192541],
+    [104.411135, -1.192456],
+    [104.411043, -1.191976],
+    [104.410741, -1.191631],
+    [104.410565, -1.191353],
+    [104.410392, -1.191122],
+    [104.410169, -1.190932],
+    [104.410073, -1.190745],
     [104.394354, -1.19066]
 ].map(([lng, lat]) => [lat, lng] as [number, number]);
 
-export default function TataRuangClient() {
+export default function MapPage() {
     const [activeLayer, setActiveLayer] = useState<keyof typeof BASE_LAYERS>('satellite');
     const [activeLayers, setActiveLayers] = useState<string[]>([]);
     const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
@@ -966,60 +959,58 @@ export default function TataRuangClient() {
     };
 
   return (
-    <div className="fixed inset-0">
-      <MapContainer 
-        center={DESA_CENTER} 
-        zoom={DEFAULT_ZOOM} 
-        className="w-full h-full"
-        zoomControl={false}
-        maxBounds={DESA_BOUNDS}
-        maxBoundsViscosity={1.0}
-      >
-        <TileLayer
-          attribution={BASE_LAYERS[activeLayer].attribution}
-          url={BASE_LAYERS[activeLayer].url}
-        />
-        {activeLayers.includes('Peta Administrasi') && (
-          <Polygon
-            positions={ADMINISTRATIVE_BOUNDARY}
-            pathOptions={{
-              color: 'white',
-              weight: 2,
-              fillColor: '#10b981',
-              fillOpacity: 0.2,
-              opacity: 0.8
-            }}
-            eventHandlers={{
-              click: () => {
-                setSelectedMarker({
-                  title: "Batas Administrasi Desa Remau Bako Tuo",
-                  description: "Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.",
-                  type: 'boundary'
-                });
-              }
-            }}
-          />
-        )}
-        <Marker 
-          position={DESA_CENTER}
+    <MapContainer 
+      center={DESA_CENTER} 
+      zoom={DEFAULT_ZOOM} 
+      className="w-full h-full"
+      zoomControl={false}
+      maxBounds={DESA_BOUNDS}
+      maxBoundsViscosity={1.0}
+    >
+      <TileLayer
+        attribution={BASE_LAYERS[activeLayer].attribution}
+        url={BASE_LAYERS[activeLayer].url}
+      />
+      {activeLayers.includes('Peta Administrasi') && (
+        <Polygon
+          positions={ADMINISTRATIVE_BOUNDARY}
+          pathOptions={{
+            color: 'white',
+            weight: 2,
+            fillColor: '#10b981',
+            fillOpacity: 0.2,
+            opacity: 0.8
+          }}
           eventHandlers={{
             click: () => {
               setSelectedMarker({
-                title: "Kantor Desa Remau Bako Tuo",
-                coordinates: DESA_CENTER,
-                description: "Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.",
-                type: 'marker'
+                title: "Batas Administrasi Desa Remau Bako Tuo",
+                description: "Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.",
+                type: 'boundary'
               });
             }
           }}
         />
-        <MapControls 
-          activeLayer={activeLayer} 
-          setActiveLayer={setActiveLayer}
-          layerPanelExpanded={layerPanelExpanded}
-          setLayerPanelExpanded={setLayerPanelExpanded}
-        />
-      </MapContainer>
+      )}
+      <Marker 
+        position={DESA_CENTER}
+        eventHandlers={{
+          click: () => {
+            setSelectedMarker({
+              title: "Kantor Desa Remau Bako Tuo",
+              coordinates: DESA_CENTER,
+              description: "Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.",
+              type: 'marker'
+            });
+          }
+        }}
+      />
+      <MapControls 
+        activeLayer={activeLayer} 
+        setActiveLayer={setActiveLayer}
+        layerPanelExpanded={layerPanelExpanded}
+        setLayerPanelExpanded={setLayerPanelExpanded}
+      />
       <LayerPanel 
         expanded={layerPanelExpanded}
         onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
@@ -1031,6 +1022,6 @@ export default function TataRuangClient() {
         onClose={() => setSelectedMarker(null)}
         markerInfo={selectedMarker}
       />
-    </div>
+    </MapContainer>
   );
 };
