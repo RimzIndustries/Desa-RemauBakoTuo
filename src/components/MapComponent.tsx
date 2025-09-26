@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Polygon, useMap } from 'react-leaflet';
-import { LatLngTuple, LatLngBounds, Icon } from 'leaflet';
+import { MapContainer, TileLayer, Polygon, Marker, useMap } from 'react-leaflet';
+import { LatLngTuple, LatLngBounds, Icon, Map as LeafletMap } from 'leaflet';
 import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Phone, Mail, Globe, Users, Home, Building2, TreePine } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
@@ -15,19 +15,23 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 // Fix for default icon paths in Next.js
-delete (Icon.Default.prototype as any)._getIconUrl;
-Icon.Default.mergeOptions({
-  iconUrl: markerIcon.src,
-  iconRetinaUrl: markerIcon2x.src,
-  shadowUrl: markerShadow.src,
-});
+if (typeof window !== 'undefined') {
+  delete (Icon.Default.prototype as any)._getIconUrl;
+  Icon.Default.mergeOptions({
+    iconUrl: markerIcon.src,
+    iconRetinaUrl: markerIcon2x.src,
+    shadowUrl: markerShadow.src,
+  });
+}
+
 
 const DESA_CENTER: LatLngTuple = [-1.2224187831143103, 104.38307336564955];
 const DEFAULT_ZOOM = 16;
-const DESA_BOUNDS = new LatLngBounds(
+const DESA_BOUNDS_COORDS: [[number, number], [number, number]] = [
   [-1.2324187831143103, 104.37307336564955],
   [-1.2124187831143103, 104.39307336564955]
-);
+];
+const DESA_BOUNDS = new LatLngBounds(DESA_BOUNDS_COORDS);
 
 const BASE_LAYERS = {
   street: {
@@ -153,56 +157,23 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
 const LAYER_CATEGORIES = {
   wilayah: {
     name: 'Peta Wilayah',
-    layers: [
-      'Peta Administrasi',
-      'Penggunaan Lahan',
-      'Bidang Tanah',
-      'Infrastruktur Publik',
-      'Prasarana Umum'
-    ]
+    layers: [ 'Peta Administrasi', 'Penggunaan Lahan', 'Bidang Tanah', 'Infrastruktur Publik', 'Prasarana Umum' ]
   },
   sosial: {
     name: 'Peta Sosial',
-    layers: [
-      'Demografi',
-      'Pendidikan',
-      'Kesehatan',
-      'Sosial dan Budaya',
-      'Partisipasi Publik'
-    ]
+    layers: [ 'Demografi', 'Pendidikan', 'Kesehatan', 'Sosial dan Budaya', 'Partisipasi Publik' ]
   },
   ekonomi: {
     name: 'Peta Ekonomi',
-    layers: [
-      'Tingkat Pendapatan',
-      'Seltor Pangan',
-      'Perkebunan',
-      'Peternakan',
-      'Perikanan',
-      'Kehutanan',
-      'Pertambangan',
-      'Pengolahan',
-      'Energi'
-    ]
+    layers: [ 'Tingkat Pendapatan', 'Seltor Pangan', 'Perkebunan', 'Peternakan', 'Perikanan', 'Kehutanan', 'Pertambangan', 'Pengolahan', 'Energi' ]
   },
   lingkungan: {
     name: 'Peta Lingkungan',
-    layers: [
-      'Geomorfologi Tanah',
-      'Iklim Dan Cuaca',
-      'Daerah Aliran Sungai',
-      'Keragaman Hayati',
-      'Limbah-Sampah',
-      'Karateristik Lahan',
-      'Lokasi Lahan Bencana'
-    ]
+    layers: [ 'Geomorfologi Tanah', 'Iklim Dan Cuaca', 'Daerah Aliran Sungai', 'Keragaman Hayati', 'Limbah-Sampah', 'Karateristik Lahan', 'Lokasi Lahan Bencana' ]
   },
   aset: {
     name: 'Peta Aset',
-    layers: [
-      'Aset Desa',
-      'Aset Masyarakat'
-    ]
+    layers: [ 'Aset Desa', 'Aset Masyarakat' ]
   }
 };
 
@@ -222,7 +193,7 @@ const LayerPanel: React.FC<{
     <Sheet open={expanded} onOpenChange={onToggle}>
       <SheetContent
         side="left"
-        className="w-[70vw] sm:w-[336px] bg-white/40 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-white/20 rounded-r-[2rem] top-14 sm:top-20 h-[calc(100vh-7rem)] sm:h-[calc(100vh-10rem)] transition-all duration-300"
+        className="w-[70vw] sm:w-[336px] bg-white/40 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-white/20 rounded-r-[2rem] top-14 sm:top-20 h-[calc(100vh-7rem)] sm:h-[calc(100vh-10rem)] transition-all duration-300 p-0"
         aria-label="Layer Panel"
       >
         <SheetTitle className="sr-only">Layer Controls</SheetTitle>
@@ -232,24 +203,16 @@ const LayerPanel: React.FC<{
               <div key={key} className="rounded-lg overflow-hidden">
                 <button
                   onClick={() => toggleCategory(key)}
-                  className={`w-full flex items-center justify-between transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm text-black/90 hover:bg-white/20 ${expandedCategory === key ? 'bg-white/10' : ''
-                    }`}
+                  className={`w-full flex items-center justify-between transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm text-black/90 hover:bg-white/20 ${expandedCategory === key ? 'bg-white/10' : '' }`}
                   aria-expanded={expandedCategory === key}
                   aria-controls={`category-${key}-layers`}
                 >
                   {category.name}
-                  {expandedCategory === key ? (
-                    <ChevronDown className="h-4 w-4 text-black/90" />
-                  ) : (
-                    <ChevronRight className="h-4 w-4 text-black/90" />
-                  )}
+                  {expandedCategory === key ? ( <ChevronDown className="h-4 w-4 text-black/90" /> ) : ( <ChevronRight className="h-4 w-4 text-black/90" /> )}
                 </button>
                 <div
                   id={`category-${key}-layers`}
-                  className={`transition-all duration-200 ${expandedCategory === key
-                      ? 'max-h-[500px] opacity-100'
-                      : 'max-h-0 opacity-0'
-                    } overflow-hidden`}
+                  className={`transition-all duration-200 ${expandedCategory === key ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}
                 >
                   <div className="py-1">
                     {category.layers.map(layer => (
@@ -281,12 +244,7 @@ const LayerPanel: React.FC<{
 const LayerInfo: React.FC<{
   isOpen: boolean;
   onClose: () => void;
-  markerInfo: {
-    title: string;
-    coordinates?: LatLngTuple;
-    description: string;
-    type?: 'marker' | 'boundary';
-  } | null;
+  markerInfo: { title: string; coordinates?: LatLngTuple; description: string; type?: 'marker' | 'boundary'; } | null;
 }> = ({ isOpen, onClose, markerInfo }) => {
   if (!markerInfo) return null;
   const stats = [
@@ -295,18 +253,12 @@ const LayerInfo: React.FC<{
     { icon: Building2, label: 'Luas Wilayah', value: '2,500 Ha', subtext: '25 km²' },
     { icon: TreePine, label: 'Luas Hutan', value: '850 Ha', percentage: '34%' }
   ];
-  const landUse = [
-    { type: 'Pemukiman', percentage: 25 },
-    { type: 'Pertanian', percentage: 30 },
-    { type: 'Hutan', percentage: 34 },
-    { type: 'Lainnya', percentage: 11 }
-  ];
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent
         side="right"
-        className="w-[70vw] sm:w-[336px] bg-white/40 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-l border-white/20 rounded-l-[2rem] top-14 sm:top-20 h-[calc(100vh-7rem)] sm:h-[calc(100vh-10rem)] transition-all duration-300"
+        className="w-[70vw] sm:w-[336px] bg-white/40 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-l border-white/20 rounded-l-[2rem] top-14 sm:top-20 h-[calc(100vh-7rem)] sm:h-[calc(100vh-10rem)] transition-all duration-300 p-0"
         aria-label="Location Information"
       >
         <SheetTitle className="sr-only">{markerInfo.title}</SheetTitle>
@@ -374,13 +326,14 @@ const LayerInfo: React.FC<{
 
 
 const MapControls: React.FC<{
+  map: LeafletMap | null;
   activeLayer: keyof typeof BASE_LAYERS;
   setActiveLayer: (layer: keyof typeof BASE_LAYERS) => void;
   layerPanelExpanded: boolean;
   setLayerPanelExpanded: (expanded: boolean) => void;
-}> = ({ activeLayer, setActiveLayer, layerPanelExpanded, setLayerPanelExpanded }) => {
-  const map = useMap();
-  const handleShowAll = () => map.fitBounds(DESA_BOUNDS);
+}> = ({ map, activeLayer, setActiveLayer, layerPanelExpanded, setLayerPanelExpanded }) => {
+  if (!map) return null;
+  const handleShowAll = () => map.fitBounds(DESA_BOUNDS_COORDS);
 
   return (
     <div className="absolute left-2 top-20 z-[999]">
@@ -427,6 +380,7 @@ const MapControls: React.FC<{
 };
 
 const MapComponent = () => {
+    const [map, setMap] = useState<LeafletMap | null>(null);
     const [activeBaseLayer, setActiveBaseLayer] = useState<string>('satellite');
     const [activeOverlays, setActiveOverlays] = useState<string[]>(['Peta Administrasi']);
     const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
@@ -445,6 +399,7 @@ const MapComponent = () => {
                 zoomControl={false}
                 maxBounds={DESA_BOUNDS}
                 maxBoundsViscosity={1.0}
+                whenCreated={setMap}
             >
                 <TileLayer
                     attribution={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].attribution}
@@ -478,13 +433,14 @@ const MapComponent = () => {
                         },
                     }}
                 />
-                <MapControls
-                    activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
-                    setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
-                    layerPanelExpanded={layerPanelExpanded}
-                    setLayerPanelExpanded={setLayerPanelExpanded}
-                />
             </MapContainer>
+            <MapControls
+                map={map}
+                activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
+                setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
+                layerPanelExpanded={layerPanelExpanded}
+                setLayerPanelExpanded={setLayerPanelExpanded}
+            />
             <LayerPanel
                 expanded={layerPanelExpanded}
                 onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
