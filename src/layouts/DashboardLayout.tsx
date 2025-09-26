@@ -147,7 +147,7 @@ const DashboardLayout = ({
               </div>
             </SidebarHeader>
             <SidebarContent>
-              <div className="space-y-1 px-2 py-4">
+              <nav className="space-y-1 px-2 py-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white">
                     <Globe size={18} className="text-white" />
@@ -161,18 +161,19 @@ const DashboardLayout = ({
                             <span className="text-white">{category.title}</span>
                           </AccordionTrigger>
                           <AccordionContent>
-                            <div className="space-y-1 pl-4">
+                            <ul className="space-y-1 pl-4">
                               {category.items.map((item, itemIndex) => (
-                                <Link
-                                  key={itemIndex}
-                                  href={item.path}
-                                  className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white"
-                                >
-                                  <item.icon size={16} className="text-white" />
-                                  <span>{item.title}</span>
-                                </Link>
+                                <li key={itemIndex}>
+                                  <Link
+                                    href={item.path}
+                                    className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white"
+                                  >
+                                    <item.icon size={16} className="text-white" />
+                                    <span>{item.title}</span>
+                                  </Link>
+                                </li>
                               ))}
-                            </div>
+                            </ul>
                           </AccordionContent>
                         </AccordionItem>
                       ))}
@@ -189,48 +190,48 @@ const DashboardLayout = ({
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="space-y-1 pl-4">
-                        <Link href="/dashboard/apps/surat-masuk" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                      <ul className="space-y-1 pl-4">
+                        <li><Link href="/dashboard/apps/surat-masuk" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Masuk</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-keluar" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-keluar" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Keluar</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-keterangan" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-keterangan" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Keterangan</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-pengantar" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-pengantar" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Pengantar</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-nikah" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-nikah" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Nikah</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-domisili" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-domisili" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Domisili</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-usaha" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-usaha" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Usaha</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-kematian" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-kematian" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Kematian</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-kelahiran" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-kelahiran" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Kelahiran</span>
-                        </Link>
-                        <Link href="/dashboard/apps/surat-pindah" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/apps/surat-pindah" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Surat Pindah</span>
-                        </Link>
-                      </div>
+                        </Link></li>
+                      </ul>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -249,24 +250,24 @@ const DashboardLayout = ({
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="space-y-1 pl-4">
-                        <Link href="/dashboard/settings/users" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                      <ul className="space-y-1 pl-4">
+                        <li><Link href="/dashboard/settings/users" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <Users size={16} className="text-white" />
                           <span>Pengguna</span>
-                        </Link>
-                        <Link href="/dashboard/settings/backup" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/settings/backup" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <FileText size={16} className="text-white" />
                           <span>Backup Data</span>
-                        </Link>
-                        <Link href="/dashboard/settings/activity-log" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                        </Link></li>
+                        <li><Link href="/dashboard/settings/activity-log" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
                           <Activity size={16} className="text-white" />
                           <span>Log Aktivitas</span>
-                        </Link>
-                      </div>
+                        </Link></li>
+                      </ul>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-              </div>
+              </nav>
             </SidebarContent>
             <SidebarFooter className="p-4">
               <DropdownMenu>
