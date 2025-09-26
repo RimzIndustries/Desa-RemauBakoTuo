@@ -10,7 +10,6 @@ const PublicLayout = ({
 }) => {
   const pathname = usePathname();
   
-  // Define routes that have a sidebar
   const sidebarRoutes = [
     '/profil', 
     '/pembangunan', 
@@ -23,7 +22,7 @@ const PublicLayout = ({
     '/pustaka'
   ];
 
-  const needsSidebar = sidebarRoutes.some(route => pathname.startsWith(route));
+  const needsSidebar = sidebarRoutes.some(route => pathname.startsWith(route) && pathname !== '/');
   const isTataRuangRoute = pathname === '/tata-ruang';
   
   if (isTataRuangRoute) {
@@ -44,11 +43,13 @@ const PublicLayout = ({
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="sticky top-0 z-50">
+      <header className="fixed top-0 left-0 right-0 z-50">
         <TopNav hasNewNews={false} />
       </header>
       <main className={`flex-grow transition-all duration-300 ease-in-out ${needsSidebar ? 'md:pl-72' : ''}`}>
-        {children}
+        <div className="pt-16">
+           {children}
+        </div>
       </main>
       <footer className="relative z-40">
         <BottomNav />
