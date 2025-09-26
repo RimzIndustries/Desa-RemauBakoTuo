@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,14 +16,13 @@ import {
   Plus, 
   Filter, 
   MoreVertical, 
-  Edit, 
+  Edit, GanttChartSquare,
   Trash2, 
   Eye,
   Download,
   Wallet,
   TrendingUp,
   TrendingDown,
-  Calendar,
   FileText
 } from "lucide-react";
 import {
@@ -34,11 +34,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Keuangan = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Mock data untuk transaksi keuangan
   const transaksi = [
     {
       id: 1,
@@ -72,10 +73,12 @@ const Keuangan = () => {
           </p>
         </div>
         <div className="flex gap-2">
+         <Link to="/keuangan/laporan">
           <Button variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
-            Export Laporan
+            <GanttChartSquare className="h-4 w-4 mr-2" />
+            Laporan
           </Button>
+          </Link>
           <Button size="sm">
             <Plus className="h-4 w-4 mr-2" />
             Tambah Transaksi
@@ -247,4 +250,4 @@ const Keuangan = () => {
   );
 };
 
-export default Keuangan; 
+export default Keuangan;

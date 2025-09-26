@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
@@ -71,6 +71,19 @@ import Publikasi from "@/pages/informasi/Publikasi";
 
 // Dashboard Pages
 import DashboardHome from "@/pages/dashboard/DashboardHome";
+import DashboardPenduduk from "@/pages/dashboard/Penduduk";
+import DashboardBerita from "@/pages/dashboard/Berita";
+import DashboardProgram from "@/pages/dashboard/Program";
+import DashboardKeuangan from "@/pages/dashboard/Keuangan";
+import DashboardLaporan from "@/pages/dashboard/Laporan";
+import DashboardIndeks from "@/pages/dashboard/IndeksDesa";
+import DashboardAktivitas from "@/pages/dashboard/Aktivitas";
+import DashboardTataRuang from "@/pages/dashboard/TataRuang";
+import DashboardPengaturan from "@/pages/dashboard/Pengaturan";
+import DashboardMonitoringPembangunan from "@/pages/dashboard/MonitoringPembangunan";
+import DashboardMonitoringDana from "@/pages/dashboard/MonitoringDana";
+import DashboardProfilDesa from "@/pages/dashboard/ProfilDesa";
+
 
 const router = createBrowserRouter([
   {
@@ -79,7 +92,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: "dana-desa", element: <DanaDesa /> },
-      { path: "profil", element: <ProfilDesa /> },
       { path: "pembangunan", element: <Pembangunan /> },
       { path: "indeks", element: <Indeks /> },
       { path: "tata-ruang", element: <TataRuang /> },
@@ -97,7 +109,16 @@ const router = createBrowserRouter([
       { path: "pembangunan/rkpdes", element: <RKPDes /> },
       { path: "pembangunan/rpjmdes", element: <RPJMDes /> },
       { path: "pembangunan/daftar-program", element: <DaftarProgram /> },
-      // Danadesa Routes
+      { path: "pembangunan/idm", element: <IDM /> },
+      { path: "pembangunan/ketahanan-desa", element: <KetahananDesa /> },
+      { path: "pembangunan/ketahanan-ekonomi", element: <KetahananEkonomi /> },
+      { path: "pembangunan/ketahanan-lingkungan", element: <KetahananLingkungan /> },
+      { path: "pembangunan/ketahanan-sosial", element: <KetahananSosial /> },
+      { path: "pembangunan/sdgs", element: <SDGs /> },
+      { path: "pembangunan/belanja", element: <Belanja /> },
+      { path: "pembangunan/pembiayaan", element: <Pembiayaan /> },
+      { path: "pembangunan/pendapatan", element: <Pendapatan /> },
+     // Danadesa Routes
       { path: "dana-desa/belanja", element: <Belanja /> },
       { path: "dana-desa/pembiayaan", element: <Pembiayaan /> },
       { path: "dana-desa/pendapatan", element: <Pendapatan /> },
@@ -130,7 +151,6 @@ const router = createBrowserRouter([
       // pustaka Routes
       { path: "pustaka/pustaka-desa", element: <PustakaDesa /> },
       { path: "pustaka/publikasi", element: <Publikasi /> },
-      // ... rest of your routes ...
     ]
   },
   {
@@ -146,36 +166,18 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <DashboardHome /> },
-      { path: "penduduk", element: (
-        <div className="p-4">
-          <h1 className="text-2xl font-bold mb-4">Data Penduduk</h1>
-          <p>Halaman ini akan menampilkan data penduduk desa.</p>
-        </div>
-      ) },
-      { path: "berita", element: (
-        <div className="p-4">
-          <h1 className="text-2xl font-bold mb-4">Kelola Berita</h1>
-          <p>Halaman ini untuk mengelola berita desa.</p>
-        </div>
-      ) },
-      { path: "statistik", element: (
-        <div className="p-4">
-          <h1 className="text-2xl font-bold mb-4">Statistik Desa</h1>
-          <p>Halaman ini menampilkan statistik desa.</p>
-        </div>
-      ) },
-      { path: "pengaturan", element: (
-        <div className="p-4">
-          <h1 className="text-2xl font-bold mb-4">Pengaturan</h1>
-          <p>Halaman pengaturan website desa.</p>
-        </div>
-      ) },
-      { path: "profil", element: (
-        <div className="p-4">
-          <h1 className="text-2xl font-bold mb-4">Profil Admin</h1>
-          <p>Halaman untuk mengelola profil admin.</p>
-        </div>
-      ) }
+      { path: "penduduk", element: <DashboardPenduduk /> },
+      { path: "berita", element: <DashboardBerita /> },
+      { path: "program", element: <DashboardProgram /> },
+      { path: "keuangan", element: <DashboardKeuangan /> },
+      { path: "laporan", element: <DashboardLaporan /> },
+      { path: "indeks", element: <DashboardIndeks /> },
+      { path: "aktivitas", element: <DashboardAktivitas /> },
+      { path: "tata-ruang", element: <DashboardTataRuang /> },
+      { path: "pengaturan", element: <DashboardPengaturan /> },
+      { path: "monitoring-pembangunan", element: <DashboardMonitoringPembangunan /> },
+      { path: "monitoring-dana", element: <DashboardMonitoringDana /> },
+      { path: "profil-desa", element: <DashboardProfilDesa /> },
     ]
   },
   {
