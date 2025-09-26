@@ -2,9 +2,20 @@
 import { usePathname } from 'next/navigation';
 import TopNav from '@/components/TopNav';
 import BottomNav from '@/components/BottomNav';
+import { useEffect, useState } from 'react';
 
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null; 
+  }
+  
   const isTataRuangRoute = pathname?.startsWith('/tata-ruang');
   const needsSidebar = !isTataRuangRoute && (
     pathname?.startsWith('/profil') ||
