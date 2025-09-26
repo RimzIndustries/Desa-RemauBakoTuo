@@ -1,71 +1,23 @@
+'use client';
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useNavigate, useLocation } from "react-router-dom";
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { Home, Map, Building2, Wallet, User, FileText, ChevronDown, ChevronUp, Users, History, Target, Compass, ScrollText, HeartHandshake, MessageSquareWarning, BookOpen, Scale, HandshakeIcon, Store, Activity, Apple, Calendar, ListTodo, Library, FileSpreadsheet } from "lucide-react";
-// Import semua halaman profil
-import ProfilDesa from "@/pages/profile/ProfilDesa";
-import SejarahDesa from "@/pages/profile/SejarahDesa";
-import Perkembangan from "@/pages/profile/Perkembangan";
-import VisiMisi from "@/pages/profile/VisiMisi";
-import ArahKebijakan from "@/pages/profile/ArahKebijakan";
-import StrukturPemerintah from "@/pages/profile/StrukturPemerintah";
-import BiodataPemerintah from "@/pages/profile/BiodataPemerintah";
-import StrukturBadan from "@/pages/profile/StrukturBadan";
-import BiodataBadan from "@/pages/profile/BiodataBadan";
-// Import halaman dana desa
-import Pendapatan from "@/pages/dana-desa/Pendapatan";
-import Belanja from "@/pages/dana-desa/Belanja";
-import Pembiayaan from "@/pages/dana-desa/Pembiayaan";
 
 interface BottomNavProps {
   className?: string;
 }
-
-type ProfilKey =
-  | "profil-desa"
-  | "sejarah-desa"
-  | "perkembangan"
-  | "visi-misi"
-  | "arah-kebijakan"
-  | "struktur-pemerintah"
-  | "biodata-pemerintah"
-  | "struktur-badan"
-  | "biodata-badan";
-
-type DanaDesaKey =
-  | "pendapatan"
-  | "belanja"
-  | "pembiayaan";
-
-const profilComponents: Record<ProfilKey, React.ReactNode> = {
-  "profil-desa": <ProfilDesa />,
-  "sejarah-desa": <SejarahDesa />,
-  "perkembangan": <Perkembangan />,
-  "visi-misi": <VisiMisi />,
-  "arah-kebijakan": <ArahKebijakan />,
-  "struktur-pemerintah": <StrukturPemerintah />,
-  "biodata-pemerintah": <BiodataPemerintah />,
-  "struktur-badan": <StrukturBadan />,
-  "biodata-badan": <BiodataBadan />,
-};
-
-const danaDesaComponents: Record<DanaDesaKey, React.ReactNode> = {
-  "pendapatan": <Pendapatan />,
-  "belanja": <Belanja />,
-  "pembiayaan": <Pembiayaan />,
-};
 
 const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isPembangunanOpen, setIsPembangunanOpen] = useState(false);
   const [isDanaDesaOpen, setIsDanaDesaOpen] = useState(false);
   const [isIndeksOpen, setIsIndeksOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const pathname = usePathname();
 
   const profileMenuItems = [
     { title: "Profil Desa", path: "/profil/profil-desa", icon: Home },
@@ -94,12 +46,8 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
     { title: "Indeks Ketahanan Lingkungan", path: "/indeks/ketahanan-lingkungan", icon: Compass }
   ];
 
-  const toggleSubmenu = (menuName: string) => {
-    setActiveSubmenu(activeSubmenu === menuName ? null : menuName);
-  };
-
   const SidebarProfil = () => {
-    const isProfilRoute = location.pathname.startsWith('/profil');
+    const isProfilRoute = pathname.startsWith('/profil');
     
     if (!isProfilRoute) return null;
 
@@ -118,15 +66,14 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {
-                          navigate(item.path);
-                          setIsProfileOpen(false);
-                        }}
+                        asChild
                       >
-                        <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                        <span className="hidden md:inline">{item.title}</span>
+                        <Link href={item.path} onClick={() => setIsProfileOpen(false)}>
+                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
+                          <span className="hidden md:inline">{item.title}</span>
+                        </Link>
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent side="right" sideOffset={16} className="md:hidden bg-emerald-800/90 text-emerald-50 border-emerald-700">
@@ -143,7 +90,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   };
 
   const SidebarPembangunan = () => {
-    const isPembangunanRoute = location.pathname.startsWith('/pembangunan');
+    const isPembangunanRoute = pathname.startsWith('/pembangunan');
     
     if (!isPembangunanRoute) return null;
 
@@ -162,15 +109,14 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {
-                          navigate(item.path);
-                          setIsPembangunanOpen(false);
-                        }}
+                        asChild
                       >
-                        <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                        <span className="hidden md:inline">{item.title}</span>
+                         <Link href={item.path} onClick={() => setIsPembangunanOpen(false)}>
+                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
+                          <span className="hidden md:inline">{item.title}</span>
+                        </Link>
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent side="right" sideOffset={16} className="md:hidden bg-emerald-800/90 text-emerald-50 border-emerald-700">
@@ -187,7 +133,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   };
 
   const SidebarDanaDesa = () => {
-    const isDanaDesaRoute = location.pathname.startsWith('/dana-desa');
+    const isDanaDesaRoute = pathname.startsWith('/dana-desa');
     
     if (!isDanaDesaRoute) return null;
 
@@ -206,15 +152,14 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {
-                          navigate(item.path);
-                          setIsDanaDesaOpen(false);
-                        }}
+                        asChild
                       >
-                        <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                        <span className="hidden md:inline">{item.title}</span>
+                         <Link href={item.path} onClick={() => setIsDanaDesaOpen(false)}>
+                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
+                          <span className="hidden md:inline">{item.title}</span>
+                        </Link>
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent side="right" sideOffset={16} className="md:hidden bg-emerald-800/90 text-emerald-50 border-emerald-700">
@@ -231,7 +176,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   };
 
   const SidebarIndeks = () => {
-    const isIndeksRoute = location.pathname.startsWith('/indeks');
+    const isIndeksRoute = pathname.startsWith('/indeks');
     
     if (!isIndeksRoute) return null;
 
@@ -250,15 +195,14 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {
-                          navigate(item.path);
-                          setIsIndeksOpen(false);
-                        }}
+                        asChild
                       >
-                        <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                        <span className="hidden md:inline">{item.title}</span>
+                         <Link href={item.path} onClick={() => setIsIndeksOpen(false)}>
+                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
+                          <span className="hidden md:inline">{item.title}</span>
+                        </Link>
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent side="right" sideOffset={16} className="md:hidden bg-emerald-800/90 text-emerald-50 border-emerald-700">
@@ -306,13 +250,12 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       key={index}
                       variant="ghost"
                       className="w-full justify-start text-black hover:text-black hover:bg-black/10 transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm"
-                      onClick={() => {
-                        navigate(item.path);
-                        setIsProfileOpen(false);
-                      }}
+                      asChild
                     >
-                      <item.icon className="h-4 w-4 mr-2 text-black" />
-                      {item.title}
+                      <Link href={item.path} onClick={() => setIsProfileOpen(false)}>
+                        <item.icon className="h-4 w-4 mr-2 text-black" />
+                        {item.title}
+                      </Link>
                     </Button>
                   ))}
                 </div>
@@ -328,10 +271,12 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
           <Button
             variant="ghost"
             className="flex flex-col items-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full py-1.5 sm:py-2 px-2 sm:px-3 h-full rounded-none"
-            onClick={() => navigate("/tata-ruang")}
+             asChild
           >
-            <Map className="h-5 w-5 sm:h-6 sm:w-6 mb-0.5 text-black" />
-            <span className="text-[10px] sm:text-xs">Tata Ruang</span>
+            <Link href="/tata-ruang">
+              <Map className="h-5 w-5 sm:h-6 sm:w-6 mb-0.5 text-black" />
+              <span className="text-[10px] sm:text-xs">Tata Ruang</span>
+            </Link>
           </Button>
 
           <Sheet open={isPembangunanOpen} onOpenChange={setIsPembangunanOpen}>
@@ -355,13 +300,12 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       key={index}
                       variant="ghost"
                       className="w-full justify-start text-black hover:text-black hover:bg-black/10 transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm"
-                      onClick={() => {
-                        navigate(item.path);
-                        setIsPembangunanOpen(false);
-                      }}
+                      asChild
                     >
-                      <item.icon className="h-4 w-4 mr-2 text-black" />
-                      {item.title}
+                      <Link href={item.path} onClick={() => setIsPembangunanOpen(false)}>
+                        <item.icon className="h-4 w-4 mr-2 text-black" />
+                        {item.title}
+                      </Link>
                     </Button>
                   ))}
                 </div>
@@ -395,13 +339,12 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       key={index}
                       variant="ghost"
                       className="w-full justify-start text-black hover:text-black hover:bg-black/10 transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm"
-                      onClick={() => {
-                        navigate(item.path);
-                        setIsDanaDesaOpen(false);
-                      }}
+                      asChild
                     >
-                      <item.icon className="h-4 w-4 mr-2 text-black" />
-                      {item.title}
+                       <Link href={item.path} onClick={() => setIsDanaDesaOpen(false)}>
+                        <item.icon className="h-4 w-4 mr-2 text-black" />
+                        {item.title}
+                      </Link>
                     </Button>
                   ))}
                 </div>
@@ -435,13 +378,12 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                       key={index}
                       variant="ghost"
                       className="w-full justify-start text-black hover:text-black hover:bg-black/10 transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm"
-                      onClick={() => {
-                        navigate(item.path);
-                        setIsIndeksOpen(false);
-                      }}
+                      asChild
                     >
-                      <item.icon className="h-4 w-4 mr-2 text-black" />
-                      {item.title}
+                      <Link href={item.path} onClick={() => setIsIndeksOpen(false)}>
+                        <item.icon className="h-4 w-4 mr-2 text-black" />
+                        {item.title}
+                      </Link>
                     </Button>
                   ))}
                 </div>

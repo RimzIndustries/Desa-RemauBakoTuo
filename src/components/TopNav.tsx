@@ -1,5 +1,7 @@
+'use client';
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { 
@@ -92,10 +94,10 @@ const menuItems = [
 
 const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   const SidebarLayanan = () => {
-    const isLayananRoute = location.pathname.startsWith('/layanan');
+    const isLayananRoute = pathname.startsWith('/layanan');
     if (!isLayananRoute) return null;
 
     return (
@@ -113,12 +115,11 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {}}
                         asChild
                       >
-                        <Link to={item.path}>
+                        <Link href={item.path}>
                           <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
                           <span className="hidden md:inline">{item.title}</span>
                         </Link>
@@ -138,7 +139,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
   };
 
   const SidebarEkonomi = () => {
-    const isEkonomiRoute = location.pathname.startsWith('/ekonomi');
+    const isEkonomiRoute = pathname.startsWith('/ekonomi');
     if (!isEkonomiRoute) return null;
 
     return (
@@ -156,12 +157,11 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {}}
                         asChild
                       >
-                        <Link to={item.path}>
+                        <Link href={item.path}>
                           <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
                           <span className="hidden md:inline">{item.title}</span>
                         </Link>
@@ -181,7 +181,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
   };
 
   const SidebarKelembagaan = () => {
-    const isKelembagaanRoute = location.pathname.startsWith('/kelembagaan');
+    const isKelembagaanRoute = pathname.startsWith('/kelembagaan');
     if (!isKelembagaanRoute) return null;
 
     return (
@@ -199,12 +199,11 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {}}
                         asChild
                       >
-                        <Link to={item.path}>
+                        <Link href={item.path}>
                           <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
                           <span className="hidden md:inline">{item.title}</span>
                         </Link>
@@ -224,7 +223,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
   };
 
   const SidebarAktivitas = () => {
-    const isAktivitasRoute = location.pathname.startsWith('/aktivitas');
+    const isAktivitasRoute = pathname.startsWith('/aktivitas');
     if (!isAktivitasRoute) return null;
 
     return (
@@ -242,12 +241,11 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {}}
                         asChild
                       >
-                        <Link to={item.path}>
+                        <Link href={item.path}>
                           <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
                           <span className="hidden md:inline">{item.title}</span>
                         </Link>
@@ -267,7 +265,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
   };
 
   const SidebarLiterasi = () => {
-    const isPustakaRoute = location.pathname.startsWith('/pustaka');
+    const isPustakaRoute = pathname.startsWith('/pustaka');
     if (!isPustakaRoute) return null;
 
     return (
@@ -285,12 +283,11 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       <Button
                         variant="ghost"
                         className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          location.pathname === item.path ? 'bg-emerald-700/70' : ''
+                          pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
-                        onClick={() => {}}
                         asChild
                       >
-                        <Link to={item.path}>
+                        <Link href={item.path}>
                           <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
                           <span className="hidden md:inline">{item.title}</span>
                         </Link>
@@ -316,7 +313,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
           <div className="flex items-center gap-1 -ml-1 sm:-ml-2">
             <img src="/lovable-uploads/logo-desa.png" alt="Logo Desa" className="h-8 w-8 sm:h-10 sm:w-10 object-contain transition-all duration-300" />
             <div className="ml-1">
-              <Link to="/" className="text-base sm:text-xl font-poppins font-medium tracking-tight text-black hover:text-black transition-all">
+              <Link href="/" className="text-base sm:text-xl font-poppins font-medium tracking-tight text-black hover:text-black transition-all">
                 Desa Remau Bako Tuo
               </Link>
               <div className="text-xs sm:text-sm font-poppins text-black/80">
@@ -332,7 +329,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
               size="icon"
               className="text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all h-10 w-10 sm:h-12 sm:w-12"
             >
-              <Link to="/search">
+              <Link href="/search">
                 <Search className="h-8 w-8 sm:h-10 sm:w-10" />
               </Link>
             </Button>
@@ -366,7 +363,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                                   className="w-full justify-start text-black hover:text-black hover:bg-black/10 transition-all py-1 sm:py-1.5 px-4 sm:px-6 text-xs sm:text-sm"
                                   asChild
                                 >
-                                  <Link to={item.path} className="flex items-center gap-2" onClick={() => setIsMainMenuOpen(false)}>
+                                  <Link href={item.path} className="flex items-center gap-2" onClick={() => setIsMainMenuOpen(false)}>
                                     <item.icon className="h-4 w-4 text-black" />
                                     {item.title}
                                   </Link>
@@ -384,7 +381,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       variant="ghost" 
                       className="flex-1 justify-start text-black hover:text-black hover:bg-black/10 transition-all text-xs sm:text-sm"
                     >
-                      <Link to="/berita" className="flex items-center" onClick={() => setIsMainMenuOpen(false)}>
+                      <Link href="/berita" className="flex items-center" onClick={() => setIsMainMenuOpen(false)}>
                         <Bell className="h-7 w-7 sm:h-9 sm:w-9 mr-2" />
                         <span>Notifikasi</span>
                         {hasNewNews && (
@@ -397,7 +394,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                       variant="ghost" 
                       className="flex-1 justify-start text-black hover:text-black hover:bg-black/10 transition-all text-xs sm:text-sm"
                     >
-                      <Link to="/login" className="flex items-center" onClick={() => setIsMainMenuOpen(false)}>
+                      <Link href="/login" className="flex items-center" onClick={() => setIsMainMenuOpen(false)}>
                         <User className="h-7 w-7 sm:h-9 sm:w-9 mr-2" />
                         <span>Masuk</span>
                       </Link>
@@ -423,4 +420,4 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
   );
 };
 
-export default TopNav; 
+export default TopNav;
