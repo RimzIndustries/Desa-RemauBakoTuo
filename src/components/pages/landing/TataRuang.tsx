@@ -978,7 +978,15 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
   [104.394354, -1.19066]
 ].map(([lng, lat]) => [lat, lng] as [number, number]);
 
-const MapWrapper = ({ activeLayer, activeLayers, onMarkerClick }: { activeLayer: keyof typeof BASE_LAYERS, activeLayers: string[], onMarkerClick: (info: any) => void }) => {
+const MapWrapper = ({ 
+  activeLayer, 
+  activeLayers, 
+  setSelectedMarker 
+}: { 
+  activeLayer: keyof typeof BASE_LAYERS, 
+  activeLayers: string[], 
+  setSelectedMarker: (info: any) => void 
+}) => {
   const map = useMemo(
     () => (
       <MapContainer
@@ -1005,7 +1013,7 @@ const MapWrapper = ({ activeLayer, activeLayers, onMarkerClick }: { activeLayer:
             }}
             eventHandlers={{
               click: () => {
-                onMarkerClick({
+                setSelectedMarker({
                   title: "Batas Administrasi Desa Remau Bako Tuo",
                   description: "Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.",
                   type: 'boundary'
@@ -1018,7 +1026,7 @@ const MapWrapper = ({ activeLayer, activeLayers, onMarkerClick }: { activeLayer:
           position={DESA_CENTER}
           eventHandlers={{
             click: () => {
-              onMarkerClick({
+              setSelectedMarker({
                 title: "Kantor Desa Remau Bako Tuo",
                 coordinates: DESA_CENTER,
                 description: "Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.",
@@ -1035,7 +1043,7 @@ const MapWrapper = ({ activeLayer, activeLayers, onMarkerClick }: { activeLayer:
         />
       </MapContainer>
     ),
-    [activeLayer, activeLayers, onMarkerClick]
+    [activeLayer, activeLayers, setSelectedMarker]
   );
 
   return map;
@@ -1059,14 +1067,10 @@ const TataRuang: React.FC = () => {
         : [...prev, layer]
     );
   };
-
-  const handleMarkerClick = (info: any) => {
-    setSelectedMarker(info);
-  };
   
   return (
     <div className="fixed inset-0">
-       <MapWrapper activeLayer={activeLayer} activeLayers={activeLayers} onMarkerClick={handleMarkerClick} />
+       <MapWrapper activeLayer={activeLayer} activeLayers={activeLayers} setSelectedMarker={setSelectedMarker} />
       <LayerPanel 
         expanded={layerPanelExpanded}
         onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
