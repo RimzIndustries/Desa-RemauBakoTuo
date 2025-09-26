@@ -324,4 +324,4 @@ const SejarahDesa = () => {
   );
 };
 
-export default SejarahDesa; 
+export default SejarahDesa;

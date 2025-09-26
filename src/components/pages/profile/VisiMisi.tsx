@@ -1,145 +1,121 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Calendar, DollarSign, ListChecks } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
+import { Target, ListChecks, ArrowRight, FileText } from "lucide-react";
 
-const RPJMDes = () => {
-  const rpjmdesData = {
-    program: {
-      title: "Program RPJMDes",
+const VisiMisi = () => {
+  const visiMisiData = {
+    visi: {
+      title: "Visi Desa",
+      icon: Target,
+      content: {
+        deskripsi: "Visi Desa Remau Bako Tuo untuk periode 2021-2027",
+        periode: "2021-2027",
+        visi: [
+          {
+            judul: "Visi Utama",
+            deskripsi: "Terwujudnya Desa Remau Bako Tuo yang Mandiri, Maju, dan Sejahtera",
+            poin: [
+              "Desa yang mandiri dalam pengelolaan sumber daya",
+              "Masyarakat yang maju dalam pendidikan dan teknologi",
+              "Kesejahteraan yang merata bagi seluruh warga",
+              "Lingkungan yang lestari dan berkelanjutan"
+            ]
+          }
+        ]
+      }
+    },
+    misi: {
+      title: "Misi Desa",
       icon: ListChecks,
       content: {
-        deskripsi: "Program-program dalam Rencana Pembangunan Jangka Menengah Desa (RPJMDes) periode 2021-2027",
+        deskripsi: "Misi Desa Remau Bako Tuo untuk mencapai visi 2021-2027",
         periode: "2021-2027",
-        program: [
+        misi: [
+          {
+            judul: "Penguatan Ekonomi",
+            deskripsi: "Mengembangkan perekonomian desa yang berkelanjutan",
+            program: [
+              "Pengembangan UMKM dan koperasi",
+              "Pemberdayaan ekonomi masyarakat",
+              "Pengembangan sektor pertanian",
+              "Pengembangan wisata desa"
+            ]
+          },
           {
             judul: "Pembangunan Infrastruktur",
-            deskripsi: "Program pembangunan infrastruktur desa",
-            kegiatan: [
-              "Pembangunan jalan desa 10 km",
-              "Peningkatan drainase 5 km",
-              "Pembangunan MCK umum 20 unit",
-              "Peningkatan fasilitas air bersih",
-              "Pembangunan fasilitas umum"
+            deskripsi: "Membangun infrastruktur desa yang modern dan berkelanjutan",
+            program: [
+              "Pembangunan jalan desa",
+              "Peningkatan fasilitas umum",
+              "Pengembangan teknologi informasi",
+              "Peningkatan sanitasi"
             ]
           },
           {
             judul: "Pemberdayaan Masyarakat",
-            deskripsi: "Program pemberdayaan masyarakat desa",
-            kegiatan: [
-              "Pengembangan UMKM",
-              "Pemberdayaan kelompok tani",
-              "Pengembangan wisata desa",
-              "Peningkatan kapasitas aparatur",
-              "Pengembangan ekonomi kreatif"
+            deskripsi: "Meningkatkan kualitas hidup masyarakat",
+            program: [
+              "Peningkatan pendidikan",
+              "Pengembangan kesehatan",
+              "Pemberdayaan perempuan",
+              "Penguatan kelembagaan"
             ]
-          },
+          }
+        ]
+      }
+    },
+    strategi: {
+      title: "Strategi",
+      icon: ArrowRight,
+      content: {
+        deskripsi: "Strategi pencapaian visi dan misi desa",
+        periode: "2021-2027",
+        strategi: [
           {
-            judul: "Penguatan Kelembagaan",
-            deskripsi: "Program penguatan kelembagaan desa",
-            kegiatan: [
+            judul: "Strategi Ekonomi",
+            deskripsi: "Strategi pengembangan ekonomi desa",
+            program: [
               "Pengembangan BUMDes",
-              "Pemberdayaan LPMD",
-              "Penguatan PKK",
-              "Pengembangan karang taruna",
-              "Penguatan lembaga adat"
+              "Pemberdayaan UMKM",
+              "Pengembangan sektor unggulan",
+              "Peningkatan investasi"
             ]
-          }
-        ]
-      }
-    },
-    anggaran: {
-      title: "Anggaran RPJMDes",
-      icon: DollarSign,
-      content: {
-        deskripsi: "Rincian anggaran RPJMDes periode 2021-2027",
-        periode: "2021-2027",
-        sumber: [
+          },
           {
-            judul: "Dana Desa",
-            jumlah: "Rp 6.000.000.000",
+            judul: "Strategi Pembangunan",
+            deskripsi: "Strategi pembangunan infrastruktur",
             program: [
-              "Pembangunan infrastruktur",
-              "Pemberdayaan masyarakat",
-              "Pengembangan ekonomi",
-              "Penguatan kelembagaan"
+              "Perencanaan partisipatif",
+              "Pemanfaatan teknologi",
+              "Pengelolaan sumber daya",
+              "Pemeliharaan berkelanjutan"
             ]
           },
           {
-            judul: "APBD",
-            jumlah: "Rp 3.000.000.000",
+            judul: "Strategi Pemberdayaan",
+            deskripsi: "Strategi pemberdayaan masyarakat",
             program: [
-              "Peningkatan fasilitas umum",
-              "Pengembangan pendidikan",
-              "Peningkatan kesehatan",
-              "Pengembangan ekonomi"
-            ]
-          },
-          {
-            judul: "Swadaya Masyarakat",
-            jumlah: "Rp 600.000.000",
-            program: [
-              "Pembangunan infrastruktur",
-              "Pemberdayaan masyarakat",
-              "Pengembangan ekonomi",
-              "Penguatan kelembagaan"
-            ]
-          }
-        ]
-      }
-    },
-    jadwal: {
-      title: "Jadwal Pelaksanaan",
-      icon: Calendar,
-      content: {
-        deskripsi: "Jadwal pelaksanaan program RPJMDes periode 2021-2027",
-        periode: "2021-2027",
-        tahap: [
-          {
-            judul: "Tahap Persiapan",
-            periode: "2021",
-            kegiatan: [
-              "Penyusunan rencana detail",
-              "Persiapan administrasi",
-              "Pembentukan tim",
-              "Koordinasi dengan stakeholder"
-            ]
-          },
-          {
-            judul: "Tahap Pelaksanaan",
-            periode: "2022-2026",
-            kegiatan: [
-              "Pembangunan infrastruktur",
-              "Pemberdayaan masyarakat",
-              "Pengembangan ekonomi",
-              "Penguatan kelembagaan"
-            ]
-          },
-          {
-            judul: "Tahap Evaluasi",
-            periode: "2027",
-            kegiatan: [
-              "Monitoring program",
-              "Evaluasi hasil",
-              "Penyusunan laporan",
-              "Perencanaan periode berikutnya"
+              "Peningkatan kapasitas",
+              "Penguatan kelembagaan",
+              "Pemberdayaan kelompok",
+              "Pengembangan inovasi"
             ]
           }
         ]
       }
     },
     dokumen: {
-      title: "Dokumen RPJMDes",
+      title: "Dokumen Visi Misi",
       icon: FileText,
       content: {
         dokumen: [
           {
-            judul: "RPJMDes 2021-2027",
+            judul: "Dokumen Visi Misi 2021-2027",
             tahun: "2021",
             status: "Dokumen Resmi"
           },
           {
-            judul: "Lampiran RPJMDes 2021-2027",
+            judul: "Lampiran Visi Misi 2021-2027",
             tahun: "2021",
             status: "Dokumen Resmi"
           }
@@ -150,36 +126,30 @@ const RPJMDes = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb
-        items={[
-          { title: "Profil Desa", path: "/profile" },
-          { title: "RPJMDes" }
-        ]}
-      />
       <div className="space-y-6">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Rencana Pembangunan Jangka Menengah Desa (RPJMDes)</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Visi dan Misi Desa</h2>
           <p className="text-muted-foreground">
-            Rencana Pembangunan Jangka Menengah Desa Remau Bako Tuo periode 2021-2027
+            Visi dan Misi Desa Remau Bako Tuo periode 2021-2027
           </p>
         </div>
 
-        <Tabs defaultValue="program" className="space-y-4">
+        <Tabs defaultValue="visi" className="space-y-4">
           <TabsList>
-            <TabsTrigger value="program">Program</TabsTrigger>
-            <TabsTrigger value="anggaran">Anggaran</TabsTrigger>
-            <TabsTrigger value="jadwal">Jadwal</TabsTrigger>
+            <TabsTrigger value="visi">Visi</TabsTrigger>
+            <TabsTrigger value="misi">Misi</TabsTrigger>
+            <TabsTrigger value="strategi">Strategi</TabsTrigger>
             <TabsTrigger value="dokumen">Dokumen</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="program" className="space-y-4">
-            <Card>
+          <TabsContent value="visi" className="space-y-4">
+            <Card className="border-none bg-transparent shadow-none">
               <CardHeader className="flex flex-row items-center gap-4">
-                <ListChecks className="h-8 w-8 text-primary" />
+                <Target className="h-8 w-8 text-emerald-600" />
                 <div>
-                  <CardTitle>{rpjmdesData.program.title}</CardTitle>
+                  <CardTitle>{visiMisiData.visi.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    Program RPJMDes periode 2021-2027
+                    Visi Desa periode 2021-2027
                   </p>
                 </div>
               </CardHeader>
@@ -187,14 +157,14 @@ const RPJMDes = () => {
                 <div>
                   <h4 className="font-semibold mb-2">Deskripsi</h4>
                   <p className="text-lg font-medium mb-4">
-                    {rpjmdesData.program.content.deskripsi}
+                    {visiMisiData.visi.content.deskripsi}
                   </p>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Periode: {rpjmdesData.program.content.periode}
+                    Periode: {visiMisiData.visi.content.periode}
                   </p>
                 </div>
                 <div className="space-y-6">
-                  {rpjmdesData.program.content.program.map((item, index) => (
+                  {visiMisiData.visi.content.visi.map((item, index) => (
                     <div key={index} className="space-y-4">
                       <div>
                         <h4 className="font-semibold">{item.judul}</h4>
@@ -203,10 +173,10 @@ const RPJMDes = () => {
                         </p>
                       </div>
                       <ul className="space-y-2">
-                        {item.kegiatan.map((kegiatan, idx) => (
+                        {item.poin.map((poin, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <ListChecks className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{kegiatan}</span>
+                            <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                            <span className="text-muted-foreground">{poin}</span>
                           </li>
                         ))}
                       </ul>
@@ -217,14 +187,14 @@ const RPJMDes = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="anggaran" className="space-y-4">
-            <Card>
+          <TabsContent value="misi" className="space-y-4">
+            <Card className="border-none bg-transparent shadow-none">
               <CardHeader className="flex flex-row items-center gap-4">
-                <DollarSign className="h-8 w-8 text-primary" />
+                <ListChecks className="h-8 w-8 text-emerald-600" />
                 <div>
-                  <CardTitle>{rpjmdesData.anggaran.title}</CardTitle>
+                  <CardTitle>{visiMisiData.misi.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    Anggaran RPJMDes periode 2021-2027
+                    Misi Desa periode 2021-2027
                   </p>
                 </div>
               </CardHeader>
@@ -232,25 +202,25 @@ const RPJMDes = () => {
                 <div>
                   <h4 className="font-semibold mb-2">Deskripsi</h4>
                   <p className="text-lg font-medium mb-4">
-                    {rpjmdesData.anggaran.content.deskripsi}
+                    {visiMisiData.misi.content.deskripsi}
                   </p>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Periode: {rpjmdesData.anggaran.content.periode}
+                    Periode: {visiMisiData.misi.content.periode}
                   </p>
                 </div>
                 <div className="space-y-6">
-                  {rpjmdesData.anggaran.content.sumber.map((item, index) => (
+                  {visiMisiData.misi.content.misi.map((item, index) => (
                     <div key={index} className="space-y-4">
                       <div>
                         <h4 className="font-semibold">{item.judul}</h4>
-                        <p className="text-lg font-medium text-primary">
-                          {item.jumlah}
+                        <p className="text-sm text-muted-foreground">
+                          {item.deskripsi}
                         </p>
                       </div>
                       <ul className="space-y-2">
                         {item.program.map((program, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                            <ListChecks className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
                             <span className="text-muted-foreground">{program}</span>
                           </li>
                         ))}
@@ -262,14 +232,14 @@ const RPJMDes = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="jadwal" className="space-y-4">
-            <Card>
+          <TabsContent value="strategi" className="space-y-4">
+            <Card className="border-none bg-transparent shadow-none">
               <CardHeader className="flex flex-row items-center gap-4">
-                <Calendar className="h-8 w-8 text-primary" />
+                <ArrowRight className="h-8 w-8 text-emerald-600" />
                 <div>
-                  <CardTitle>{rpjmdesData.jadwal.title}</CardTitle>
+                  <CardTitle>{visiMisiData.strategi.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    Jadwal pelaksanaan RPJMDes periode 2021-2027
+                    Strategi pencapaian visi dan misi
                   </p>
                 </div>
               </CardHeader>
@@ -277,26 +247,26 @@ const RPJMDes = () => {
                 <div>
                   <h4 className="font-semibold mb-2">Deskripsi</h4>
                   <p className="text-lg font-medium mb-4">
-                    {rpjmdesData.jadwal.content.deskripsi}
+                    {visiMisiData.strategi.content.deskripsi}
                   </p>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Periode: {rpjmdesData.jadwal.content.periode}
+                    Periode: {visiMisiData.strategi.content.periode}
                   </p>
                 </div>
                 <div className="space-y-6">
-                  {rpjmdesData.jadwal.content.tahap.map((item, index) => (
+                  {visiMisiData.strategi.content.strategi.map((item, index) => (
                     <div key={index} className="space-y-4">
                       <div>
                         <h4 className="font-semibold">{item.judul}</h4>
                         <p className="text-sm text-muted-foreground">
-                          {item.periode}
+                          {item.deskripsi}
                         </p>
                       </div>
                       <ul className="space-y-2">
-                        {item.kegiatan.map((kegiatan, idx) => (
+                        {item.program.map((program, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <Calendar className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{kegiatan}</span>
+                            <ArrowRight className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                            <span className="text-muted-foreground">{program}</span>
                           </li>
                         ))}
                       </ul>
@@ -308,18 +278,18 @@ const RPJMDes = () => {
           </TabsContent>
 
           <TabsContent value="dokumen" className="space-y-4">
-            <Card>
+            <Card className="border-none bg-transparent shadow-none">
               <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
+                <FileText className="h-8 w-8 text-emerald-600" />
                 <div>
-                  <CardTitle>{rpjmdesData.dokumen.title}</CardTitle>
+                  <CardTitle>{visiMisiData.dokumen.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    Dokumen RPJMDes periode 2021-2027
+                    Dokumen visi dan misi Desa Remau Bako Tuo
                   </p>
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
-                {rpjmdesData.dokumen.content.dokumen.map((item, index) => (
+                {visiMisiData.dokumen.content.dokumen.map((item, index) => (
                   <div key={index} className="space-y-2">
                     <h4 className="font-semibold">{item.judul}</h4>
                     <div className="grid grid-cols-2 gap-4">
@@ -343,4 +313,4 @@ const RPJMDes = () => {
   );
 };
 
-export default RPJMDes; 
+export default VisiMisi;

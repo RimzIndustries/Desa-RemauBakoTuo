@@ -273,4 +273,4 @@ const ArahKebijakan = () => {
   );
 };
 
-export default ArahKebijakan; 
+export default ArahKebijakan;

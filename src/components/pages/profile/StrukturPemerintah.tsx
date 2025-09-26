@@ -342,4 +342,4 @@ const StrukturPemerintah = () => {
   );
 };
 
-export default StrukturPemerintah; 
+export default StrukturPemerintah;
