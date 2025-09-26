@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Polygon, Marker, useMap } from 'react-leaflet';
 import { LatLngTuple, LatLngBounds, Icon, Map as LeafletMap } from 'leaflet';
 import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Phone, Mail, Globe, Users, Home, Building2, TreePine } from 'lucide-react';
@@ -389,6 +389,12 @@ const MapComponent = () => {
     const handleLayerToggle = (layer: string) => {
         setActiveOverlays(prev => prev.includes(layer) ? prev.filter(l => l !== layer) : [...prev, layer]);
     };
+    
+    // This effect runs once on mount to handle client-side only map initialization
+    useEffect(() => {
+        // Since this component is dynamically imported with ssr: false,
+        // we can safely assume 'window' is available here.
+    }, []);
 
     return (
         <div className="fixed inset-0">
@@ -434,24 +440,28 @@ const MapComponent = () => {
                     }}
                 />
             </MapContainer>
-            <MapControls
-                map={map}
-                activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
-                setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
-                layerPanelExpanded={layerPanelExpanded}
-                setLayerPanelExpanded={setLayerPanelExpanded}
-            />
-            <LayerPanel
-                expanded={layerPanelExpanded}
-                onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
-                activeLayers={activeOverlays}
-                onLayerToggle={handleLayerToggle}
-            />
-            <LayerInfo
-                isOpen={!!selectedMarker}
-                onClose={() => setSelectedMarker(null)}
-                markerInfo={selectedMarker}
-            />
+            {map && (
+                <>
+                    <MapControls
+                        map={map}
+                        activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
+                        setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
+                        layerPanelExpanded={layerPanelExpanded}
+                        setLayerPanelExpanded={setLayerPanelExpanded}
+                    />
+                    <LayerPanel
+                        expanded={layerPanelExpanded}
+                        onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
+                        activeLayers={activeOverlays}
+                        onLayerToggle={handleLayerToggle}
+                    />
+                    <LayerInfo
+                        isOpen={!!selectedMarker}
+                        onClose={() => setSelectedMarker(null)}
+                        markerInfo={selectedMarker}
+                    />
+                </>
+            )}
         </div>
     );
 };
