@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Polygon, useMap } from 'react-leaflet';
 import { LatLngTuple, LatLngBounds, Icon } from 'leaflet';
-import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers } from 'lucide-react';
+import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Phone, Mail, Globe, Users, Home, Building2, TreePine } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-
+import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import 'leaflet/dist/leaflet.css';
 import '@/styles/map.css';
 
@@ -146,26 +147,239 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
     [104.393422, -1.218394], [104.39337, -1.218243], [104.393296, -1.218078],
     [104.393215, -1.217948], [104.393136, -1.217848], [104.393072, -1.217771],
     [104.39295, -1.217517], [104.392888, -1.217408], [104.392787, -1.217323]
-  ].map(([lng, lat]) => [lat, lng] as [number, number]);
+].map(([lng, lat]) => [lat, lng] as [number, number]);
 
-interface MapControlsProps {
-    activeLayer: keyof typeof BASE_LAYERS;
-    setActiveLayer: (layer: keyof typeof BASE_LAYERS) => void;
-    layerPanelExpanded: boolean;
-    setLayerPanelExpanded: (expanded: boolean) => void;
+const LAYER_CATEGORIES = {
+  wilayah: {
+    name: 'Peta Wilayah',
+    layers: [
+      'Peta Administrasi',
+      'Penggunaan Lahan',
+      'Bidang Tanah',
+      'Infrastruktur Publik',
+      'Prasarana Umum'
+    ]
+  },
+  sosial: {
+    name: 'Peta Sosial',
+    layers: [
+      'Demografi',
+      'Pendidikan',
+      'Kesehatan',
+      'Sosial dan Budaya',
+      'Partisipasi Publik'
+    ]
+  },
+  ekonomi: {
+    name: 'Peta Ekonomi',
+    layers: [
+      'Tingkat Pendapatan',
+      'Seltor Pangan',
+      'Perkebunan',
+      'Peternakan',
+      'Perikanan',
+      'Kehutanan',
+      'Pertambangan',
+      'Pengolahan',
+      'Energi'
+    ]
+  },
+  lingkungan: {
+    name: 'Peta Lingkungan',
+    layers: [
+      'Geomorfologi Tanah',
+      'Iklim Dan Cuaca',
+      'Daerah Aliran Sungai',
+      'Keragaman Hayati',
+      'Limbah-Sampah',
+      'Karateristik Lahan',
+      'Lokasi Lahan Bencana'
+    ]
+  },
+  aset: {
+    name: 'Peta Aset',
+    layers: [
+      'Aset Desa',
+      'Aset Masyarakat'
+    ]
   }
+};
 
-const MapControls: React.FC<MapControlsProps> = ({
-  activeLayer,
-  setActiveLayer,
-  layerPanelExpanded,
-  setLayerPanelExpanded
-}) => {
-  const map = useMap();
+const LayerPanel: React.FC<{
+  expanded: boolean;
+  onToggle: () => void;
+  activeLayers: string[];
+  onLayerToggle: (layer: string) => void;
+}> = ({ expanded, onToggle, activeLayers, onLayerToggle }) => {
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-  const handleShowAll = () => {
-    map.fitBounds(DESA_BOUNDS);
+  const toggleCategory = (category: string) => {
+    setExpandedCategory(expandedCategory === category ? null : category);
   };
+
+  return (
+    <Sheet open={expanded} onOpenChange={onToggle}>
+      <SheetContent
+        side="left"
+        className="w-[70vw] sm:w-[336px] bg-white/40 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-white/20 rounded-r-[2rem] top-14 sm:top-20 h-[calc(100vh-7rem)] sm:h-[calc(100vh-10rem)] transition-all duration-300"
+        aria-label="Layer Panel"
+      >
+        <SheetTitle className="sr-only">Layer Controls</SheetTitle>
+        <ScrollArea className="h-full px-4 py-8">
+          <div className="space-y-3 sm:space-y-4">
+            {Object.entries(LAYER_CATEGORIES).map(([key, category]) => (
+              <div key={key} className="rounded-lg overflow-hidden">
+                <button
+                  onClick={() => toggleCategory(key)}
+                  className={`w-full flex items-center justify-between transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm text-black/90 hover:bg-white/20 ${expandedCategory === key ? 'bg-white/10' : ''
+                    }`}
+                  aria-expanded={expandedCategory === key}
+                  aria-controls={`category-${key}-layers`}
+                >
+                  {category.name}
+                  {expandedCategory === key ? (
+                    <ChevronDown className="h-4 w-4 text-black/90" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4 text-black/90" />
+                  )}
+                </button>
+                <div
+                  id={`category-${key}-layers`}
+                  className={`transition-all duration-200 ${expandedCategory === key
+                      ? 'max-h-[500px] opacity-100'
+                      : 'max-h-0 opacity-0'
+                    } overflow-hidden`}
+                >
+                  <div className="py-1">
+                    {category.layers.map(layer => (
+                      <label
+                        key={layer}
+                        className="flex items-center space-x-2 py-1.5 px-4 hover:bg-white/10 transition-colors cursor-pointer text-black/80"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={activeLayers.includes(layer)}
+                          onChange={() => onLayerToggle(layer)}
+                          className="rounded border-black/30 text-emerald-500 focus:ring-emerald-500 bg-white/20"
+                        />
+                        <span className="text-xs sm:text-sm">{layer}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
+      </SheetContent>
+    </Sheet>
+  );
+};
+
+
+const LayerInfo: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
+  markerInfo: {
+    title: string;
+    coordinates?: LatLngTuple;
+    description: string;
+    type?: 'marker' | 'boundary';
+  } | null;
+}> = ({ isOpen, onClose, markerInfo }) => {
+  if (!markerInfo) return null;
+  const stats = [
+    { icon: Users, label: 'Jumlah Penduduk', value: '3,245', change: '+125 dari tahun lalu', trend: 'up' },
+    { icon: Home, label: 'Jumlah KK', value: '856', change: '+45 dari tahun lalu', trend: 'up' },
+    { icon: Building2, label: 'Luas Wilayah', value: '2,500 Ha', subtext: '25 km²' },
+    { icon: TreePine, label: 'Luas Hutan', value: '850 Ha', percentage: '34%' }
+  ];
+  const landUse = [
+    { type: 'Pemukiman', percentage: 25 },
+    { type: 'Pertanian', percentage: 30 },
+    { type: 'Hutan', percentage: 34 },
+    { type: 'Lainnya', percentage: 11 }
+  ];
+
+  return (
+    <Sheet open={isOpen} onOpenChange={onClose}>
+      <SheetContent
+        side="right"
+        className="w-[70vw] sm:w-[336px] bg-white/40 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-l border-white/20 rounded-l-[2rem] top-14 sm:top-20 h-[calc(100vh-7rem)] sm:h-[calc(100vh-10rem)] transition-all duration-300"
+        aria-label="Location Information"
+      >
+        <SheetTitle className="sr-only">{markerInfo.title}</SheetTitle>
+        <ScrollArea className="h-full px-4 py-8">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-black/90">{markerInfo.title}</h3>
+              {markerInfo.coordinates && (
+                <div className="flex items-center space-x-2 text-black/80">
+                  <Layers className="h-4 w-4" />
+                  <p className="text-xs sm:text-sm">{markerInfo.coordinates[0]}, {markerInfo.coordinates[1]}</p>
+                </div>
+              )}
+              <p className="text-xs sm:text-sm text-black/80">{markerInfo.description}</p>
+            </div>
+            {markerInfo.type === 'boundary' ? (
+              <>
+                <div className="border-t border-white/20 pt-4">
+                  <h4 className="font-medium text-base mb-2 text-black/90">Informasi Batas Wilayah</h4>
+                  <div className="space-y-2">
+                    <p className="text-xs sm:text-sm text-black/80"><span className="font-medium text-black/90">Utara:</span> Desa Teluk</p>
+                    <p className="text-xs sm:text-sm text-black/80"><span className="font-medium text-black/90">Selatan:</span> Desa Sungai Rengit</p>
+                    <p className="text-xs sm:text-sm text-black/80"><span className="font-medium text-black/90">Timur:</span> Selat Berhala</p>
+                    <p className="text-xs sm:text-sm text-black/80"><span className="font-medium text-black/90">Barat:</span> Desa Sungai Rambut</p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 gap-4">
+                  {stats.map((stat, index) => {
+                    const StatIcon = stat.icon;
+                    return (
+                      <div key={index} className="bg-white/30 backdrop-blur-sm rounded-lg p-3 space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <StatIcon className="h-4 w-4 text-emerald-600" />
+                          <span className="text-xs font-medium text-black/90">{stat.label}</span>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="text-sm font-semibold text-black/90">{stat.value}</div>
+                          {stat.change && <div className={`text-xs ${stat.trend === 'up' ? 'text-emerald-600' : 'text-red-500'}`}>{stat.change}</div>}
+                          {stat.percentage && <div className="text-xs text-black/60">{stat.percentage} dari total</div>}
+                          {stat.subtext && <div className="text-xs text-black/60">{stat.subtext}</div>}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="space-y-3">
+                  <h4 className="font-medium text-base text-black/90">Kontak</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 text-black/80"><Phone className="h-4 w-4" /><span className="text-xs sm:text-sm">(0741) 123456</span></div>
+                    <div className="flex items-center space-x-2 text-black/80"><Mail className="h-4 w-4" /><span className="text-xs sm:text-sm">info@remaubakotuo.desa.id</span></div>
+                    <div className="flex items-center space-x-2 text-black/80"><Globe className="h-4 w-4" /><span className="text-xs sm:text-sm">www.remaubakotuo.desa.id</span></div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </ScrollArea>
+      </SheetContent>
+    </Sheet>
+  );
+};
+
+
+const MapControls: React.FC<{
+  activeLayer: keyof typeof BASE_LAYERS;
+  setActiveLayer: (layer: keyof typeof BASE_LAYERS) => void;
+  layerPanelExpanded: boolean;
+  setLayerPanelExpanded: (expanded: boolean) => void;
+}> = ({ activeLayer, setActiveLayer, layerPanelExpanded, setLayerPanelExpanded }) => {
+  const map = useMap();
+  const handleShowAll = () => map.fitBounds(DESA_BOUNDS);
 
   return (
     <div className="absolute left-2 top-20 z-[999]">
@@ -175,19 +389,11 @@ const MapControls: React.FC<MapControlsProps> = ({
             <TooltipProvider delayDuration={100}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button
-                    onClick={() => setLayerPanelExpanded(!layerPanelExpanded)}
-                    className={`w-[48px] h-[48px] flex items-center justify-center transition-colors ${layerPanelExpanded
-                        ? 'bg-white/30 text-black hover:bg-white/40'
-                        : 'text-black hover:bg-white/20'
-                      }`}
-                  >
+                  <button onClick={() => setLayerPanelExpanded(!layerPanelExpanded)} className={`w-[48px] h-[48px] flex items-center justify-center transition-colors ${layerPanelExpanded ? 'bg-white/30 text-black hover:bg-white/40' : 'text-black hover:bg-white/20'}`}>
                     <Layers className="h-5 w-5" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl">
-                  <p>Toggle Layer Panel</p>
-                </TooltipContent>
+                <TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl"><p>Toggle Layer Panel</p></TooltipContent>
               </Tooltip>
             </TooltipProvider>
             {(Object.keys(BASE_LAYERS) as Array<keyof typeof BASE_LAYERS>).map((layer) => {
@@ -196,73 +402,22 @@ const MapControls: React.FC<MapControlsProps> = ({
                 <TooltipProvider key={layer} delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button
-                        onClick={() => setActiveLayer(layer)}
-                        className={`w-[48px] h-[48px] flex items-center justify-center transition-colors ${activeLayer === layer
-                            ? 'bg-white/30 text-black hover:bg-white/40'
-                            : 'text-black hover:bg-white/20'
-                          }`}
-                      >
+                      <button onClick={() => setActiveLayer(layer)} className={`w-[48px] h-[48px] flex items-center justify-center transition-colors ${activeLayer === layer ? 'bg-white/30 text-black hover:bg-white/40' : 'text-black hover:bg-white/20'}`}>
                         <Icon className="h-5 w-5" />
                       </button>
                     </TooltipTrigger>
-                    <TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl">
-                      <p>{BASE_LAYERS[layer].name}</p>
-                    </TooltipContent>
+                    <TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl"><p>{BASE_LAYERS[layer].name}</p></TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               );
             })}
           </div>
         </div>
-
         <div className="bg-white/20 backdrop-blur-xl backdrop-saturate-200 backdrop-brightness-150 rounded-lg shadow-2xl overflow-hidden border border-white/40">
           <div className="flex flex-col divide-y divide-white/40">
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => map.zoomIn()}
-                    className="w-[48px] h-[48px] flex items-center justify-center transition-colors text-black hover:bg-white/20"
-                  >
-                    <Plus className="h-5 w-5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl">
-                  <p>Zoom In</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => map.zoomOut()}
-                    className="w-[48px] h-[48px] flex items-center justify-center transition-colors text-black hover:bg-white/20"
-                  >
-                    <Minus className="h-5 w-5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl">
-                  <p>Zoom Out</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={handleShowAll}
-                    className="w-[48px] h-[48px] flex items-center justify-center transition-colors text-black hover:bg-white/20"
-                  >
-                    <Maximize2 className="h-5 w-5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl">
-                  <p>Show All</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <TooltipProvider delayDuration={100}><Tooltip><TooltipTrigger asChild><button onClick={() => map.zoomIn()} className="w-[48px] h-[48px] flex items-center justify-center transition-colors text-black hover:bg-white/20"><Plus className="h-5 w-5" /></button></TooltipTrigger><TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl"><p>Zoom In</p></TooltipContent></Tooltip></TooltipProvider>
+            <TooltipProvider delayDuration={100}><Tooltip><TooltipTrigger asChild><button onClick={() => map.zoomOut()} className="w-[48px] h-[48px] flex items-center justify-center transition-colors text-black hover:bg-white/20"><Minus className="h-5 w-5" /></button></TooltipTrigger><TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl"><p>Zoom Out</p></TooltipContent></Tooltip></TooltipProvider>
+            <TooltipProvider delayDuration={100}><Tooltip><TooltipTrigger asChild><button onClick={handleShowAll} className="w-[48px] h-[48px] flex items-center justify-center transition-colors text-black hover:bg-white/20"><Maximize2 className="h-5 w-5" /></button></TooltipTrigger><TooltipContent side="right" sideOffset={16} className="bg-white/20 backdrop-blur-xl text-black/90 border-white/40 shadow-2xl"><p>Show All</p></TooltipContent></Tooltip></TooltipProvider>
           </div>
         </div>
       </div>
@@ -270,82 +425,78 @@ const MapControls: React.FC<MapControlsProps> = ({
   );
 };
 
+const MapComponent = () => {
+    const [activeBaseLayer, setActiveBaseLayer] = useState<string>('satellite');
+    const [activeOverlays, setActiveOverlays] = useState<string[]>([]);
+    const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
+    const [selectedMarker, setSelectedMarker] = useState<{ title: string; coordinates?: LatLngTuple; description: string; type?: 'marker' | 'boundary'; } | null>(null);
 
-const MapComponent = ({
-    activeBaseLayer,
-    setActiveBaseLayer,
-    activeOverlays,
-    setSelectedMarker,
-    layerPanelExpanded,
-    setLayerPanelExpanded,
-  }: {
-    activeBaseLayer: string;
-    setActiveBaseLayer: (layer: string) => void;
-    activeOverlays: string[];
-    setSelectedMarker: (info: any) => void;
-    layerPanelExpanded: boolean;
-    setLayerPanelExpanded: (expanded: boolean) => void;
-  }) => {
-    const displayMap = useMemo(() => (
-      <MapContainer
-        center={DESA_CENTER}
-        zoom={DEFAULT_ZOOM}
-        className="w-full h-full"
-        zoomControl={false}
-        maxBounds={DESA_BOUNDS}
-        maxBoundsViscosity={1.0}
-      >
-        <TileLayer
-          attribution={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].attribution}
-          url={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].url}
-        />
-        {activeOverlays.includes('Peta Administrasi') && (
-          <Polygon
-            positions={ADMINISTRATIVE_BOUNDARY}
-            pathOptions={{
-              color: 'white',
-              weight: 2,
-              fillColor: '#10b981',
-              fillOpacity: 0.2,
-              opacity: 0.8,
-            }}
-            eventHandlers={{
-              click: () => {
-                setSelectedMarker({
-                  title: 'Batas Administrasi Desa Remau Bako Tuo',
-                  description:
-                    'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
-                  type: 'boundary',
-                });
-              },
-            }}
-          />
-        )}
-        <Marker
-          position={DESA_CENTER}
-          eventHandlers={{
-            click: () => {
-              setSelectedMarker({
-                title: 'Kantor Desa Remau Bako Tuo',
-                coordinates: DESA_CENTER,
-                description:
-                  'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
-                type: 'marker',
-              });
-            },
-          }}
-        />
-         <MapControls
-            activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
-            setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
-            layerPanelExpanded={layerPanelExpanded}
-            setLayerPanelExpanded={setLayerPanelExpanded}
-          />
-      </MapContainer>
-    ), [activeBaseLayer, activeOverlays, setSelectedMarker, layerPanelExpanded, setLayerPanelExpanded]);
-  
-    return <div className="w-full h-full">{displayMap}</div>;
-  };
-  
-  export default MapComponent;
-  
+    const handleLayerToggle = (layer: string) => {
+        setActiveOverlays(prev => prev.includes(layer) ? prev.filter(l => l !== layer) : [...prev, layer]);
+    };
+
+    return (
+        <div className="fixed inset-0">
+            <MapContainer
+                center={DESA_CENTER}
+                zoom={DEFAULT_ZOOM}
+                className="w-full h-full"
+                zoomControl={false}
+                maxBounds={DESA_BOUNDS}
+                maxBoundsViscosity={1.0}
+            >
+                <TileLayer
+                    attribution={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].attribution}
+                    url={BASE_LAYERS[activeBaseLayer as keyof typeof BASE_LAYERS].url}
+                />
+                {activeOverlays.includes('Peta Administrasi') && (
+                    <Polygon
+                        positions={ADMINISTRATIVE_BOUNDARY}
+                        pathOptions={{ color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8, }}
+                        eventHandlers={{
+                            click: () => {
+                                setSelectedMarker({
+                                    title: 'Batas Administrasi Desa Remau Bako Tuo',
+                                    description: 'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
+                                    type: 'boundary',
+                                });
+                            },
+                        }}
+                    />
+                )}
+                <Marker
+                    position={DESA_CENTER}
+                    eventHandlers={{
+                        click: () => {
+                            setSelectedMarker({
+                                title: 'Kantor Desa Remau Bako Tuo',
+                                coordinates: DESA_CENTER,
+                                description: 'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
+                                type: 'marker',
+                            });
+                        },
+                    }}
+                />
+                <MapControls
+                    activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
+                    setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
+                    layerPanelExpanded={layerPanelExpanded}
+                    setLayerPanelExpanded={setLayerPanelExpanded}
+                />
+            </MapContainer>
+            <LayerPanel
+                expanded={layerPanelExpanded}
+                onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
+                activeLayers={activeOverlays}
+                onLayerToggle={handleLayerToggle}
+            />
+            <LayerInfo
+                isOpen={!!selectedMarker}
+                onClose={() => setSelectedMarker(null)}
+                markerInfo={selectedMarker}
+            />
+        </div>
+    );
+};
+
+export default MapComponent;
