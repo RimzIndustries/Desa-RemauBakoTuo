@@ -45,7 +45,7 @@ const PublicLayout = ({
       <div className="relative z-50">
         <TopNav hasNewNews={false} />
       </div>
-      <main className={`flex-grow relative z-20 ${needsSidebar ? 'md:pl-72 pl-12' : ''}`}>
+      <main className={`flex-grow relative ${needsSidebar ? 'md:pl-72' : ''} transition-all duration-300 ease-in-out`}>
         {children}
       </main>
       <div className="relative z-40">
