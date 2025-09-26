@@ -1,6 +1,7 @@
+
 import {genkit} from '@genkit-ai/next';
 import {googleAI} from '@genkit-ai/googleai';
-import {firebase} from '@genkit-ai/firebase/plugin';
+import {firebase} from '@genkit-ai/firebase';
 import { GoogleAuth } from 'google-auth-library';
 import {ai, definePrompt} from '@genkit-ai/ai';
 
@@ -19,16 +20,6 @@ genkit({
       }),
     }),
     googleAI(),
-    definePrompt({
-      name: 'summarizer',
-      input: {
-        schema: {
-          text: 'string',
-        },
-      },
-      prompt: 'Summarize the following text for me: {{text}}',
-      model: 'googleai/gemini-1.5-flash',
-    }),
   ],
   logLevel: 'debug',
   enableTracingAndMetrics: true,
