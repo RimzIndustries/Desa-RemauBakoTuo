@@ -1,5 +1,5 @@
 'use client';
-import DaftarProgram from "@/components/pages/program/DaftarProgram";
+import DaftarProgram from "@/components/pages/pembangunan/DaftarProgram";
 import PublicLayout from "@/layouts/PublicLayout";
 
 export default function DaftarProgramPage() {
