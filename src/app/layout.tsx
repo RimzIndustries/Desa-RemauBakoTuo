@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../index.css";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
+import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import "leaflet/dist/leaflet.css";
@@ -29,8 +27,6 @@ export default function RootLayout({
             <PublicLayout>
               {children}
             </PublicLayout>
-            <Toaster />
-            <Sonner />
           </TooltipProvider>
         </AuthProvider>
       </body>

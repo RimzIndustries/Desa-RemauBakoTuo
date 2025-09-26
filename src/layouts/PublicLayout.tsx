@@ -3,6 +3,8 @@ import { usePathname } from 'next/navigation';
 import TopNav from '@/components/TopNav';
 import BottomNav from '@/components/BottomNav';
 import { useEffect, useState } from 'react';
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -13,7 +15,11 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   if (!isMounted) {
-    return null; 
+    return (
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-grow">{children}</main>
+      </div>
+    );
   }
   
   const isTataRuangRoute = pathname?.startsWith('/tata-ruang');
@@ -39,6 +45,8 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="fixed bottom-0 left-0 right-0 z-[1000]">
           <BottomNav />
         </div>
+        <Toaster />
+        <Sonner />
       </div>
     );
   }
@@ -50,6 +58,8 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
       <BottomNav />
+      <Toaster />
+      <Sonner />
     </div>
   );
 };
