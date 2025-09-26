@@ -414,7 +414,7 @@ const MapComponent = () => {
                     />
                     {activeOverlays.includes('Peta Administrasi') && (
                         <Polygon
-                            positions={ADMINISTRATIVE_BOUNDARY}
+                            positions={ADMINISTRATIVE_BOUNDARY as LatLngTuple[]}
                             pathOptions={{ color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8, }}
                             eventHandlers={{
                                 click: () => {
@@ -469,3 +469,5 @@ const MapComponent = () => {
 };
 
 export default MapComponent;
+
+    
