@@ -392,6 +392,14 @@ const MapComponent = () => {
         setIsClient(true);
     }, []);
 
+    const handleLayerToggle = (layerName: string) => {
+        setActiveOverlays(prev => 
+            prev.includes(layerName) 
+            ? prev.filter(l => l !== layerName)
+            : [...prev, layerName]
+        );
+    };
+
     return (
         <div className="fixed inset-0">
             {isClient && (
