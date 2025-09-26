@@ -1,5 +1,10 @@
 import LandingPage from "@/pages/landing/LandingPage";
+import PublicLayout from "@/layouts/PublicLayout";
 
 export default function Home() {
-  return <LandingPage />;
+  return (
+    <PublicLayout>
+      <LandingPage />
+    </PublicLayout>
+  );
 }

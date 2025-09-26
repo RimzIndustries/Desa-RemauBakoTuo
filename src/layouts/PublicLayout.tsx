@@ -3,8 +3,6 @@ import { usePathname } from 'next/navigation';
 import TopNav from '@/components/TopNav';
 import BottomNav from '@/components/BottomNav';
 import { useEffect, useState } from 'react';
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -14,40 +12,10 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     setIsMounted(true);
   }, []);
 
-  const isTataRuangRoute = pathname?.startsWith('/tata-ruang');
-  
-  if (isTataRuangRoute) {
-    if (!isMounted) {
-      return (
-        <div className="fixed inset-0 bg-gray-200 flex items-center justify-center"><p>Loading Map...</p></div>
-      );
-    }
-    // For the map page, we let it handle its own layout. The children already contain the full-screen map.
-    // The TopNav and BottomNav are added on top.
-    return (
-      <>
-        {children}
-        <div className="fixed top-0 left-0 right-0 z-[1000]">
-          <TopNav hasNewNews={false} />
-        </div>
-        <div className="fixed bottom-0 left-0 right-0 z-[1000]">
-          <BottomNav />
-        </div>
-        <Toaster />
-        <Sonner />
-      </>
-    );
-  }
-
   if (!isMounted) {
-    // Render a simple version for SSR to avoid hydration errors on non-map pages
-    return (
-      <div className="flex flex-col min-h-screen">
-        <main className="flex-grow">{children}</main>
-      </div>
-    );
+    return <div className="flex flex-col min-h-screen"><main className="flex-grow">{children}</main></div>;
   }
-
+  
   const needsSidebar = (
     pathname?.startsWith('/profil') ||
     pathname?.startsWith('/pembangunan') ||
@@ -67,8 +35,6 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
       <BottomNav />
-      <Toaster />
-      <Sonner />
     </div>
   );
 };

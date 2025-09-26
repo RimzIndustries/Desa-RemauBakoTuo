@@ -5,7 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import "leaflet/dist/leaflet.css";
 import "@/styles/leaflet-fixes.css";
-import PublicLayout from "@/layouts/PublicLayout";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <TooltipProvider>
-            <PublicLayout>
-              {children}
-            </PublicLayout>
+            {children}
+            <Toaster />
+            <Sonner />
           </TooltipProvider>
         </AuthProvider>
       </body>
