@@ -9,48 +9,50 @@ const PublicLayout = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
-  const isProfileRoute = pathname.startsWith('/profil');
-  const isPembangunanRoute = pathname.startsWith('/pembangunan');
-  const isDanaDesaRoute = pathname.startsWith('/dana-desa');
-  const isIndeksRoute = pathname.startsWith('/indeks');
-  const isLayananRoute = pathname.startsWith('/layanan');
-  const isEkonomiRoute = pathname.startsWith('/ekonomi');
-  const isKelembagaanRoute = pathname.startsWith('/kelembagaan');
-  const isAktivitasRoute = pathname.startsWith('/aktivitas');
-  const isPustakaRoute = pathname.startsWith('/pustaka');
+  
+  // Define routes that have a sidebar
+  const sidebarRoutes = [
+    '/profil', 
+    '/pembangunan', 
+    '/dana-desa', 
+    '/indeks', 
+    '/layanan', 
+    '/ekonomi', 
+    '/kelembagaan', 
+    '/aktivitas', 
+    '/pustaka'
+  ];
+
+  const needsSidebar = sidebarRoutes.some(route => pathname.startsWith(route));
   const isTataRuangRoute = pathname === '/tata-ruang';
   
-  const needsSidebar = isProfileRoute || isPembangunanRoute || isDanaDesaRoute || 
-    isIndeksRoute || isLayananRoute || isEkonomiRoute || isKelembagaanRoute || 
-    isAktivitasRoute || isPustakaRoute;
-
   if (isTataRuangRoute) {
     return (
       <>
-        <div className="fixed inset-0">
+        <div className="fixed inset-0 z-0">
           {children}
         </div>
-        <div className="fixed top-0 left-0 right-0 z-[1000]">
+        <header className="fixed top-0 left-0 right-0 z-[1001]">
           <TopNav hasNewNews={false} />
-        </div>
-        <div className="fixed bottom-0 left-0 right-0 z-[1000]">
+        </header>
+        <footer className="fixed bottom-0 left-0 right-0 z-[1001]">
           <BottomNav />
-        </div>
+        </footer>
       </>
     );
   }
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="relative z-50">
+      <header className="sticky top-0 z-50">
         <TopNav hasNewNews={false} />
-      </div>
-      <main className={`flex-grow relative ${needsSidebar ? 'md:pl-72' : ''} transition-all duration-300 ease-in-out`}>
+      </header>
+      <main className={`flex-grow transition-all duration-300 ease-in-out ${needsSidebar ? 'md:pl-72' : ''}`}>
         {children}
       </main>
-      <div className="relative z-40">
+      <footer className="relative z-40">
         <BottomNav />
-      </div>
+      </footer>
     </div>
   );
 };
