@@ -1,3 +1,19 @@
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
+import HeroSection from '@/components/landing/hero';
+import DataCategories from '@/components/landing/data-categories';
+import AboutUs from '@/components/landing/about-us';
+
 export default function Home() {
-  return <></>;
+  return (
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header />
+      <main className="flex-1">
+        <HeroSection />
+        <DataCategories />
+        <AboutUs />
+      </main>
+      <Footer />
+    </div>
+  );
 }

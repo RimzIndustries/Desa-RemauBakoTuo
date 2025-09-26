@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "Lush green terraced rice fields in a village.",
+      "imageUrl": "https://images.unsplash.com/photo-1682340334970-8e7b64463f99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx2aWxsYWdlJTIwbGFuZHNjYXBlfGVufDB8fHx8MTc1ODgzMTE4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "village landscape"
+    },
+    {
+      "id": "about-us-image",
+      "description": "A group of villagers in a meeting.",
+      "imageUrl": "https://images.unsplash.com/photo-1559223607-a43c990c692c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21tdW5pdHklMjBtZWV0aW5nfGVufDB8fHx8MTc1ODgxMTQyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "community meeting"
+    }
+  ]
 }
