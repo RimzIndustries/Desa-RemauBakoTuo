@@ -1,5 +1,5 @@
 'use client';
-import Pembiayaan from "@/components/pages/program/Pembiayaan";
+import Pembiayaan from "@/components/pages/dana-desa/Pembiayaan";
 import PublicLayout from "@/layouts/PublicLayout";
 
 export default function PembiayaanPage() {

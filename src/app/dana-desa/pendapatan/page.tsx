@@ -1,5 +1,5 @@
 'use client';
-import Pendapatan from "@/components/pages/program/Pendapatan";
+import Pendapatan from "@/components/pages/dana-desa/Pendapatan";
 import PublicLayout from "@/layouts/PublicLayout";
 
 export default function PendapatanPage() {

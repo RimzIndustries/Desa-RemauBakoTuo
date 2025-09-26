@@ -1,5 +1,5 @@
 'use client';
-import Belanja from "@/components/pages/program/Belanja";
+import Belanja from "@/components/pages/dana-desa/Belanja";
 import PublicLayout from "@/layouts/PublicLayout";
 
 export default function BelanjaPage() {
