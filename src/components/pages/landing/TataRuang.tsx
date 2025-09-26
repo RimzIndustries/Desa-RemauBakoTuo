@@ -978,76 +978,79 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
   [104.394354, -1.19066]
 ].map(([lng, lat]) => [lat, lng] as [number, number]);
 
-const MapWrapper = ({ 
-  activeLayer, 
-  activeLayers, 
-  setSelectedMarker 
-}: { 
-  activeLayer: keyof typeof BASE_LAYERS, 
-  activeLayers: string[], 
-  setSelectedMarker: (info: any) => void 
+const MapWrapper = ({
+  activeLayer,
+  setActiveLayer,
+  activeLayers,
+  setSelectedMarker,
+  layerPanelExpanded,
+  setLayerPanelExpanded,
+}: {
+  activeLayer: keyof typeof BASE_LAYERS;
+  setActiveLayer: (layer: keyof typeof BASE_LAYERS) => void;
+  activeLayers: string[];
+  setSelectedMarker: (info: any) => void;
+  layerPanelExpanded: boolean;
+  setLayerPanelExpanded: (expanded: boolean) => void;
 }) => {
-  const map = useMemo(
-    () => (
-      <MapContainer
-        center={DESA_CENTER}
-        zoom={DEFAULT_ZOOM}
-        className="w-full h-full"
-        zoomControl={false}
-        maxBounds={DESA_BOUNDS}
-        maxBoundsViscosity={1.0}
-      >
-        <TileLayer
-          attribution={BASE_LAYERS[activeLayer].attribution}
-          url={BASE_LAYERS[activeLayer].url}
-        />
-        {activeLayers.includes('Peta Administrasi') && (
-          <Polygon
-            positions={ADMINISTRATIVE_BOUNDARY}
-            pathOptions={{
-              color: 'white',
-              weight: 2,
-              fillColor: '#10b981',
-              fillOpacity: 0.2,
-              opacity: 0.8
-            }}
-            eventHandlers={{
-              click: () => {
-                setSelectedMarker({
-                  title: "Batas Administrasi Desa Remau Bako Tuo",
-                  description: "Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.",
-                  type: 'boundary'
-                });
-              }
-            }}
-          />
-        )}
-        <Marker
-          position={DESA_CENTER}
+  return (
+    <MapContainer
+      center={DESA_CENTER}
+      zoom={DEFAULT_ZOOM}
+      className="w-full h-full"
+      zoomControl={false}
+      maxBounds={DESA_BOUNDS}
+      maxBoundsViscosity={1.0}
+    >
+      <TileLayer
+        attribution={BASE_LAYERS[activeLayer].attribution}
+        url={BASE_LAYERS[activeLayer].url}
+      />
+      {activeLayers.includes('Peta Administrasi') && (
+        <Polygon
+          positions={ADMINISTRATIVE_BOUNDARY}
+          pathOptions={{
+            color: 'white',
+            weight: 2,
+            fillColor: '#10b981',
+            fillOpacity: 0.2,
+            opacity: 0.8,
+          }}
           eventHandlers={{
             click: () => {
               setSelectedMarker({
-                title: "Kantor Desa Remau Bako Tuo",
-                coordinates: DESA_CENTER,
-                description: "Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.",
-                type: 'marker'
+                title: 'Batas Administrasi Desa Remau Bako Tuo',
+                description:
+                  'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
+                type: 'boundary',
               });
-            }
+            },
           }}
         />
-        <MapControls
-          activeLayer={activeLayer}
-          setActiveLayer={() => {}}
-          layerPanelExpanded={false}
-          setLayerPanelExpanded={() => {}}
-        />
-      </MapContainer>
-    ),
-    [activeLayer, activeLayers, setSelectedMarker]
+      )}
+      <Marker
+        position={DESA_CENTER}
+        eventHandlers={{
+          click: () => {
+            setSelectedMarker({
+              title: 'Kantor Desa Remau Bako Tuo',
+              coordinates: DESA_CENTER,
+              description:
+                'Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.',
+              type: 'marker',
+            });
+          },
+        }}
+      />
+      <MapControls
+        activeLayer={activeLayer}
+        setActiveLayer={setActiveLayer}
+        layerPanelExpanded={layerPanelExpanded}
+        setLayerPanelExpanded={setLayerPanelExpanded}
+      />
+    </MapContainer>
   );
-
-  return map;
-}
+};
 
 const TataRuang: React.FC = () => {
   const [activeLayer, setActiveLayer] = useState<keyof typeof BASE_LAYERS>('satellite');
@@ -1070,7 +1073,14 @@ const TataRuang: React.FC = () => {
   
   return (
     <div className="fixed inset-0">
-       <MapWrapper activeLayer={activeLayer} activeLayers={activeLayers} setSelectedMarker={setSelectedMarker} />
+       <MapWrapper 
+        activeLayer={activeLayer} 
+        setActiveLayer={setActiveLayer}
+        activeLayers={activeLayers} 
+        setSelectedMarker={setSelectedMarker}
+        layerPanelExpanded={layerPanelExpanded}
+        setLayerPanelExpanded={setLayerPanelExpanded}
+      />
       <LayerPanel 
         expanded={layerPanelExpanded}
         onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
