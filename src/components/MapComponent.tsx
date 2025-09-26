@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import L, { LatLngTuple, LatLngBounds, Icon, Map as LeafletMap } from 'leaflet';
-import { MapContainer, TileLayer, Polygon, Marker } from 'react-leaflet';
 import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Phone, Mail, Globe, Users, Home, Building2, TreePine } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
@@ -370,7 +369,8 @@ const MapControls: React.FC<{
 };
 
 const MapComponent = () => {
-    const mapRef = useRef<HTMLDivElement>(null);
+    const mapContainerRef = useRef<HTMLDivElement>(null);
+    const mapInstanceRef = useRef<LeafletMap | null>(null);
     const [mapInstance, setMapInstance] = useState<LeafletMap | null>(null);
     const [activeBaseLayer, setActiveBaseLayer] = useState<string>('satellite');
     const [activeOverlays, setActiveOverlays] = useState<string[]>(['Peta Administrasi']);
@@ -378,14 +378,15 @@ const MapComponent = () => {
     const [selectedMarker, setSelectedMarker] = useState<{ title: string; coordinates?: LatLngTuple; description: string; type?: 'marker' | 'boundary'; } | null>(null);
 
     useEffect(() => {
-        if (mapRef.current && !mapInstance) {
-            const map = L.map(mapRef.current, {
+        if (mapContainerRef.current && !mapInstanceRef.current) {
+            const map = L.map(mapContainerRef.current, {
                 center: DESA_CENTER,
                 zoom: DEFAULT_ZOOM,
                 zoomControl: false,
                 maxBounds: DESA_BOUNDS,
                 maxBoundsViscosity: 1.0,
             });
+            mapInstanceRef.current = map;
 
             const defaultIcon = new L.Icon({
                 iconUrl: markerIcon.src,
@@ -410,9 +411,9 @@ const MapComponent = () => {
         }
 
         return () => {
-            if (mapInstance) {
-                mapInstance.remove();
-                setMapInstance(null);
+            if (mapInstanceRef.current) {
+                mapInstanceRef.current.remove();
+                mapInstanceRef.current = null;
             }
         };
     }, []);
@@ -433,26 +434,23 @@ const MapComponent = () => {
 
     useEffect(() => {
         if (mapInstance) {
-            const adminBoundary = L.polygon(ADMINISTRATIVE_BOUNDARY as LatLngTuple[], {
-                color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8,
-            }).on('click', () => {
-                setSelectedMarker({
-                    title: 'Batas Administrasi Desa Remau Bako Tuo',
-                    description: 'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
-                    type: 'boundary',
-                });
+            Object.values(mapInstance._layers).forEach(layer => {
+                if (layer instanceof L.Polygon) {
+                    mapInstance.removeLayer(layer);
+                }
             });
 
             if (activeOverlays.includes('Peta Administrasi')) {
-                if (!mapInstance.hasLayer(adminBoundary)) {
-                    adminBoundary.addTo(mapInstance);
-                }
-            } else {
-                 Object.values(mapInstance._layers).forEach(layer => {
-                    if (layer instanceof L.Polygon) {
-                       mapInstance.removeLayer(layer);
-                    }
+                const adminBoundary = L.polygon(ADMINISTRATIVE_BOUNDARY as LatLngTuple[], {
+                    color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8,
+                }).on('click', () => {
+                    setSelectedMarker({
+                        title: 'Batas Administrasi Desa Remau Bako Tuo',
+                        description: 'Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.',
+                        type: 'boundary',
+                    });
                 });
+                adminBoundary.addTo(mapInstance);
             }
         }
     }, [activeOverlays, mapInstance]);
@@ -467,7 +465,7 @@ const MapComponent = () => {
 
     return (
         <div className="fixed inset-0">
-            <div ref={mapRef} className="w-full h-full" />
+            <div ref={mapContainerRef} className="w-full h-full" />
             <MapControls
                 map={mapInstance}
                 activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
