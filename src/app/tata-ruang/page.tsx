@@ -2,7 +2,7 @@
 import dynamic from 'next/dynamic';
 import PublicLayout from '@/layouts/PublicLayout';
 
-const DynamicTataRuang = dynamic(
+const TataRuang = dynamic(
   () => import('@/components/pages/landing/TataRuang'),
   { ssr: false }
 );
@@ -10,7 +10,7 @@ const DynamicTataRuang = dynamic(
 export default function TataRuangPage() {
     return (
         <PublicLayout>
-            <DynamicTataRuang />
+            <TataRuang />
         </PublicLayout>
     )
 }

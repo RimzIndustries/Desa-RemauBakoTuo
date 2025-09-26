@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { MapContainer, TileLayer, useMap, Marker, Popup, Polygon } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import '@/styles/map.css';
 import { LatLngTuple, LatLngBounds, Icon } from 'leaflet';
 import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Clock, Phone, Mail, Globe, Users, Home, Building2, TreePine, Warehouse, Ruler, MapPin } from 'lucide-react';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
@@ -17,9 +17,9 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 delete (Icon.Default.prototype as any)._getIconUrl;
 Icon.Default.mergeOptions({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
+  iconUrl: markerIcon.src,
+  iconRetinaUrl: markerIcon2x.src,
+  shadowUrl: markerShadow.src,
 });
 
 // Koordinat desa (ganti dengan koordinat yang sesuai)
@@ -117,8 +117,6 @@ interface LayerPanelProps {
   activeLayers: string[];
   onLayerToggle: (layer: string) => void;
 }
-
-const CONTROL_WIDTH = 'w-[48px]';
 
 const LayerPanel: React.FC<LayerPanelProps> = ({ expanded, onToggle, activeLayers, onLayerToggle }) => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
@@ -448,10 +446,6 @@ const LayerInfo: React.FC<LayerInfoProps> = ({ isOpen, onClose, markerInfo }) =>
     </Sheet>
   );
 };
-
-interface TataRuangProps {
-  // Add props if needed
-}
 
 interface MapControlsProps {
   activeLayer: keyof typeof BASE_LAYERS;
@@ -984,32 +978,12 @@ const ADMINISTRATIVE_BOUNDARY: [number, number][] = [
   [104.394354, -1.19066]
 ].map(([lng, lat]) => [lat, lng] as [number, number]);
 
-const TataRuang: React.FC<TataRuangProps> = () => {
-  const [activeLayer, setActiveLayer] = useState<keyof typeof BASE_LAYERS>('satellite');
-  const [activeLayers, setActiveLayers] = useState<string[]>([]);
-  const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
-  const [selectedMarker, setSelectedMarker] = useState<{
-    title: string;
-    coordinates?: LatLngTuple;
-    description: string;
-    type?: 'marker' | 'boundary';
-  } | null>(null);
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const handleLayerToggle = (layer: string) => {
-    setActiveLayers(prev =>
-      prev.includes(layer)
-        ? prev.filter(l => l !== layer)
-        : [...prev, layer]
-    );
-  };
-
-  return (
-    <div className="fixed inset-0">
-      <MapContainer 
-        center={DESA_CENTER} 
-        zoom={DEFAULT_ZOOM} 
+const MapWrapper = ({ activeLayer, activeLayers, onMarkerClick }: { activeLayer: keyof typeof BASE_LAYERS, activeLayers: string[], onMarkerClick: (info: any) => void }) => {
+  const map = useMemo(
+    () => (
+      <MapContainer
+        center={DESA_CENTER}
+        zoom={DEFAULT_ZOOM}
         className="w-full h-full"
         zoomControl={false}
         maxBounds={DESA_BOUNDS}
@@ -1031,7 +1005,7 @@ const TataRuang: React.FC<TataRuangProps> = () => {
             }}
             eventHandlers={{
               click: () => {
-                setSelectedMarker({
+                onMarkerClick({
                   title: "Batas Administrasi Desa Remau Bako Tuo",
                   description: "Batas wilayah administratif resmi Desa Remau Bako Tuo yang telah ditetapkan sesuai dengan peraturan yang berlaku.",
                   type: 'boundary'
@@ -1040,11 +1014,11 @@ const TataRuang: React.FC<TataRuangProps> = () => {
             }}
           />
         )}
-        <Marker 
+        <Marker
           position={DESA_CENTER}
           eventHandlers={{
             click: () => {
-              setSelectedMarker({
+              onMarkerClick({
                 title: "Kantor Desa Remau Bako Tuo",
                 coordinates: DESA_CENTER,
                 description: "Pusat administrasi dan pelayanan masyarakat Desa Remau Bako Tuo. Melayani berbagai kebutuhan administratif warga desa.",
@@ -1053,13 +1027,46 @@ const TataRuang: React.FC<TataRuangProps> = () => {
             }
           }}
         />
-        <MapControls 
-          activeLayer={activeLayer} 
-          setActiveLayer={setActiveLayer}
-          layerPanelExpanded={layerPanelExpanded}
-          setLayerPanelExpanded={setLayerPanelExpanded}
+        <MapControls
+          activeLayer={activeLayer}
+          setActiveLayer={() => {}}
+          layerPanelExpanded={false}
+          setLayerPanelExpanded={() => {}}
         />
       </MapContainer>
+    ),
+    [activeLayer, activeLayers, onMarkerClick]
+  );
+
+  return map;
+}
+
+const TataRuang: React.FC = () => {
+  const [activeLayer, setActiveLayer] = useState<keyof typeof BASE_LAYERS>('satellite');
+  const [activeLayers, setActiveLayers] = useState<string[]>([]);
+  const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
+  const [selectedMarker, setSelectedMarker] = useState<{
+    title: string;
+    coordinates?: LatLngTuple;
+    description: string;
+    type?: 'marker' | 'boundary';
+  } | null>(null);
+
+  const handleLayerToggle = (layer: string) => {
+    setActiveLayers(prev =>
+      prev.includes(layer)
+        ? prev.filter(l => l !== layer)
+        : [...prev, layer]
+    );
+  };
+
+  const handleMarkerClick = (info: any) => {
+    setSelectedMarker(info);
+  };
+  
+  return (
+    <div className="fixed inset-0">
+       <MapWrapper activeLayer={activeLayer} activeLayers={activeLayers} onMarkerClick={handleMarkerClick} />
       <LayerPanel 
         expanded={layerPanelExpanded}
         onToggle={() => setLayerPanelExpanded(!layerPanelExpanded)}
