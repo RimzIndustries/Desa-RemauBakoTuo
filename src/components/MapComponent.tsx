@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import L, { LatLngTuple, LatLngBounds, Icon, Map as LeafletMap } from 'leaflet';
+import { MapContainer, TileLayer, Polygon, Marker } from 'react-leaflet';
 import { Map, Satellite, Mountain, Plus, Minus, Maximize2, Layers, ChevronDown, ChevronRight, Phone, Mail, Globe, Users, Home, Building2, TreePine } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
@@ -381,7 +382,6 @@ const MapControls: React.FC<{
 const MapComponent = () => {
     const mapRef = useRef<LeafletMap | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [map, setMap] = useState<LeafletMap | null>(null);
     const [activeBaseLayer, setActiveBaseLayer] = useState<string>('satellite');
     const [activeOverlays, setActiveOverlays] = useState<string[]>(['Peta Administrasi']);
     const [layerPanelExpanded, setLayerPanelExpanded] = useState(false);
@@ -397,7 +397,6 @@ const MapComponent = () => {
                 maxBoundsViscosity: 1.0,
             });
             mapRef.current = mapInstance;
-            setMap(mapInstance);
 
             const adminBoundary = L.polygon(ADMINISTRATIVE_BOUNDARY as LatLngTuple[], {
                 color: 'white', weight: 2, fillColor: '#10b981', fillOpacity: 0.2, opacity: 0.8,
@@ -421,7 +420,6 @@ const MapComponent = () => {
 
         return () => {
             if (mapRef.current) {
-                // Check if the remove method exists to avoid errors on fast re-renders
                 if (typeof mapRef.current.remove === 'function') {
                     mapRef.current.remove();
                 }
@@ -431,6 +429,7 @@ const MapComponent = () => {
     }, []); 
 
     useEffect(() => {
+        const map = mapRef.current;
         if (map) {
             // Remove all non-base layers
             map.eachLayer((layer) => {
@@ -445,9 +444,10 @@ const MapComponent = () => {
                 attribution: baseLayerData.attribution
             }).addTo(map).bringToBack();
         }
-    }, [activeBaseLayer, map]);
+    }, [activeBaseLayer]);
     
     useEffect(() => {
+        const map = mapRef.current;
         if (map) {
             map.eachLayer(layer => {
                 if (layer instanceof L.Polygon || layer instanceof L.Marker) {
@@ -461,7 +461,7 @@ const MapComponent = () => {
                 }
             });
         }
-    }, [activeOverlays, map]);
+    }, [activeOverlays]);
 
     const handleLayerToggle = (layerName: string) => {
         setActiveOverlays(prev => 
@@ -475,7 +475,7 @@ const MapComponent = () => {
         <div className="fixed inset-0">
             <div ref={containerRef} className="w-full h-full" />
             <MapControls
-                map={map}
+                map={mapRef.current}
                 activeLayer={activeBaseLayer as keyof typeof BASE_LAYERS}
                 setActiveLayer={setActiveBaseLayer as (layer: keyof typeof BASE_LAYERS) => void}
                 layerPanelExpanded={layerPanelExpanded}
