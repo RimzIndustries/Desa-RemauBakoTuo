@@ -301,4 +301,4 @@ const Poskesdes = () => {
   );
 };
 
-export default Poskesdes; 
+export default Poskesdes;

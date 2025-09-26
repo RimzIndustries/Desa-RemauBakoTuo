@@ -301,4 +301,4 @@ const Poskamling = () => {
   );
 };
 
-export default Poskamling; 
+export default Poskamling;
