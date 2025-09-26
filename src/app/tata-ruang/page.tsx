@@ -1,6 +1,11 @@
 'use client';
-import DynamicTataRuang from "@/components/pages/landing/DynamicTataRuang";
-import PublicLayout from "@/layouts/PublicLayout";
+import dynamic from 'next/dynamic';
+import PublicLayout from '@/layouts/PublicLayout';
+
+const DynamicTataRuang = dynamic(
+  () => import('@/components/pages/landing/TataRuang'),
+  { ssr: false }
+);
 
 export default function TataRuangPage() {
     return (
