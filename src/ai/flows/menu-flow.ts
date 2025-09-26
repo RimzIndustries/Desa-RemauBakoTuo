@@ -6,7 +6,7 @@
  */
 import { ai } from '@/ai/genkit';
 import { prisma } from '@/lib/prisma';
-import { z } from 'genkit';
+import { z } from 'zod';
 
 const MenuNameSchema = z.string();
 
