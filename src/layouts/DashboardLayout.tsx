@@ -36,7 +36,8 @@ import {
   Library,
   FileSpreadsheet,
   ScrollText,
-  ChevronDown
+  ChevronDown,
+  Palette
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
@@ -51,6 +52,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent
 } from "@/components/ui/dropdown-menu";
 import {
   Accordion,
@@ -59,6 +63,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { useTheme } from "next-themes";
 
 
 const DashboardLayout = ({
@@ -69,6 +74,7 @@ const DashboardLayout = ({
   const { user, logout } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
+  const { setTheme } = useTheme();
   
   const handleLogout = () => {
     toast({
@@ -263,6 +269,25 @@ const DashboardLayout = ({
                           <Activity size={16} className="text-white" />
                           <span>Log Aktivitas</span>
                         </Link></li>
+                        <li>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <button className="w-full flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                                <Palette size={16} className="text-white" />
+                                <span>Tema</span>
+                                <ChevronDown size={16} className="ml-auto" />
+                              </button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent side="right" align="start">
+                              <DropdownMenuItem onClick={() => setTheme("light")}>
+                                Terang
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                                Gelap
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </li>
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
