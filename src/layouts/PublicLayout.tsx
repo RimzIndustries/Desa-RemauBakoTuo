@@ -46,8 +46,8 @@ const PublicLayout = ({
       <header className="fixed top-0 left-0 right-0 z-50">
         <TopNav hasNewNews={false} />
       </header>
-      <main className={`flex-grow transition-all duration-300 ease-in-out ${needsSidebar ? 'md:pl-72' : ''}`}>
-        <div className="pt-16">
+      <main className={`flex-grow transition-all duration-300 ease-in-out`}>
+        <div className={`pt-16 transition-all duration-300 ease-in-out ${needsSidebar ? 'md:ml-80' : 'md:ml-0'}`}>
            {children}
         </div>
       </main>
