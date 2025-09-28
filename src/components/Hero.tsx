@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import FadeIn from './animations/FadeIn';
+import Image from 'next/image';
 
 interface HeroProps {
   className?: string;
@@ -10,10 +11,12 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
   return (
     <section className={cn('relative min-h-screen flex items-center overflow-hidden', className)}>
       <div className="absolute inset-0 -z-10">
-        <img 
+        <Image 
           src="/lovable-uploads/a0278ce1-b82d-4ed6-a186-14a9503ef65c.png" 
           alt="Desa Remau Bako Tuo" 
-          className="w-full h-full object-cover"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
         />
         <div className="absolute inset-0 bg-black/10"></div>
       </div>
