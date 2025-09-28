@@ -9,20 +9,6 @@ const PublicLayout = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
-  
-  const sidebarRoutes = [
-    '/profil', 
-    '/pembangunan', 
-    '/dana-desa', 
-    '/indeks', 
-    '/layanan', 
-    '/ekonomi', 
-    '/kelembagaan', 
-    '/aktivitas', 
-    '/pustaka'
-  ];
-
-  const needsSidebar = sidebarRoutes.some(route => pathname.startsWith(route) && pathname !== '/');
   const isTataRuangRoute = pathname === '/tata-ruang';
   
   if (isTataRuangRoute) {
@@ -42,18 +28,24 @@ const PublicLayout = ({
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="fixed top-0 left-0 right-0 z-50">
+    <div className="flex flex-row min-h-screen">
+      <header className="fixed top-0 left-0 right-0 z-50 md:relative">
         <TopNav hasNewNews={false} />
       </header>
-      <main className={`flex-grow transition-all duration-300 ease-in-out`}>
-        <div className={`pt-16 transition-all duration-300 ease-in-out ${needsSidebar ? 'md:ml-80' : 'md:ml-0'}`}>
+      
+      {/* Sidebar Slot */}
+      <div className="hidden md:block fixed top-16 left-0 h-[calc(100vh-4rem)] z-40">
+         {/* The sidebars from TopNav and BottomNav will be rendered here */}
+      </div>
+
+      <div className="flex flex-col flex-1">
+        <main className="flex-grow pt-16 md:pt-0">
            {children}
-        </div>
-      </main>
-      <footer className="relative z-40">
-        <BottomNav />
-      </footer>
+        </main>
+        <footer className="relative z-40">
+          <BottomNav />
+        </footer>
+      </div>
     </div>
   );
 };
