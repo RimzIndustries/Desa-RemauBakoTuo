@@ -28,24 +28,25 @@ const PublicLayout = ({
   }
 
   return (
-    <div className="flex flex-row min-h-screen">
-      <header className="fixed top-0 left-0 right-0 z-50 md:relative">
+    <div className="flex flex-col min-h-screen">
+      <header className="fixed top-0 left-0 right-0 z-50">
         <TopNav hasNewNews={false} />
       </header>
       
-      {/* Sidebar Slot */}
-      <div className="hidden md:block fixed top-16 left-0 h-[calc(100vh-4rem)] z-40">
-         {/* The sidebars from TopNav and BottomNav will be rendered here */}
-      </div>
+      <div className="flex flex-1 pt-14 sm:pt-16">
+        {/* Sidebar Slot for Desktop */}
+        <div className="hidden md:block w-72 flex-shrink-0">
+          {/* This area is reserved for the absolutely positioned sidebars from TopNav and BottomNav */}
+        </div>
 
-      <div className="flex flex-col flex-1">
-        <main className="flex-grow pt-16 md:pt-0">
+        <main className="flex-1 overflow-y-auto">
            {children}
         </main>
-        <footer className="relative z-40">
-          <BottomNav />
-        </footer>
       </div>
+
+      <footer className="fixed bottom-0 left-0 right-0 z-40">
+        <BottomNav />
+      </footer>
     </div>
   );
 };
