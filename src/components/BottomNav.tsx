@@ -229,14 +229,14 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
         <p className="text-xs sm:text-sm font-medium text-orange-500">©2024 spasial.net</p>
       </div>
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] sm:w-[600px] max-w-full rounded-full bg-white/40 border-t border-black/10 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 transition-all">
-        <div className="flex justify-center items-center h-14 sm:h-16">
+        <div className="flex justify-around items-center h-14 sm:h-16">
           <Sheet open={isProfileOpen} onOpenChange={setIsProfileOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex flex-col items-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full py-1.5 sm:py-2 px-2 sm:px-3 h-full rounded-l-full"
+                className="flex flex-col items-center justify-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full h-full rounded-l-full"
               >
-                <User className="h-5 w-5 sm:h-6 sm:w-6 mb-0.5 text-black" />
+                <User className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                 <span className="text-[10px] sm:text-xs">Profil</span>
               </Button>
             </SheetTrigger>
@@ -271,11 +271,11 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 
           <Button
             variant="ghost"
-            className="flex flex-col items-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full py-1.5 sm:py-2 px-2 sm:px-3 h-full rounded-none"
+            className="flex flex-col items-center justify-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full h-full"
              asChild
           >
             <Link href="/tata-ruang">
-              <Map className="h-5 w-5 sm:h-6 sm:w-6 mb-0.5 text-black" />
+              <Map className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
               <span className="text-[10px] sm:text-xs">Tata Ruang</span>
             </Link>
           </Button>
@@ -284,9 +284,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex flex-col items-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full py-1.5 sm:py-2 px-2 sm:px-3 h-full rounded-none"
+                className="flex flex-col items-center justify-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full h-full"
               >
-                <Building2 className="h-5 w-5 sm:h-6 sm:w-6 mb-0.5 text-black" />
+                <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                 <span className="text-[10px] sm:text-xs">Pembangunan</span>
               </Button>
             </SheetTrigger>
@@ -323,9 +323,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex flex-col items-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full py-1.5 sm:py-2 px-2 sm:px-3 h-full rounded-none"
+                className="flex flex-col items-center justify-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full h-full"
               >
-                <Wallet className="h-5 w-5 sm:h-6 sm:w-6 mb-0.5 text-black" />
+                <Wallet className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                 <span className="text-[10px] sm:text-xs">Dana Desa</span>
               </Button>
             </SheetTrigger>
@@ -362,9 +362,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex flex-col items-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full py-1.5 sm:py-2 px-2 sm:px-3 h-full rounded-r-full"
+                className="flex flex-col items-center justify-center text-black hover:text-black hover:bg-black/10 hover:backdrop-blur-sm hover:backdrop-saturate-150 transition-all w-full h-full rounded-r-full"
               >
-                <FileText className="h-5 w-5 sm:h-6 sm:w-6 mb-0.5 text-black" />
+                <FileText className="h-5 w-5 sm:h-6 sm:w-6 text-black" />
                 <span className="text-[10px] sm:text-xs">Indeks</span>
               </Button>
             </SheetTrigger>
@@ -403,3 +403,5 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 };
 
 export default BottomNav;
+
+    
