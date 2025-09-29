@@ -9,20 +9,18 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ className }) => {
   return (
-    <section className={cn('relative h-dvh flex items-center overflow-hidden', className)}>
-      <div className="absolute inset-0 -z-10">
-        <Image 
-          src="/lovable-uploads/a0278ce1-b82d-4ed6-a186-14a9503ef65c.png" 
-          alt="Desa Remau Bako Tuo" 
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
-        <div className="absolute inset-0 bg-black/10"></div>
-      </div>
+    <section className={cn('relative h-dvh flex items-center justify-center overflow-hidden', className)}>
+      <Image 
+        src="/lovable-uploads/a0278ce1-b82d-4ed6-a186-14a9503ef65c.png" 
+        alt="Desa Remau Bako Tuo" 
+        fill
+        className="object-cover -z-10"
+        priority
+      />
+      <div className="absolute inset-0 bg-black/10"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 md:px-10 py-16 sm:py-20 md:py-32 relative z-10 max-w-4xl">
-        <div className="max-w-3xl mx-auto text-center">
+      <div className="container mx-auto px-4 sm:px-6 md:px-10 py-16 sm:py-20 md:py-32 relative z-10 max-w-4xl text-center">
+        <div className="max-w-3xl mx-auto">
           <FadeIn delay={200}>
             <h1 className="text-lg sm:text-xl lg:text-2xl font-poppins font-medium tracking-tight text-white leading-tight mb-2">
               SELAMAT DATANG DI LAMAN INFORMASI
