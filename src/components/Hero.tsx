@@ -9,7 +9,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ className }) => {
   return (
-    <section className={cn('relative min-h-screen flex items-center overflow-hidden', className)}>
+    <section className={cn('relative h-dvh flex items-center overflow-hidden', className)}>
       <div className="absolute inset-0 -z-10">
         <Image 
           src="/lovable-uploads/a0278ce1-b82d-4ed6-a186-14a9503ef65c.png" 
