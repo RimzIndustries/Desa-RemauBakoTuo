@@ -201,57 +201,6 @@ const DashboardLayout = ({
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-
-                <Link href="/dashboard/map-control" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
-                  <Map size={18} className="text-white" />
-                  <span>Kontrol Peta</span>
-                </Link>
-
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="settings" className="border-none">
-                    <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors">
-                      <div className="flex items-center gap-2">
-                        <Settings2 size={18} className="text-white" />
-                        <span className="text-white">Pengaturan</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="space-y-1 pl-4">
-                        <li><Link href="/dashboard/settings/users" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
-                          <Users size={16} className="text-white" />
-                          <span>Pengguna</span>
-                        </Link></li>
-                        <li><Link href="/dashboard/settings/backup" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
-                          <FileText size={16} className="text-white" />
-                          <span>Backup Data</span>
-                        </Link></li>
-                        <li><Link href="/dashboard/settings/activity-log" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
-                          <Activity size={16} className="text-white" />
-                          <span>Log Aktivitas</span>
-                        </Link></li>
-                        <li>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <button className="w-full flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
-                                <Palette size={16} className="text-white" />
-                                <span>Tema</span>
-                                <ChevronDown size={16} className="ml-auto" />
-                              </button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent side="right" align="start">
-                              <DropdownMenuItem onClick={() => setTheme("light")}>
-                                Terang
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                                Gelap
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </li>
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
               </nav>
             </SidebarContent>
             <SidebarFooter className="p-4">
