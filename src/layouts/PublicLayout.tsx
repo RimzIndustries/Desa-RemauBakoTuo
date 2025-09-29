@@ -9,6 +9,26 @@ const PublicLayout = ({
   children: React.ReactNode;
 }) => {
   const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
+  if (isHomePage) {
+    return (
+      <div className="relative min-h-screen">
+        <header className="fixed top-0 left-0 right-0 z-50">
+          <TopNav hasNewNews={false} />
+        </header>
+        
+        <main className="relative z-0">
+           {children}
+        </main>
+
+        <footer className="fixed bottom-0 left-0 right-0 z-40">
+          <BottomNav />
+        </footer>
+      </div>
+    );
+  }
+  
   const isTataRuangRoute = pathname === '/tata-ruang';
   
   if (isTataRuangRoute) {
