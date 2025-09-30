@@ -28,6 +28,17 @@ async function main() {
     },
   });
 
+  const user3 = await prisma.user.upsert({
+    where: { email: 'admin@desa-remaubakotuo.com' },
+    update: {},
+    create: {
+      email: 'admin@desa-remaubakotuo.com',
+      nama: 'Admin Remau Bako Tuo',
+      password: 'admin@desa-remaubakotuo.com123',
+      role: 'admin',
+    },
+  });
+
   // Create Menus
   const topNav = await prisma.menu.upsert({
     where: { name: 'TopNav' },
@@ -149,7 +160,7 @@ async function main() {
   });
 
 
-  console.log({ user1, user2, topNav, bottomNav });
+  console.log({ user1, user2, user3, topNav, bottomNav });
 }
 
 main()
