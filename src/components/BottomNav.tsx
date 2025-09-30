@@ -37,11 +37,6 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
       { title: "PKK", path: "/kelembagaan/pkk", icon: Users },
       { title: "Posyandu", path: "/layanan/posyandu", icon: Activity },
       { title: "MPG", path: "/layanan/mpg", icon: Activity }
-    ],
-    "Aktivitas": [
-      { title: "Kalender Pangan", path: "/aktivitas/kalender-pangan", icon: Apple },
-      { title: "Kalender Kegiatan", path: "/aktivitas/kalender-kegiatan", icon: Calendar },
-      { title: "Agenda", path: "/aktivitas/agenda", icon: ListTodo }
     ]
   };
 
@@ -64,14 +59,22 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
     { title: "Pembiayaan", path: "/dana-desa/pembiayaan", icon: Building2 }
   ];
 
-  const indeksMenuItems = [
-    { title: "Indeks Ketahanan Sosial", path: "/indeks/ketahanan-sosial", icon: HeartHandshake },
-    { title: "Indeks Ketahanan Ekonomi", path: "/indeks/ketahanan-ekonomi", icon: Building2 },
-    { title: "Indeks Ketahanan Lingkungan", path: "/indeks/ketahanan-lingkungan", icon: Compass }
-  ];
+  const indeksMenuItems = {
+    "Indeks Desa": [
+        { title: "Indeks Ketahanan Sosial", path: "/indeks/ketahanan-sosial", icon: HeartHandshake },
+        { title: "Indeks Ketahanan Ekonomi", path: "/indeks/ketahanan-ekonomi", icon: Building2 },
+        { title: "Indeks Ketahanan Lingkungan", path: "/indeks/ketahanan-lingkungan", icon: Compass }
+    ],
+    "Aktivitas": [
+      { title: "Kalender Pangan", path: "/aktivitas/kalender-pangan", icon: Apple },
+      { title: "Kalender Kegiatan", path: "/aktivitas/kalender-kegiatan", icon: Calendar },
+      { title: "Agenda", path: "/aktivitas/agenda", icon: ListTodo }
+    ]
+  };
   
   const allProfileItems = Object.values(profileMenuItems).flat();
   const allPembangunanItems = Object.values(pembangunanMenuItems).flat();
+  const allIndeksItems = Object.values(indeksMenuItems).flat();
   const isProfilRoute = allProfileItems.some(item => pathname === item.path || pathname.startsWith('/aktivitas'));
 
   const SidebarProfil = () => {
@@ -215,7 +218,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
             </h3>
             <div className="space-y-4">
               <TooltipProvider delayDuration={100}>
-                {indeksMenuItems.map((item, index) => (
+                {allIndeksItems.map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
@@ -418,24 +421,36 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[70vw] sm:w-[336px] bg-white/40 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-black/10 rounded-r-[2rem] top-14 sm:top-20 h-[calc(100vh-7rem)] sm:h-[calc(100vh-10rem)] transition-all duration-300">
-              <SheetTitle className="sr-only">Indeks Menu</SheetTitle>
-              <SheetDescription className="sr-only">Menu untuk mengakses informasi indeks desa</SheetDescription>
+              <SheetTitle className="sr-only">Indeks & Aktivitas</SheetTitle>
+              <SheetDescription className="sr-only">Menu untuk mengakses informasi indeks dan aktivitas desa</SheetDescription>
               <ScrollArea className="h-full">
                 <div className="space-y-3 sm:space-y-4 py-6 sm:py-8">
-                  <h3 className="font-semibold text-base sm:text-lg mb-2 text-black px-2 sm:px-3 border-b border-black/10 pb-2 transition-all hover:bg-black/10">Indeks Desa</h3>
-                  {indeksMenuItems.map((item, index) => (
-                    <Button
-                      key={index}
-                      variant="ghost"
-                      className="w-full justify-start text-black hover:text-black hover:bg-black/10 transition-all py-1.5 sm:py-2 px-2 sm:px-3 text-xs sm:text-sm"
-                      asChild
-                    >
-                      <Link href={item.path} onClick={() => setIsIndeksOpen(false)}>
-                        <item.icon className="h-4 w-4 mr-2 text-black" />
-                        {item.title}
-                      </Link>
-                    </Button>
-                  ))}
+                  <Accordion type="multiple" className="w-full">
+                    {Object.entries(indeksMenuItems).map(([category, items], index) => (
+                      <AccordionItem key={index} value={`item-${index}`} className="border-black/10">
+                        <AccordionTrigger className="px-2 sm:px-3 text-black hover:text-black hover:no-underline border-b border-black/10 pb-2 transition-all hover:bg-black/10">
+                          <span className="font-poppins font-semibold text-sm sm:text-base">{category}</span>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                           <div className="space-y-1">
+                            {items.map((item, itemIndex) => (
+                              <Button
+                                key={itemIndex}
+                                variant="ghost"
+                                className="w-full justify-start text-black hover:text-black hover:bg-black/10 transition-all py-1 sm:py-1.5 px-4 sm:px-6 text-xs sm:text-sm"
+                                asChild
+                              >
+                                <Link href={item.path} className="flex items-center gap-2" onClick={() => setIsIndeksOpen(false)}>
+                                  <item.icon className="h-4 w-4 text-black" />
+                                  {item.title}
+                                </Link>
+                              </Button>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 border-t border-black/10">
                   <p className="text-[10px] sm:text-xs text-black/40 italic font-bold">
@@ -453,4 +468,5 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 
 export default BottomNav;
 
+    
     
