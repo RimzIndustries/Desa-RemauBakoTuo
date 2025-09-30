@@ -60,13 +60,6 @@ const menuItems = [
       { title: "Monografi Desa", path: "/layanan/monografi-desa", icon: BookOpen },
       { title: "Peraturan Desa", path: "/layanan/peraturan-desa", icon: Scale }
     ]
-  },
-  {
-    title: "Literasi",
-    items: [
-      { title: "Pustaka Desa", path: "/pustaka/pustaka-desa", icon: Library },
-      { title: "Publikasi", path: "/pustaka/publikasi", icon: FileSpreadsheet }
-    ]
   }
 ];
 
@@ -89,48 +82,6 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
             <div className="space-y-4">
               <TooltipProvider delayDuration={100}>
                 {menuItems.find(m => m.title === 'Layanan')?.items.map((item, index) => (
-                  <Tooltip key={index}>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
-                          pathname === item.path ? 'bg-emerald-700/70' : ''
-                        }`}
-                        asChild
-                      >
-                        <Link href={item.path}>
-                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                          <span className="hidden md:inline">{item.title}</span>
-                        </Link>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent side="right" sideOffset={16} className="md:hidden bg-emerald-800/90 text-emerald-50 border-emerald-700">
-                      <p>{item.title}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
-              </TooltipProvider>
-            </div>
-          </div>
-        </ScrollArea>
-      </div>
-    );
-  };
-
-  const SidebarLiterasi = () => {
-    const isPustakaRoute = pathname.startsWith('/pustaka');
-    if (!isPustakaRoute) return null;
-
-    return (
-      <div className="fixed left-0 md:top-16 top-1/2 -translate-y-1/2 md:translate-y-0 h-auto md:h-[calc(100vh-9rem)] md:w-72 w-12 bg-emerald-800/90 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-emerald-900 z-40 transition-all duration-300 rounded-r-[2rem] md:rounded-none md:rounded-br-[4rem]">
-        <ScrollArea className="h-full max-h-[70vh] md:max-h-none md:px-4 px-1 py-8">
-          <div className="space-y-2 md:pb-16">
-            <h3 className="font-semibold text-lg mb-6 text-emerald-50 border-b border-emerald-100/20 pb-3 hidden md:block">
-              Menu Literasi
-            </h3>
-            <div className="space-y-4">
-              <TooltipProvider delayDuration={100}>
-                {menuItems.find(m => m.title === 'Literasi')?.items.map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
@@ -272,11 +223,8 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
         </div>
       </nav>
       <SidebarLayanan />
-      <SidebarLiterasi />
     </>
   );
 };
 
 export default TopNav;
-
-    

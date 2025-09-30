@@ -31,6 +31,10 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
     ],
     "Pemerintahan": [
       { title: "Pemerintahan Desa", path: "/profil/struktur-pemerintah", icon: Building2 },
+    ],
+    "Literasi": [
+      { title: "Pustaka Desa", path: "/pustaka/pustaka-desa", icon: Library },
+      { title: "Publikasi", path: "/pustaka/publikasi", icon: FileSpreadsheet }
     ]
   };
 
@@ -78,7 +82,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   const allPembangunanItems = Object.values(pembangunanMenuItems).flat();
   const allDanaDesaItems = Object.values(danaDesaMenuItems).flat();
   const allIndeksItems = Object.values(indeksMenuItems).flat();
-  const isProfilRoute = allProfileItems.some(item => pathname === item.path || pathname.startsWith('/aktivitas'));
+  const isProfilRoute = allProfileItems.some(item => pathname === item.path || pathname.startsWith('/pustaka'));
 
   const SidebarProfil = () => {
     if (!isProfilRoute) return null;
@@ -482,7 +486,3 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 };
 
 export default BottomNav;
-
-    
-    
-    
