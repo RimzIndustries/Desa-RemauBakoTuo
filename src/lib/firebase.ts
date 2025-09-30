@@ -10,7 +10,7 @@ const firebaseConfig = {
   projectId: "data-desaspasial",
   storageBucket: "data-desaspasial.firebasestorage.app",
   messagingSenderId: "51876681975",
-  appId: "1:51876681975:web:e901917b632ac97be6dbf2"
+  appId: "1:51876681975:web:1e37eddd9a9b61ffe6dbf2"
 };
 
 // Initialize Firebase
