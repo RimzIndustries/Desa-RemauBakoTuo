@@ -104,7 +104,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
             </h3>
             <div className="space-y-4">
               <TooltipProvider delayDuration={100}>
-                {menuItems[0].items.map((item, index) => (
+                {menuItems.find(m => m.title === 'Layanan')?.items.map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
@@ -146,7 +146,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
             </h3>
             <div className="space-y-4">
               <TooltipProvider delayDuration={100}>
-                {menuItems[1].items.map((item, index) => (
+                {menuItems.find(m => m.title === 'Ekonomi')?.items.map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
@@ -188,7 +188,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
             </h3>
             <div className="space-y-4">
               <TooltipProvider delayDuration={100}>
-                {menuItems[2].items.map((item, index) => (
+                {menuItems.find(m => m.title === 'Aktivitas')?.items.map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
@@ -230,7 +230,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
             </h3>
             <div className="space-y-4">
               <TooltipProvider delayDuration={100}>
-                {menuItems[3].items.map((item, index) => (
+                {menuItems.find(m => m.title === 'Literasi')?.items.map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
@@ -301,7 +301,7 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                 <SheetDescription className="sr-only">Menu utama untuk mengakses berbagai layanan dan informasi desa</SheetDescription>
                 <ScrollArea className="h-full">
                   <div className="space-y-3 sm:space-y-4 py-6 sm:py-8">
-                    <Accordion type="single" collapsible className="w-full">
+                    <Accordion type="multiple" className="w-full">
                       {menuItems.map((category, index) => (
                         <AccordionItem key={index} value={`item-${index}`} className="border-black/10">
                           <AccordionTrigger className="px-2 sm:px-3 text-black hover:text-black hover:no-underline border-b border-black/10 pb-2 transition-all hover:bg-black/10">
@@ -380,7 +380,5 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
 };
 
 export default TopNav;
-
-    
 
     
