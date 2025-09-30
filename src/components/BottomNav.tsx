@@ -37,6 +37,11 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
       { title: "PKK", path: "/kelembagaan/pkk", icon: Users },
       { title: "Posyandu", path: "/layanan/posyandu", icon: Activity },
       { title: "MPG", path: "/layanan/mpg", icon: Activity }
+    ],
+    "Aktivitas": [
+      { title: "Kalender Pangan", path: "/aktivitas/kalender-pangan", icon: Apple },
+      { title: "Kalender Kegiatan", path: "/aktivitas/kalender-kegiatan", icon: Calendar },
+      { title: "Agenda", path: "/aktivitas/agenda", icon: ListTodo }
     ]
   };
 
@@ -59,7 +64,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   ];
   
   const allProfileItems = Object.values(profileMenuItems).flat();
-  const isProfilRoute = allProfileItems.some(item => pathname === item.path);
+  const isProfilRoute = allProfileItems.some(item => pathname === item.path || pathname.startsWith('/aktivitas'));
 
   const SidebarProfil = () => {
     if (!isProfilRoute) return null;
@@ -427,5 +432,3 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 };
 
 export default BottomNav;
-
-    
