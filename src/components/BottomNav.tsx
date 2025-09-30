@@ -82,7 +82,12 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   const allPembangunanItems = Object.values(pembangunanMenuItems).flat();
   const allDanaDesaItems = Object.values(danaDesaMenuItems).flat();
   const allIndeksItems = Object.values(indeksMenuItems).flat();
-  const isProfilRoute = allProfileItems.some(item => pathname === item.path || pathname.startsWith('/pustaka'));
+
+  const isProfilRoute = pathname.startsWith('/profil') || pathname.startsWith('/pustaka');
+  const isPembangunanRoute = pathname.startsWith('/pembangunan') || pathname.startsWith('/kelembagaan') || pathname.startsWith('/layanan/posyandu') || pathname.startsWith('/layanan/mpg');
+  const isDanaDesaRoute = pathname.startsWith('/dana-desa') || pathname.startsWith('/ekonomi');
+  const isIndeksRoute = pathname.startsWith('/indeks') || pathname.startsWith('/aktivitas');
+
 
   const SidebarProfil = () => {
     if (!isProfilRoute) return null;
@@ -126,8 +131,6 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   };
 
   const SidebarPembangunan = () => {
-    const isPembangunanRoute = allPembangunanItems.some(item => pathname.startsWith(item.path.substring(0, item.path.lastIndexOf('/'))));
-    
     if (!isPembangunanRoute) return null;
 
     return (
@@ -169,8 +172,6 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   };
 
   const SidebarDanaDesa = () => {
-    const isDanaDesaRoute = allDanaDesaItems.some(item => pathname.startsWith(item.path.substring(0, item.path.lastIndexOf('/'))));
-    
     if (!isDanaDesaRoute) return null;
 
     return (
@@ -212,8 +213,6 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   };
 
   const SidebarIndeks = () => {
-    const isIndeksRoute = pathname.startsWith('/indeks');
-    
     if (!isIndeksRoute) return null;
 
     return (
@@ -486,3 +485,4 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 };
 
 export default BottomNav;
+
