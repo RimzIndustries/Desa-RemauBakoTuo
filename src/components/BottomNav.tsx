@@ -31,12 +31,6 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
     ],
     "Pemerintahan": [
       { title: "Pemerintahan Desa", path: "/profil/struktur-pemerintah", icon: Building2 },
-    ],
-    "Kelembagaan": [
-      { title: "LKMD", path: "/kelembagaan/lkmd", icon: Users },
-      { title: "PKK", path: "/kelembagaan/pkk", icon: Users },
-      { title: "Posyandu", path: "/layanan/posyandu", icon: Activity },
-      { title: "MPG", path: "/layanan/mpg", icon: Activity }
     ]
   };
 
@@ -45,6 +39,12 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
         { title: "RPJMDes", path: "/pembangunan/rpjmdes", icon: FileText },
         { title: "RKPDes", path: "/pembangunan/rkpdes", icon: FileText },
         { title: "Daftar Rencana Program", path: "/pembangunan/daftar-program", icon: ListTodo }
+      ],
+      "Kelembagaan": [
+        { title: "LKMD", path: "/kelembagaan/lkmd", icon: Users },
+        { title: "PKK", path: "/kelembagaan/pkk", icon: Users },
+        { title: "Posyandu", path: "/layanan/posyandu", icon: Activity },
+        { title: "MPG", path: "/layanan/mpg", icon: Activity }
       ]
   };
 
