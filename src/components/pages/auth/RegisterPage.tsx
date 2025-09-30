@@ -3,37 +3,43 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, LogIn } from "lucide-react";
+import { ArrowLeft, UserPlus } from "lucide-react";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  const { login, isAuthenticated } = useAuth();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.replace("/dashboard");
-    }
-  }, [isAuthenticated, router]);
+  const { register } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    
-    if (!email || !password) {
+
+    if (!email || !password || !confirmPassword) {
       setError("Mohon isi semua kolom");
       return;
     }
 
-    const success = await login(email, password);
+    if (password !== confirmPassword) {
+      setError("Password dan konfirmasi password tidak cocok");
+      return;
+    }
+    
+    // Password should be at least 6 characters for Firebase
+    if (password.length < 6) {
+        setError("Password minimal harus 6 karakter");
+        return;
+    }
+
+    const success = await register(email, password);
     if (success) {
-      router.push("/dashboard");
+      router.push("/login");
     }
   };
 
@@ -47,9 +53,9 @@ const LoginPage = () => {
         
         <Card>
           <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-2xl">Login Admin</CardTitle>
+            <CardTitle className="text-2xl">Daftar Akun Admin</CardTitle>
             <CardDescription>
-              Masukkan email dan password untuk mengakses dashboard admin
+              Buat akun baru untuk mengakses dashboard admin
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -60,7 +66,7 @@ const LoginPage = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@desaremaubakotuo.com"
+                    placeholder="email@contoh.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -74,20 +80,28 @@ const LoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="confirm-password">Konfirmasi Password</Label>
+                  <Input
+                    id="confirm-password"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
                 {error && (
                   <div className="text-red-500 text-sm">{error}</div>
                 )}
                 <Button type="submit" className="w-full flex items-center gap-2">
-                  <LogIn size={18} />
-                  <span>Login</span>
+                  <UserPlus size={18} />
+                  <span>Daftar</span>
                 </Button>
               </div>
             </form>
           </CardContent>
-          <CardFooter className="flex flex-col gap-2 text-center text-sm text-gray-600">
-            <p>Belum punya akun? <Link href="/register" className="text-primary hover:underline">Daftar di sini</Link></p>
+          <CardFooter className="text-center text-sm text-gray-600">
             <p className="w-full">
-              Portal Admin Desa Remau Bakotuo
+              Sudah punya akun? <Link href="/login" className="text-primary hover:underline">Login di sini</Link>
             </p>
           </CardFooter>
         </Card>
@@ -96,4 +110,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

@@ -1,95 +1,116 @@
 'use client';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useToast } from "@/components/ui/use-toast";
+import { app } from '@/lib/firebase';
+import { 
+  getAuth, 
+  onAuthStateChanged, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword,
+  signOut,
+  User as FirebaseUser
+} from "firebase/auth";
 
 interface User {
-  email: string;
-  role: string;
+  email: string | null;
+  uid: string;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => boolean;
+  login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
+  register: (email: string, password: string) => Promise<boolean>;
   isAuthenticated: boolean;
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// In a real app, this would come from a database or API
-const adminUsers = [
-  {
-    email: 'admin@desaspasial.id',
-    password: 'password',
-    role: 'admin'
-  },
-  {
-    email: 'rimzindustries@gmail.com',
-    password: 'rimzindustries@gmail.com',
-    role: 'admin'
-  },
-  {
-    email: 'admin@desaremaubakotuo.spasial.net',
-    password: 'admin@desaremaubakotuo.spasial.net',
-    role: 'admin'
-  }
-];
+const auth = getAuth(app);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const { toast } = useToast();
   
-  // Check if user is already logged in from localStorage
   useEffect(() => {
-    try {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
-        }
-    } catch (error) {
-        console.error("Failed to parse user from localStorage", error)
-    }
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
+      if (firebaseUser) {
+        setUser({ email: firebaseUser.email, uid: firebaseUser.uid });
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  // Login function
-  const login = (email: string, password: string): boolean => {
-    const foundUser = adminUsers.find(u => u.email === email && u.password === password);
-
-    if (foundUser) {
-      const userData = { email: foundUser.email, role: foundUser.role };
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       toast({
         title: "Login Berhasil",
         description: "Selamat datang kembali!",
       });
       return true;
-    } else {
+    } catch (error: any) {
       toast({
         title: "Login Gagal",
-        description: "Email atau password salah!",
+        description: error.message || "Email atau password salah!",
+        variant: "destructive",
+      });
+      return false;
+    }
+  };
+  
+  const register = async (email: string, password: string): Promise<boolean> => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      toast({
+        title: "Registrasi Berhasil",
+        description: "Akun Anda telah berhasil dibuat.",
+      });
+      return true;
+    } catch (error: any) {
+      toast({
+        title: "Registrasi Gagal",
+        description: error.message || "Terjadi kesalahan saat mendaftar.",
         variant: "destructive",
       });
       return false;
     }
   };
 
-  // Logout function
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
-    toast({
-      title: "Logout Berhasil",
-      description: "Anda telah keluar dari sistem!",
-    });
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      toast({
+        title: "Logout Berhasil",
+        description: "Anda telah keluar dari sistem!",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Logout Gagal",
+        description: error.message || "Terjadi kesalahan saat keluar.",
+        variant: "destructive",
+      });
+    }
   };
 
   const value = {
     user,
     login,
+    register,
     logout,
     isAuthenticated: !!user,
+    loading,
   };
+
+  if (loading) {
+    return <div>Memuat...</div>; // Or a proper loading spinner
+  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
