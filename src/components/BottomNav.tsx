@@ -77,11 +77,6 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
       { title: "Agenda", path: "/aktivitas/agenda", icon: ListTodo }
     ]
   };
-  
-  const allProfileItems = Object.values(profileMenuItems).flat();
-  const allPembangunanItems = Object.values(pembangunanMenuItems).flat();
-  const allDanaDesaItems = Object.values(danaDesaMenuItems).flat();
-  const allIndeksItems = Object.values(indeksMenuItems).flat();
 
   const isProfilRoute = pathname.startsWith('/profil') || pathname.startsWith('/pustaka');
   const isPembangunanRoute = pathname.startsWith('/pembangunan') || pathname.startsWith('/kelembagaan') || pathname.startsWith('/layanan/posyandu') || pathname.startsWith('/layanan/mpg');
@@ -91,6 +86,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 
   const SidebarProfil = () => {
     if (!isProfilRoute) return null;
+    const activeCategory = Object.keys(profileMenuItems).find(category =>
+      profileMenuItems[category as keyof typeof profileMenuItems].some(item => pathname === item.path)
+    );
 
     return (
       <div className="fixed left-0 md:top-16 top-1/2 -translate-y-1/2 md:translate-y-0 h-auto md:h-[calc(100vh-9rem)] md:w-72 w-12 bg-emerald-800/90 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-emerald-900 z-40 transition-all duration-300 rounded-r-[2rem] md:rounded-none md:rounded-br-[4rem]">
@@ -99,21 +97,20 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
             <h3 className="font-semibold text-lg mb-6 text-emerald-50 border-b border-emerald-100/20 pb-3 hidden md:block">
               Menu Profil
             </h3>
-            <div className="space-y-4">
+            <div className="md:hidden">
               <TooltipProvider delayDuration={100}>
-                {allProfileItems.map((item, index) => (
+                {Object.values(profileMenuItems).flat().map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
+                        className={`w-full justify-center text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 px-1 text-sm ${
                           pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
                         asChild
                       >
                         <Link href={item.path} onClick={() => setIsProfileOpen(false)}>
-                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                          <span className="hidden md:inline">{item.title}</span>
+                          <item.icon className="h-4 w-4 text-white" />
                         </Link>
                       </Button>
                     </TooltipTrigger>
@@ -123,6 +120,37 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                   </Tooltip>
                 ))}
               </TooltipProvider>
+            </div>
+            <div className="hidden md:block">
+              <Accordion type="single" collapsible defaultValue={activeCategory} className="w-full">
+                {Object.entries(profileMenuItems).map(([category, items], index) => (
+                  <AccordionItem key={index} value={category} className="border-none">
+                    <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white hover:no-underline">
+                      <span className="font-semibold">{category}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pl-4">
+                      <ul className="space-y-1">
+                        {items.map((item, itemIndex) => (
+                           <li key={itemIndex}>
+                            <Button
+                              variant="ghost"
+                              className={`w-full justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-2.5 px-3 text-sm ${
+                                pathname === item.path ? 'bg-emerald-700/70' : ''
+                              }`}
+                              asChild
+                            >
+                              <Link href={item.path} onClick={() => setIsProfileOpen(false)}>
+                                <item.icon className="h-5 w-5 mr-3 text-white" />
+                                <span>{item.title}</span>
+                              </Link>
+                            </Button>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </ScrollArea>
@@ -132,29 +160,31 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 
   const SidebarPembangunan = () => {
     if (!isPembangunanRoute) return null;
+    const activeCategory = Object.keys(pembangunanMenuItems).find(category =>
+      pembangunanMenuItems[category as keyof typeof pembangunanMenuItems].some(item => pathname === item.path)
+    );
 
     return (
       <div className="fixed left-0 md:top-16 top-1/2 -translate-y-1/2 md:translate-y-0 h-auto md:h-[calc(100vh-9rem)] md:w-72 w-12 bg-emerald-800/90 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-emerald-900 z-40 transition-all duration-300 rounded-r-[2rem] md:rounded-none md:rounded-br-[4rem]">
         <ScrollArea className="h-full max-h-[70vh] md:max-h-none md:px-4 px-1 py-8">
           <div className="space-y-2 md:pb-16">
             <h3 className="font-semibold text-lg mb-6 text-emerald-50 border-b border-emerald-100/20 pb-3 hidden md:block">
-              Menu Pembangunan Desa
+              Menu Pembangunan
             </h3>
-            <div className="space-y-4">
+            <div className="md:hidden">
               <TooltipProvider delayDuration={100}>
-                {allPembangunanItems.map((item, index) => (
+                {Object.values(pembangunanMenuItems).flat().map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
+                        className={`w-full justify-center text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 px-1 text-sm ${
                           pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
                         asChild
                       >
-                         <Link href={item.path} onClick={() => setIsPembangunanOpen(false)}>
-                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                          <span className="hidden md:inline">{item.title}</span>
+                        <Link href={item.path} onClick={() => setIsPembangunanOpen(false)}>
+                          <item.icon className="h-4 w-4 text-white" />
                         </Link>
                       </Button>
                     </TooltipTrigger>
@@ -164,6 +194,37 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                   </Tooltip>
                 ))}
               </TooltipProvider>
+            </div>
+            <div className="hidden md:block">
+               <Accordion type="single" collapsible defaultValue={activeCategory} className="w-full">
+                {Object.entries(pembangunanMenuItems).map(([category, items], index) => (
+                  <AccordionItem key={index} value={category} className="border-none">
+                    <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white hover:no-underline">
+                      <span className="font-semibold">{category}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pl-4">
+                      <ul className="space-y-1">
+                        {items.map((item, itemIndex) => (
+                           <li key={itemIndex}>
+                            <Button
+                              variant="ghost"
+                              className={`w-full justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-2.5 px-3 text-sm ${
+                                pathname === item.path ? 'bg-emerald-700/70' : ''
+                              }`}
+                              asChild
+                            >
+                              <Link href={item.path} onClick={() => setIsPembangunanOpen(false)}>
+                                <item.icon className="h-5 w-5 mr-3 text-white" />
+                                <span>{item.title}</span>
+                              </Link>
+                            </Button>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </ScrollArea>
@@ -173,6 +234,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 
   const SidebarDanaDesa = () => {
     if (!isDanaDesaRoute) return null;
+    const activeCategory = Object.keys(danaDesaMenuItems).find(category =>
+      danaDesaMenuItems[category as keyof typeof danaDesaMenuItems].some(item => pathname === item.path)
+    );
 
     return (
       <div className="fixed left-0 md:top-16 top-1/2 -translate-y-1/2 md:translate-y-0 h-auto md:h-[calc(100vh-9rem)] md:w-72 w-12 bg-emerald-800/90 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-emerald-900 z-40 transition-all duration-300 rounded-r-[2rem] md:rounded-none md:rounded-br-[4rem]">
@@ -181,21 +245,20 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
             <h3 className="font-semibold text-lg mb-6 text-emerald-50 border-b border-emerald-100/20 pb-3 hidden md:block">
               Menu Dana Desa
             </h3>
-            <div className="space-y-4">
+            <div className="md:hidden">
               <TooltipProvider delayDuration={100}>
-                {allDanaDesaItems.map((item, index) => (
+                {Object.values(danaDesaMenuItems).flat().map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
+                        className={`w-full justify-center text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 px-1 text-sm ${
                           pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
                         asChild
                       >
                          <Link href={item.path} onClick={() => setIsDanaDesaOpen(false)}>
-                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                          <span className="hidden md:inline">{item.title}</span>
+                          <item.icon className="h-4 w-4 text-white" />
                         </Link>
                       </Button>
                     </TooltipTrigger>
@@ -206,6 +269,37 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                 ))}
               </TooltipProvider>
             </div>
+             <div className="hidden md:block">
+               <Accordion type="single" collapsible defaultValue={activeCategory} className="w-full">
+                {Object.entries(danaDesaMenuItems).map(([category, items], index) => (
+                  <AccordionItem key={index} value={category} className="border-none">
+                    <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white hover:no-underline">
+                      <span className="font-semibold">{category}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pl-4">
+                      <ul className="space-y-1">
+                        {items.map((item, itemIndex) => (
+                           <li key={itemIndex}>
+                            <Button
+                              variant="ghost"
+                              className={`w-full justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-2.5 px-3 text-sm ${
+                                pathname === item.path ? 'bg-emerald-700/70' : ''
+                              }`}
+                              asChild
+                            >
+                              <Link href={item.path} onClick={() => setIsDanaDesaOpen(false)}>
+                                <item.icon className="h-5 w-5 mr-3 text-white" />
+                                <span>{item.title}</span>
+                              </Link>
+                            </Button>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
         </ScrollArea>
       </div>
@@ -214,6 +308,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
 
   const SidebarIndeks = () => {
     if (!isIndeksRoute) return null;
+    const activeCategory = Object.keys(indeksMenuItems).find(category =>
+      indeksMenuItems[category as keyof typeof indeksMenuItems].some(item => pathname === item.path)
+    );
 
     return (
       <div className="fixed left-0 md:top-16 top-1/2 -translate-y-1/2 md:translate-y-0 h-auto md:h-[calc(100vh-9rem)] md:w-72 w-12 bg-emerald-800/90 backdrop-blur-md backdrop-saturate-200 backdrop-brightness-125 border-r border-emerald-900 z-40 transition-all duration-300 rounded-r-[2rem] md:rounded-none md:rounded-br-[4rem]">
@@ -222,21 +319,20 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
             <h3 className="font-semibold text-lg mb-6 text-emerald-50 border-b border-emerald-100/20 pb-3 hidden md:block">
               Menu Indeks Desa
             </h3>
-            <div className="space-y-4">
+            <div className="md:hidden">
               <TooltipProvider delayDuration={100}>
-                {allIndeksItems.map((item, index) => (
+                {Object.values(indeksMenuItems).flat().map((item, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        className={`w-full justify-center md:justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 md:py-2.5 px-1 md:px-3 text-sm ${
+                        className={`w-full justify-center text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-3 px-1 text-sm ${
                           pathname === item.path ? 'bg-emerald-700/70' : ''
                         }`}
                         asChild
                       >
                          <Link href={item.path} onClick={() => setIsIndeksOpen(false)}>
-                          <item.icon className="h-4 w-4 md:h-5 md:w-5 md:mr-3 text-white" />
-                          <span className="hidden md:inline">{item.title}</span>
+                          <item.icon className="h-4 w-4 text-white" />
                         </Link>
                       </Button>
                     </TooltipTrigger>
@@ -246,6 +342,37 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
                   </Tooltip>
                 ))}
               </TooltipProvider>
+            </div>
+            <div className="hidden md:block">
+               <Accordion type="single" collapsible defaultValue={activeCategory} className="w-full">
+                {Object.entries(indeksMenuItems).map(([category, items], index) => (
+                  <AccordionItem key={index} value={category} className="border-none">
+                    <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white hover:no-underline">
+                      <span className="font-semibold">{category}</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pl-4">
+                      <ul className="space-y-1">
+                        {items.map((item, itemIndex) => (
+                           <li key={itemIndex}>
+                            <Button
+                              variant="ghost"
+                              className={`w-full justify-start text-emerald-50 hover:text-emerald-50 hover:bg-emerald-700/50 transition-all py-2.5 px-3 text-sm ${
+                                pathname === item.path ? 'bg-emerald-700/70' : ''
+                              }`}
+                              asChild
+                            >
+                              <Link href={item.path} onClick={() => setIsIndeksOpen(false)}>
+                                <item.icon className="h-5 w-5 mr-3 text-white" />
+                                <span>{item.title}</span>
+                              </Link>
+                            </Button>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </ScrollArea>
@@ -488,5 +615,6 @@ export default BottomNav;
 
 
 
+    
     
     
