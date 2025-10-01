@@ -3,42 +3,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create Users
-  const user1 = await prisma.user.upsert({
-    where: { email: 'admin@desaspasial.id' },
-    update: {},
-    create: {
-      email: 'admin@desaspasial.id',
-      nama: 'Admin Desa',
-      password: 'password', // Storing plain text password for now, consider hashing in a real app
-      role: 'admin',
-    },
-  });
-
-  const user2 = await prisma.user.upsert({
-    where: { email: 'rimzindustries@gmail.com' },
-    update: {
-      password: 'rimzindustries@gmail.com',
-    },
-    create: {
-      email: 'rimzindustries@gmail.com',
-      nama: 'Rimz Industries',
-      password: 'rimzindustries@gmail.com', 
-      role: 'admin',
-    },
-  });
-
-  const user3 = await prisma.user.upsert({
-    where: { email: 'admin@desa-remaubakotuo.com' },
-    update: {},
-    create: {
-      email: 'admin@desa-remaubakotuo.com',
-      nama: 'Admin Remau Bako Tuo',
-      password: 'admin@desa-remaubakotuo.com123',
-      role: 'admin',
-    },
-  });
-
   // Create Menus
   const topNav = await prisma.menu.upsert({
     where: { name: 'TopNav' },
@@ -160,7 +124,7 @@ async function main() {
   });
 
 
-  console.log({ user1, user2, user3, topNav, bottomNav });
+  console.log({ topNav, bottomNav });
 }
 
 main()

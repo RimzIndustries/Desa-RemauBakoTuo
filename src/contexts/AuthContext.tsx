@@ -58,7 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (error: any) {
       toast({
         title: "Login Gagal",
-        description: error.message || "Email atau password salah!",
+        description: "Email atau password salah!",
         variant: "destructive",
       });
       return false;
@@ -109,7 +109,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   if (loading) {
-    return <div>Memuat...</div>; // Or a proper loading spinner
+    return <div className="min-h-screen flex items-center justify-center">Memuat...</div>;
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
