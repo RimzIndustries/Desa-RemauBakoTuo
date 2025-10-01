@@ -110,7 +110,7 @@ const DashboardLayout = ({
                       <span>Kontrol Web</span>
                     </div>
                     <div className="space-y-1 pl-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" collapsible defaultValue="category-0" className="w-full">
                         {webControlMenuItems.map((category, index) => {
                           if (category.items) {
                             return (
@@ -148,7 +148,7 @@ const DashboardLayout = ({
                   </div>
                 )}
 
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion type="single" collapsible defaultValue="apps" className="w-full">
                   <AccordionItem value="apps" className="border-none">
                     <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors">
                       <div className="flex items-center gap-2">
@@ -265,4 +265,5 @@ const DashboardLayout = ({
 
 export default DashboardLayout;
 
+    
     
