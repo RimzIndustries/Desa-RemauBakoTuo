@@ -1,15 +1,14 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Users, FileText, Award } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const StrukturPemerintah = () => {
   const strukturData = {
     pemerintahan: {
-      title: "Struktur Pemerintahan",
+      title: "Pemerintahan Desa",
       icon: Building2,
       content: {
-        deskripsi: "Struktur pemerintahan Desa Remau Bakotuo terdiri dari Kepala Desa, Perangkat Desa, dan Badan Permusyawaratan Desa (BPD)",
+        deskripsi: "Penyelenggaraan urusan pemerintahan di tingkat desa dilaksanakan oleh Pemerintah Desa, yang terdiri dari Kepala Desa dan Perangkat Desa.",
         periode: "2021-2027",
         struktur: [
           {
@@ -17,10 +16,10 @@ const StrukturPemerintah = () => {
             nama: "H. Muhammad Yusuf, S.Pd.",
             periode: "2021-2027",
             tugas: [
-              "Memimpin penyelenggaraan pemerintahan desa",
-              "Membina kehidupan masyarakat desa",
-              "Membina perekonomian desa",
-              "Mengkoordinasikan pembangunan desa"
+              "Memimpin penyelenggaraan Pemerintahan Desa.",
+              "Membina kehidupan masyarakat Desa.",
+              "Membina perekonomian Desa.",
+              "Mengkoordinasikan pembangunan Desa secara partisipatif."
             ]
           },
           {
@@ -28,10 +27,9 @@ const StrukturPemerintah = () => {
             nama: "La Ode Abdul Rahman, S.E.",
             periode: "2021-2027",
             tugas: [
-              "Membantu kepala desa dalam urusan administrasi",
-              "Mengkoordinasikan perangkat desa",
-              "Menyusun laporan pelaksanaan kegiatan",
-              "Melaksanakan tugas lain yang diberikan kepala desa"
+              "Membantu Kepala Desa dalam bidang administrasi pemerintahan.",
+              "Mengkoordinasikan tugas-tugas Perangkat Desa lainnya.",
+              "Menyusun laporan penyelenggaraan pemerintahan Desa."
             ]
           },
           {
@@ -39,20 +37,19 @@ const StrukturPemerintah = () => {
             nama: "La Ode Hidayat, S.Sos.",
             periode: "2021-2027",
             tugas: [
-              "Membantu kepala desa dalam urusan pemerintahan",
-              "Melaksanakan administrasi kependudukan",
-              "Mengkoordinasikan kegiatan RT/RW",
-              "Melaksanakan tugas lain yang diberikan kepala desa"
+              "Melaksanakan manajemen administrasi kependudukan.",
+              "Mengelola data profil desa dan monografi.",
+              "Membantu pelaksanaan urusan pertanahan."
             ]
           }
         ]
       }
     },
     bpd: {
-      title: "Badan Permusyawaratan Desa",
+      title: "Badan Permusyawaratan Desa (BPD)",
       icon: Users,
       content: {
-        deskripsi: "BPD adalah lembaga yang melaksanakan fungsi pemerintahan yang anggotanya merupakan wakil dari penduduk desa",
+        deskripsi: "BPD adalah lembaga yang melaksanakan fungsi pemerintahan yang anggotanya merupakan wakil dari penduduk desa berdasarkan keterwakilan wilayah dan ditetapkan secara demokratis.",
         periode: "2021-2027",
         struktur: [
           {
@@ -60,10 +57,9 @@ const StrukturPemerintah = () => {
             nama: "La Ode Mustafa",
             periode: "2021-2027",
             tugas: [
-              "Memimpin rapat BPD",
-              "Mengkoordinasikan anggota BPD",
-              "Menandatangani keputusan BPD",
-              "Mewakili BPD di dalam dan di luar pengadilan"
+              "Memimpin dan mengkoordinasikan seluruh kegiatan BPD.",
+              "Membahas dan menyepakati Rancangan Peraturan Desa bersama Kepala Desa.",
+              "Melakukan pengawasan terhadap kinerja Kepala Desa."
             ]
           },
           {
@@ -71,10 +67,8 @@ const StrukturPemerintah = () => {
             nama: "La Ode Rahim",
             periode: "2021-2027",
             tugas: [
-              "Membantu ketua BPD",
-              "Melaksanakan tugas ketua BPD jika berhalangan",
-              "Mengkoordinasikan komisi-komisi",
-              "Melaksanakan tugas lain yang diberikan ketua BPD"
+              "Membantu Ketua BPD dalam melaksanakan tugas.",
+              "Mengkoordinasikan kegiatan komisi-komisi di BPD."
             ]
           },
           {
@@ -82,72 +76,64 @@ const StrukturPemerintah = () => {
             nama: "La Ode Jafar",
             periode: "2021-2027",
             tugas: [
-              "Membantu ketua BPD dalam urusan administrasi",
-              "Menyusun laporan kegiatan BPD",
-              "Mengelola administrasi BPD",
-              "Melaksanakan tugas lain yang diberikan ketua BPD"
+              "Melaksanakan administrasi dan persuratan BPD.",
+              "Menyusun risalah dan notulensi rapat-rapat BPD."
             ]
           }
         ]
       }
     },
     lembaga: {
-      title: "Lembaga Kemasyarakatan",
+      title: "Lembaga Kemasyarakatan Desa (LKD)",
       icon: Award,
       content: {
-        deskripsi: "Lembaga kemasyarakatan desa adalah lembaga yang dibentuk oleh masyarakat sesuai kebutuhan",
+        deskripsi: "LKD adalah wadah partisipasi masyarakat desa yang dibentuk atas prakarsa masyarakat sebagai mitra Pemerintah Desa.",
         periode: "2021-2027",
         lembaga: [
           {
-            nama: "LPMD",
+            nama: "Lembaga Pemberdayaan Masyarakat Desa (LPMD)",
             ketua: "La Ode Hamid",
-            periode: "2021-2027",
             tugas: [
-              "Membantu pelaksanaan pembangunan",
-              "Menggerakkan swadaya gotong royong",
-              "Melaksanakan dan mengembangkan upaya partisipasi masyarakat",
-              "Menumbuhkan dan mengembangkan kesadaran masyarakat"
+              "Menyusun rencana pembangunan secara partisipatif.",
+              "Menggerakkan swadaya gotong royong masyarakat.",
+              "Membantu dalam perencanaan dan pelaksanaan pembangunan."
             ]
           },
           {
-            nama: "PKK",
+            nama: "Pemberdayaan Kesejahteraan Keluarga (PKK)",
             ketua: "Hj. Aminah",
-            periode: "2021-2027",
             tugas: [
-              "Membina kesejahteraan keluarga",
-              "Mengembangkan program pemberdayaan perempuan",
-              "Melaksanakan program kesehatan",
-              "Mengembangkan program pendidikan"
+              "Melaksanakan 10 Program Pokok PKK.",
+              "Menggerakkan partisipasi perempuan dalam pembangunan.",
+              "Membina kesejahteraan keluarga."
             ]
           },
           {
             nama: "Karang Taruna",
             ketua: "La Ode Fadli",
-            periode: "2021-2027",
             tugas: [
-              "Mengembangkan kreativitas pemuda",
-              "Melaksanakan kegiatan olahraga",
-              "Mengembangkan wirausaha pemuda",
-              "Melaksanakan kegiatan sosial"
+              "Mengembangkan potensi dan kreativitas generasi muda.",
+              "Menyelenggarakan kegiatan kepemudaan, olahraga, dan seni budaya.",
+              "Membantu penanggulangan masalah sosial."
             ]
           }
         ]
       }
     },
     dokumen: {
-      title: "Dokumen Struktur",
+      title: "Dokumen Terkait",
       icon: FileText,
       content: {
         dokumen: [
           {
-            judul: "Peraturan Desa tentang Struktur Organisasi",
+            judul: "Peraturan Desa tentang Struktur Organisasi dan Tata Kerja (SOTK) Pemerintah Desa",
             tahun: "2021",
             status: "Dokumen Resmi"
           },
           {
-            judul: "SK Pengangkatan Perangkat Desa",
+            judul: "SK Pengangkatan Perangkat Desa dan Pengurus Lembaga Kemasyarakatan",
             tahun: "2021",
-            status: "Dokumen Resmi"
+            status: "Arsip Desa"
           }
         ]
       }
@@ -156,17 +142,11 @@ const StrukturPemerintah = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb
-        items={[
-          { title: "Profil", path: "/profil/profil-desa" },
-          { title: "Struktur Pemerintahan" }
-        ]}
-      />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Struktur Pemerintahan Desa</h2>
           <p className="text-muted-foreground">
-            Struktur organisasi dan lembaga pemerintahan Desa Remau Bakotuo
+            Struktur organisasi dan lembaga pemerintahan Desa Remau Bako Tuo
           </p>
         </div>
 
@@ -176,18 +156,15 @@ const StrukturPemerintah = () => {
             <div>
               <CardTitle>{strukturData.pemerintahan.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Struktur pemerintahan Desa Remau Bakotuo
+                Periode {strukturData.pemerintahan.content.periode}
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {strukturData.pemerintahan.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {strukturData.pemerintahan.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -219,18 +196,15 @@ const StrukturPemerintah = () => {
             <div>
               <CardTitle>{strukturData.bpd.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Badan Permusyawaratan Desa
+                Periode {strukturData.bpd.content.periode}
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {strukturData.bpd.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {strukturData.bpd.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -262,18 +236,15 @@ const StrukturPemerintah = () => {
             <div>
               <CardTitle>{strukturData.lembaga.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Lembaga kemasyarakatan desa
+                Periode {strukturData.lembaga.content.periode}
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {strukturData.lembaga.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {strukturData.lembaga.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -282,7 +253,7 @@ const StrukturPemerintah = () => {
                   <div>
                     <h4 className="font-semibold">{item.nama}</h4>
                     <p className="text-sm text-muted-foreground">
-                      Ketua: {item.ketua} ({item.periode})
+                      Ketua: {item.ketua}
                     </p>
                   </div>
                   <ul className="space-y-2">
@@ -305,7 +276,7 @@ const StrukturPemerintah = () => {
             <div>
               <CardTitle>{strukturData.dokumen.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Dokumen struktur pemerintahan desa
+                Landasan hukum struktur pemerintahan desa
               </p>
             </div>
           </CardHeader>
@@ -313,7 +284,7 @@ const StrukturPemerintah = () => {
             {strukturData.dokumen.content.dokumen.map((item, index) => (
               <div key={index} className="space-y-2">
                 <h4 className="font-semibold">{item.judul}</h4>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Tahun</span>
                     <span className="font-medium">{item.tahun}</span>
