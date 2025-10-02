@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Compass, Target, ArrowRight, FileText } from "lucide-react";
+import { Compass, Target, FileText } from "lucide-react";
 
 const ArahKebijakan = () => {
   const arahKebijakanData = {
@@ -8,14 +8,14 @@ const ArahKebijakan = () => {
       title: "Arah Kebijakan Pembangunan Desa",
       icon: Compass,
       content: {
-        deskripsi: "Arah kebijakan pembangunan desa dirancang sebagai pedoman strategis untuk mewujudkan visi dan misi desa dalam periode RPJMDes.",
+        deskripsi: "Arah kebijakan pembangunan Desa Remau Bako Tuo dirancang sebagai pedoman strategis untuk mewujudkan visi desa maritim yang maju, mandiri, dan sejahtera dalam periode RPJMDes.",
         periode: "2021-2027",
         poin: [
-          "Peningkatan Kualitas Sumber Daya Manusia.",
-          "Penguatan Ekonomi Lokal yang Berdaya Saing.",
-          "Pembangunan Infrastruktur yang Merata dan Berwawasan Lingkungan.",
-          "Reformasi Tata Kelola Pemerintahan Desa.",
-          "Pemeliharaan Kerukunan Sosial dan Budaya."
+          "Peningkatan Kualitas SDM Pesisir.",
+          "Penguatan Ekonomi Biru yang Berdaya Saing dan Berkelanjutan.",
+          "Pembangunan Infrastruktur yang Adaptif terhadap Perubahan Iklim.",
+          "Peningkatan Kualitas Tata Kelola Pemerintahan yang Akuntabel.",
+          "Pelestarian Lingkungan Pesisir dan Kearifan Lokal."
         ]
       }
     },
@@ -25,30 +25,30 @@ const ArahKebijakan = () => {
       content: {
         prioritas: [
           {
-            judul: "Sektor Pendidikan dan Kesehatan",
-            deskripsi: "Meningkatkan akses dan mutu layanan pendidikan dan kesehatan sebagai fondasi utama pembangunan manusia.",
+            judul: "Sektor Ekonomi Kelautan dan Perikanan",
+            deskripsi: "Menggerakkan potensi ekonomi utama desa untuk meningkatkan pendapatan dan kesejahteraan nelayan, petambak, dan pelaku usaha perikanan.",
             program: [
-              "Rehabilitasi gedung sekolah dan posyandu.",
-              "Pemberian beasiswa bagi siswa berprestasi dan kurang mampu.",
-              "Program desa siaga sehat dan pencegahan stunting."
+              "Penguatan BUMDes dengan unit usaha Tempat Pelelangan Ikan (TPI) dan pengolahan hasil laut.",
+              "Pelatihan dan adopsi teknologi penangkapan ikan yang ramah lingkungan.",
+              "Pengembangan budidaya perikanan air payau (udang, kepiting) yang berkelanjutan."
             ]
           },
           {
-            judul: "Sektor Ekonomi Kerakyatan",
-            deskripsi: "Menggerakkan potensi ekonomi lokal untuk meningkatkan pendapatan dan kesejahteraan masyarakat.",
+            judul: "Sektor Infrastruktur Pesisir dan Konektivitas",
+            deskripsi: "Memenuhi kebutuhan infrastruktur dasar yang vital untuk mendukung aktivitas ekonomi dan melindungi pemukiman dari ancaman bencana pesisir.",
             program: [
-              "Penguatan BUMDes dengan unit usaha baru.",
-              "Pelatihan digital marketing bagi pelaku UMKM.",
-              "Pengembangan produk unggulan desa."
+              "Pembangunan dan pemeliharaan jalan akses menuju pelabuhan dan TPI.",
+              "Pembangunan tanggul laut dan pemecah ombak (revetment).",
+              "Perluasan jaringan air bersih dan sanitasi yang tahan terhadap intrusi air laut."
             ]
           },
           {
-            judul: "Sektor Infrastruktur Dasar",
-            deskripsi: "Memenuhi kebutuhan infrastruktur dasar untuk mendukung konektivitas dan aktivitas warga.",
+            judul: "Sektor Lingkungan dan Mitigasi Bencana",
+            deskripsi: "Menjaga kelestarian ekosistem pesisir sebagai benteng alami dan sumber kehidupan, serta meningkatkan kesiapsiagaan masyarakat.",
             program: [
-              "Pembangunan jalan usaha tani dan jalan lingkungan.",
-              "Perluasan jaringan air bersih perpipaan.",
-              "Pembangunan sarana olahraga dan ruang terbuka hijau."
+              "Rehabilitasi dan penanaman hutan mangrove di sepanjang garis pantai.",
+              "Program pengelolaan sampah pesisir dan laut.",
+              "Pembentukan Kelompok Masyarakat Siaga Bencana (KMSB)."
             ]
           }
         ]
@@ -80,7 +80,7 @@ const ArahKebijakan = () => {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Arah Kebijakan Desa</h2>
           <p className="text-muted-foreground">
-            Arah kebijakan dan prioritas pembangunan Desa Remau Bakotuo
+            Arah kebijakan dan prioritas pembangunan Desa Remau Bako Tuo
           </p>
         </div>
 
@@ -127,22 +127,24 @@ const ArahKebijakan = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             {arahKebijakanData.prioritas.content.prioritas.map((item, index) => (
-              <div key={index} className="space-y-4">
+              <div key={index} className="space-y-4 border-b pb-4 last:border-b-0 last:pb-0">
                 <div>
                   <h4 className="font-semibold">{item.judul}</h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground mt-1">
                     {item.deskripsi}
                   </p>
                 </div>
-                <ul className="space-y-2">
-                  <h5 className="font-medium text-sm text-foreground">Contoh Program:</h5>
-                  {item.program.map((program, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground">{program}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div>
+                  <h5 className="font-medium text-sm text-foreground mb-2">Contoh Program Prioritas:</h5>
+                  <ul className="space-y-2">
+                    {item.program.map((program, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground text-sm">{program}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </CardContent>

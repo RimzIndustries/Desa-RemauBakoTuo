@@ -8,7 +8,7 @@ const ProfilDesa = () => {
       title: "Profil Umum",
       icon: Home,
       content: {
-        deskripsi: "Desa kami merupakan sebuah komunitas yang hidup dan berkembang, terletak di wilayah pedesaan yang subur. Sebagian besar penduduknya menggantungkan hidup dari sektor pertanian, perkebunan, dan perikanan, memanfaatkan kekayaan alam yang melimpah.",
+        deskripsi: "Selamat datang di Desa Remau Bako Tuo, sebuah desa pesisir yang dinamis di Kecamatan Sadu. Terletak di pesisir timur Provinsi Jambi, desa kami diberkahi dengan kekayaan sumber daya laut dan perkebunan kelapa yang luas. Mayoritas penduduk kami adalah nelayan dan petani yang terampil, hidup berdampingan dengan ekosistem mangrove yang menjadi urat nadi kehidupan.",
         data: [
           { label: "Nama Desa", value: "Remau Bako Tuo" },
           { label: "Kecamatan", value: "Sadu" },
@@ -21,7 +21,7 @@ const ProfilDesa = () => {
       title: "Demografi",
       icon: Users,
       content: {
-        deskripsi: "Berikut adalah data kependudukan Desa Remau Bako Tuo berdasarkan sensus terakhir.",
+        deskripsi: "Berikut adalah data kependudukan Desa Remau Bako Tuo yang dihimpun dari data administrasi terakhir.",
         data: [
           { label: "Jumlah Penduduk", value: "Sekitar 2.900 Jiwa" },
           { label: "Jumlah Laki-laki", value: "Sekitar 1.500 Jiwa" },
@@ -31,15 +31,15 @@ const ProfilDesa = () => {
       }
     },
     geografi: {
-      title: "Geografi",
+      title: "Geografi dan Potensi",
       icon: MapPin,
       content: {
-        deskripsi: "Desa kami memiliki letak geografis yang strategis dengan batas-batas wilayah yang jelas.",
+        deskripsi: "Terletak di tepi Selat Berhala, desa kami memiliki garis pantai yang panjang dan lahan subur yang didominasi perkebunan kelapa dan area pertambakan.",
         data: [
           { label: "Batas Utara", value: "Desa Labuhan Pering" },
           { label: "Batas Selatan", value: "Desa Sungai Cemara" },
-          { label: "Batas Barat", value: "Desa Sungai Itik" },
-          { label: "Batas Timur", value: "Laut Cina Selatan" }
+          { label: "Batas Barat", value: "Kawasan Hutan Produksi" },
+          { label: "Batas Timur", value: "Selat Berhala" }
         ]
       }
     },
@@ -125,9 +125,9 @@ const ProfilDesa = () => {
           <CardHeader className="flex flex-row items-center gap-4">
             <MapPin className="h-8 w-8 text-primary" />
             <div>
-              <CardTitle>Geografi</CardTitle>
+              <CardTitle>Geografi dan Potensi</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Letak geografis Desa Remau Bako Tuo
+                Letak geografis dan potensi Desa Remau Bako Tuo
               </p>
             </div>
           </CardHeader>

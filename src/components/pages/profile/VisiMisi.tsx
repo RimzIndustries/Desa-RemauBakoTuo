@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, ListChecks, ArrowRight, FileText } from "lucide-react";
+import { Target, ListChecks, FileText } from "lucide-react";
 
 const VisiMisi = () => {
   const visiMisiData = {
@@ -8,17 +8,17 @@ const VisiMisi = () => {
       title: "Visi Desa",
       icon: Target,
       content: {
-        deskripsi: "Visi pembangunan Desa Remau Bako Tuo untuk periode 2021-2027 adalah cita-cita bersama yang ingin diwujudkan oleh seluruh elemen masyarakat dan pemerintah desa.",
+        deskripsi: "Visi pembangunan Desa Remau Bako Tuo untuk periode 2021-2027 adalah cita-cita bersama yang ingin diwujudkan oleh seluruh elemen masyarakat dan pemerintah desa, dengan mempertimbangkan potensi dan tantangan sebagai desa pesisir.",
         periode: "2021-2027",
         visi: [
           {
             judul: "Visi Utama",
-            deskripsi: "“Terwujudnya Desa Remau Bako Tuo yang Maju, Mandiri, dan Sejahtera Berlandaskan Gotong Royong”",
+            deskripsi: "“Terwujudnya Desa Remau Bako Tuo sebagai Desa Maritim yang Maju, Mandiri, dan Sejahtera Berbasis Ekonomi Biru dan Kelestarian Lingkungan”",
             poin: [
-              "Maju dalam pemikiran, pemanfaatan teknologi, dan kualitas sumber daya manusia.",
-              "Mandiri secara ekonomi dengan mengoptimalkan potensi lokal.",
-              "Sejahtera secara merata bagi seluruh lapisan masyarakat.",
-              "Berlandaskan semangat gotong royong sebagai modal sosial utama."
+              "Maju dalam penerapan teknologi perikanan dan kualitas sumber daya manusia.",
+              "Mandiri secara ekonomi dengan mengoptimalkan potensi kelautan dan perkebunan kelapa.",
+              "Sejahtera melalui peningkatan pendapatan dan kualitas hidup masyarakat pesisir.",
+              "Berbasis Ekonomi Biru yang mengelola sumber daya laut secara berkelanjutan."
             ]
           }
         ]
@@ -28,34 +28,52 @@ const VisiMisi = () => {
       title: "Misi Desa",
       icon: ListChecks,
       content: {
-        deskripsi: "Untuk mencapai visi tersebut, dirumuskan beberapa misi sebagai berikut:",
+        deskripsi: "Untuk mencapai visi maritim tersebut, dirumuskan lima misi strategis sebagai berikut:",
         periode: "2021-2027",
         misi: [
           {
-            judul: "Meningkatkan Kualitas Pelayanan Publik",
-            deskripsi: "Mewujudkan tata kelola pemerintahan yang baik, transparan, dan akuntabel berbasis teknologi informasi.",
+            judul: "Meningkatkan Kualitas Tata Kelola Pemerintahan Desa",
+            deskripsi: "Mewujudkan pemerintahan yang bersih, transparan, akuntabel, dan berorientasi pada pelayanan publik yang prima bagi masyarakat pesisir.",
             program: [
-              "Reformasi birokrasi dan digitalisasi layanan administrasi.",
-              "Peningkatan kapasitas aparatur desa.",
-              "Keterbukaan informasi publik terkait anggaran dan program desa."
+              "Digitalisasi layanan administrasi kependudukan dan persuratan.",
+              "Peningkatan kapasitas aparatur desa dalam manajemen pemerintahan dan keuangan.",
+              "Menerapkan keterbukaan informasi publik terkait APBDes dan program pembangunan."
             ]
           },
           {
-            judul: "Mengembangkan Perekonomian Desa",
-            deskripsi: "Memperkuat ekonomi lokal melalui pemberdayaan UMKM, BUMDes, dan sektor unggulan desa.",
+            judul: "Mengembangkan Ekonomi Lokal Berbasis Potensi Kelautan dan Perkebunan",
+            deskripsi: "Memperkuat ekonomi desa melalui pemberdayaan nelayan, petambak, petani kelapa, dan UMKM pengolahan hasil laut.",
             program: [
-              "Pengembangan BUMDes sebagai motor penggerak ekonomi.",
-              "Pelatihan dan pendampingan bagi pelaku UMKM.",
-              "Optimalisasi potensi pertanian, perikanan, dan pariwisata."
+              "Penguatan BUMDes untuk mengelola TPI, unit pengolahan ikan, dan agrowisata kelapa.",
+              "Pelatihan dan pendampingan bagi nelayan untuk penggunaan teknologi penangkapan ikan yang efisien.",
+              "Fasilitasi pemasaran digital bagi produk UMKM (ikan asin, kerupuk, minyak kelapa, dll)."
             ]
           },
           {
-            judul: "Membangun Infrastruktur yang Merata dan Berkelanjutan",
-            deskripsi: "Meningkatkan kualitas dan kuantitas infrastruktur dasar untuk mendukung aktivitas sosial dan ekonomi masyarakat.",
+            judul: "Membangun Infrastruktur yang Mendukung Konektivitas dan Produktivitas",
+            deskripsi: "Meningkatkan kualitas infrastruktur dasar untuk mendukung aktivitas ekonomi dan sosial masyarakat.",
             program: [
-              "Pembangunan dan pemeliharaan jalan desa dan lingkungan.",
-              "Peningkatan akses air bersih dan sanitasi layak.",
-              "Pengembangan jaringan irigasi untuk pertanian."
+              "Peningkatan dan pemeliharaan jalan desa dan dermaga.",
+              "Pembangunan pemecah ombak untuk melindungi pemukiman.",
+              "Perluasan jaringan air bersih dan pembangunan sanitasi komunal."
+            ]
+          },
+          {
+            judul: "Meningkatkan Kualitas Sumber Daya Manusia dan Kesejahteraan Sosial",
+            deskripsi: "Meningkatkan akses dan mutu layanan pendidikan dan kesehatan untuk menciptakan generasi yang cerdas dan sehat.",
+            program: [
+              "Pemberian beasiswa bagi anak nelayan berprestasi.",
+              "Program desa siaga sehat dengan fokus pada kesehatan ibu dan anak pesisir.",
+              "Penguatan lembaga adat dan kegiatan kepemudaan Karang Taruna."
+            ]
+          },
+          {
+            judul: "Menjaga Kelestarian Lingkungan dan Mitigasi Bencana Pesisir",
+            deskripsi: "Mengelola sumber daya alam secara berkelanjutan dan meningkatkan kesiapsiagaan masyarakat terhadap bencana.",
+            program: [
+              "Program rehabilitasi dan penanaman kembali hutan mangrove.",
+              "Pengembangan sistem pengelolaan sampah terpadu di wilayah pesisir.",
+              "Sosialisasi dan simulasi mitigasi bencana abrasi dan banjir rob."
             ]
           }
         ]
@@ -130,27 +148,28 @@ const VisiMisi = () => {
               </p>
             </div>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-6">
-              {visiMisiData.misi.content.misi.map((item, index) => (
-                <div key={index} className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">{item.judul}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.deskripsi}
-                    </p>
-                  </div>
+          <CardContent className="space-y-6">
+            {visiMisiData.misi.content.misi.map((item, index) => (
+              <div key={index} className="space-y-4 border-b pb-4 last:border-b-0 last:pb-0">
+                <div>
+                  <h4 className="font-semibold">{item.judul}</h4>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {item.deskripsi}
+                  </p>
+                </div>
+                <div>
+                  <h5 className="font-medium text-sm text-foreground mb-2">Contoh Program Prioritas:</h5>
                   <ul className="space-y-2">
                     {item.program.map((program, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <ListChecks className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{program}</span>
+                        <span className="text-muted-foreground text-sm">{program}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </CardContent>
         </Card>
 

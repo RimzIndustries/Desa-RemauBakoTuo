@@ -8,27 +8,27 @@ const SejarahDesa = () => {
       title: "Asal Usul Desa",
       icon: History,
       content: {
-        deskripsi: "Sejarah Desa Remau Bako Tuo berakar dari semangat gotong royong para perintis yang membuka lahan permukiman di tengah alam yang subur. Nama desa ini sendiri memiliki makna filosofis yang mendalam.",
+        deskripsi: "Sejarah Desa Remau Bako Tuo erat kaitannya dengan para perantau Bugis yang mencari penghidupan baru di pesisir timur Jambi. Nama desa ini sendiri menyimpan cerita tentang alam dan keberanian para pendirinya.",
         periode: "Awal Abad ke-20",
         asal: [
           {
             judul: "Pendirian Desa",
-            deskripsi: "Didorong oleh keinginan untuk mencari kehidupan yang lebih baik, sekelompok masyarakat perantau memulai permukiman baru yang kini dikenal sebagai Desa Remau Bako Tuo.",
+            deskripsi: "Didorong oleh keahlian melaut dan semangat untuk membuka lahan baru, para perantau dari Sulawesi Selatan menemukan lokasi yang ideal di muara sungai yang dikelilingi hutan bakau lebat. Mereka mendirikan perkampungan nelayan yang menjadi cikal bakal desa ini.",
             detail: [
-              "Dipimpin oleh tokoh masyarakat yang dihormati.",
-              "Membentuk struktur pemerintahan desa sederhana berbasis adat.",
-              "Menetapkan batas-batas wilayah secara musyawarah.",
-              "Membangun nilai-nilai kebersamaan dan gotong royong."
+              "Dipimpin oleh seorang tokoh maritim yang disegani.",
+              "Membentuk komunitas berbasis nilai-nilai gotong royong dan kekeluargaan.",
+              "Menetapkan batas wilayah berdasarkan bentang alam seperti sungai dan tanjung.",
+              "Membangun pemukiman di atas tiang-tiang kayu untuk beradaptasi dengan pasang surut air laut."
             ]
           },
           {
-            judul: "Makna Nama Desa",
-            deskripsi: "Nama 'Remau Bako Tuo' merupakan gabungan kata dari bahasa lokal yang sarat akan harapan dan sejarah.",
+            judul: "Makna Nama 'Remau Bako Tuo'",
+            deskripsi: "Nama desa ini berasal dari bahasa Melayu Jambi Pesisir yang kaya makna.",
             detail: [
-              "'Remau' melambangkan kekuatan dan keberanian.",
-              "'Bako' merujuk pada pohon bakau yang kokoh di pesisir.",
-              "'Tuo' berarti 'tua' atau 'awal', menandakan sebagai permukiman perintis.",
-              "Nama ini mencerminkan harapan agar desa menjadi komunitas yang kuat, tangguh, dan sejahtera."
+              "'Remau' berarti Harimau, melambangkan keberanian dan kekuatan dalam menghadapi tantangan alam.",
+              "'Bako' merujuk pada Bakau, pohon penyangga kehidupan di ekosistem pesisir.",
+              "'Tuo' berarti Tua, menandakan bahwa ini adalah salah satu pemukiman perintis di kawasan tersebut.",
+              "Secara keseluruhan, nama ini adalah doa agar desa menjadi komunitas yang kuat, tangguh seperti bakau, dan sejahtera."
             ]
           }
         ]
@@ -38,40 +38,39 @@ const SejarahDesa = () => {
       title: "Perkembangan Desa dari Masa ke Masa",
       icon: Calendar,
       content: {
-        deskripsi: "Perjalanan Desa Remau Bako Tuo dari sebuah permukiman kecil hingga menjadi desa yang terus berkembang.",
+        deskripsi: "Perjalanan Desa Remau Bako Tuo dari perkampungan nelayan tradisional hingga menjadi desa pesisir yang berkembang.",
         periode: "1900 - Sekarang",
         perkembangan: [
           {
             periode: "Masa Perintisan (Awal 1900-an)",
-            judul: "Fase Pembentukan Komunitas",
-            deskripsi: "Fokus utama pada masa ini adalah bertahan hidup, membuka lahan pertanian, dan membangun fondasi sosial masyarakat.",
+            judul: "Fase Komunitas Nelayan",
+            deskripsi: "Fokus utama pada masa ini adalah perikanan tangkap, pengolahan ikan asin, dan pemanfaatan hasil hutan bakau.",
             peristiwa: [
-              "Pembukaan lahan pertanian dan perkebunan secara gotong royong.",
-              "Pembangunan rumah-rumah panggung sederhana.",
-              "Pengenalan sistem irigasi tradisional.",
-              "Pembentukan lembaga adat sebagai pengatur kehidupan sosial."
+              "Pembukaan tambak-tambak udang dan ikan secara tradisional.",
+              "Pembangunan bagan-bagan penangkap ikan di lepas pantai.",
+              "Pengenalan budidaya kelapa sebagai komoditas tambahan."
             ]
           },
           {
-            periode: "Masa Pembangunan (Pasca-Kemerdekaan)",
-            judul: "Fase Pembangunan Infrastruktur dan Layanan Dasar",
-            deskripsi: "Seiring dengan stabilitas nasional, desa mulai membangun fasilitas dasar untuk meningkatkan kualitas hidup warganya.",
+            periode: "Masa Pembangunan (1970-2000)",
+            judul: "Fase Infrastruktur dan Konektivitas",
+            deskripsi: "Setelah resmi menjadi desa definitif, pemerintah mulai membangun infrastruktur untuk membuka isolasi wilayah.",
             peristiwa: [
-              "Pembangunan jalan setapak dan jembatan kayu.",
-              "Pendirian sekolah dasar pertama (Sekolah Rakyat).",
-              "Pembangunan surau/mushola sebagai pusat kegiatan keagamaan.",
-              "Masuknya program pemerintah seperti Bimas dan Inpres Desa."
+              "Pembangunan jalan darat yang menghubungkan desa ke ibukota kecamatan.",
+              "Pendirian Sekolah Dasar Negeri dan Puskesmas Pembantu.",
+              "Pembangunan dermaga kayu untuk pendaratan kapal nelayan.",
+              "Masuknya listrik dan program-program pembangunan dari pemerintah."
             ]
           },
           {
             periode: "Masa Modern (2000-an - Sekarang)",
-            judul: "Fase Transformasi dan Digitalisasi",
-            deskripsi: "Desa mulai beradaptasi dengan kemajuan zaman, memanfaatkan teknologi untuk pelayanan dan pembangunan.",
+            judul: "Fase Transformasi Ekonomi dan Lingkungan",
+            deskripsi: "Desa mulai sadar akan potensi ekonomi yang lebih luas serta pentingnya menjaga kelestarian lingkungan pesisir.",
             peristiwa: [
-              "Pengerasan jalan desa dengan aspal dan beton.",
-              "Masuknya listrik dan jaringan telekomunikasi.",
-              "Pendirian Badan Usaha Milik Desa (BUMDes).",
-              "Implementasi Sistem Informasi Desa untuk pelayanan publik."
+              "Penguatan BUMDes untuk mengelola unit usaha desa seperti wisata mangrove dan pengolahan kopra.",
+              "Program rehabilitasi mangrove bekerja sama dengan lembaga lingkungan.",
+              "Peningkatan teknologi penangkapan ikan yang lebih modern dan ramah lingkungan.",
+              "Implementasi Sistem Informasi Desa untuk transparansi dan pelayanan publik."
             ]
           }
         ]
@@ -84,23 +83,23 @@ const SejarahDesa = () => {
         deskripsi: "Beberapa tokoh yang berjasa besar dalam sejarah dan perkembangan desa.",
         tokoh: [
           {
-            nama: "Para Tetua Pendiri",
+            nama: "Para Puang dan Daeng (Pendiri Desa)",
             periode: "Awal 1900-an",
-            peran: "Perintis dan Pemimpin Adat",
+            peran: "Perintis dan Pemimpin Komunitas",
             kontribusi: [
-              "Memimpin migrasi dan pembukaan lahan.",
-              "Meletakkan dasar-dasar hukum adat dan norma sosial.",
-              "Menjaga kerukunan dan semangat gotong royong."
+              "Memimpin pelayaran dan pembukaan pemukiman awal.",
+              "Meletakkan dasar-dasar kehidupan sosial dan ekonomi berbasis kelautan.",
+              "Mewariskan pengetahuan navigasi dan kearifan lokal dalam mengelola laut."
             ]
           },
           {
-            nama: "Generasi Pembangun",
-            periode: "1950-2000",
+            nama: "Generasi Kepala Desa Pembangun",
+            periode: "1970-2000",
             peran: "Kepala Desa dan Aktivis Pembangunan",
             kontribusi: [
-              "Menginisiasi pembangunan sekolah dan tempat ibadah.",
-              "Menjalin kerja sama dengan pemerintah untuk program pembangunan.",
-              "Memperjuangkan perbaikan infrastruktur desa."
+              "Memperjuangkan status definitif desa.",
+              "Menginisiasi pembangunan sekolah, puskesmas, dan jalan.",
+              "Menjalin kerja sama dengan pemerintah kabupaten untuk program pembangunan."
             ]
           }
         ]
@@ -117,7 +116,7 @@ const SejarahDesa = () => {
             status: "Dokumen Resmi"
           },
           {
-            judul: "Arsip Foto dan Catatan Sejarah",
+            judul: "Arsip Sejarah Lisan dan Foto",
             tahun: "Dikumpulkan secara berkala",
             status: "Arsip Desa"
           }
@@ -142,7 +141,7 @@ const SejarahDesa = () => {
             <div>
               <CardTitle>{sejarahData.asal.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Sejarah dan asal usul Desa Remau Bako Tuo
+                Kisah di balik nama dan berdirinya Desa Remau Bako Tuo
               </p>
             </div>
           </CardHeader>
@@ -182,7 +181,7 @@ const SejarahDesa = () => {
             <div>
               <CardTitle>{sejarahData.perkembangan.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Perkembangan Desa Remau Bako Tuo
+                Tahapan perkembangan Desa Remau Bako Tuo
               </p>
             </div>
           </CardHeader>
@@ -203,6 +202,7 @@ const SejarahDesa = () => {
                     </p>
                   </div>
                   <ul className="space-y-2">
+                    <h5 className="font-medium text-sm text-foreground">Peristiwa Penting:</h5>
                     {item.peristiwa.map((peristiwa, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Calendar className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
@@ -222,7 +222,7 @@ const SejarahDesa = () => {
             <div>
               <CardTitle>{sejarahData.tokoh.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Tokoh-tokoh penting dalam sejarah desa
+                Tokoh-tokoh yang berjasa dalam sejarah desa
               </p>
             </div>
           </CardHeader>
@@ -243,6 +243,7 @@ const SejarahDesa = () => {
                     </p>
                   </div>
                   <ul className="space-y-2">
+                    <h5 className="font-medium text-sm text-foreground">Kontribusi Utama:</h5>
                     {item.kontribusi.map((kontribusi, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />

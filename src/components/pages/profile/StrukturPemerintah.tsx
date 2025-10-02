@@ -8,38 +8,35 @@ const StrukturPemerintah = () => {
       title: "Pemerintahan Desa",
       icon: Building2,
       content: {
-        deskripsi: "Penyelenggaraan urusan pemerintahan di tingkat desa dilaksanakan oleh Pemerintah Desa, yang terdiri dari Kepala Desa dan Perangkat Desa.",
+        deskripsi: "Penyelenggaraan urusan pemerintahan di tingkat desa dilaksanakan oleh Pemerintah Desa Remau Bako Tuo, yang terdiri dari Kepala Desa dan Perangkat Desa.",
         periode: "2021-2027",
         struktur: [
           {
             jabatan: "Kepala Desa",
             nama: "H. Muhammad Yusuf, S.Pd.",
-            periode: "2021-2027",
             tugas: [
               "Memimpin penyelenggaraan Pemerintahan Desa.",
-              "Membina kehidupan masyarakat Desa.",
-              "Membina perekonomian Desa.",
+              "Membina kehidupan masyarakat dan kerukunan sosial.",
+              "Membina perekonomian Desa dengan fokus pada sektor kelautan dan perkebunan.",
               "Mengkoordinasikan pembangunan Desa secara partisipatif."
             ]
           },
           {
             jabatan: "Sekretaris Desa",
             nama: "La Ode Abdul Rahman, S.E.",
-            periode: "2021-2027",
             tugas: [
-              "Membantu Kepala Desa dalam bidang administrasi pemerintahan.",
-              "Mengkoordinasikan tugas-tugas Perangkat Desa lainnya.",
+              "Membantu Kepala Desa dalam bidang administrasi pemerintahan dan keuangan.",
+              "Mengkoordinasikan tugas-tugas Kepala Urusan dan Kepala Dusun.",
               "Menyusun laporan penyelenggaraan pemerintahan Desa."
             ]
           },
           {
             jabatan: "Kepala Urusan Pemerintahan",
             nama: "La Ode Hidayat, S.Sos.",
-            periode: "2021-2027",
             tugas: [
               "Melaksanakan manajemen administrasi kependudukan.",
-              "Mengelola data profil desa dan monografi.",
-              "Membantu pelaksanaan urusan pertanahan."
+              "Mengelola data profil desa, monografi, dan aset desa.",
+              "Membantu pelaksanaan urusan pertanahan dan tata ruang desa."
             ]
           }
         ]
@@ -49,32 +46,29 @@ const StrukturPemerintah = () => {
       title: "Badan Permusyawaratan Desa (BPD)",
       icon: Users,
       content: {
-        deskripsi: "BPD adalah lembaga yang melaksanakan fungsi pemerintahan yang anggotanya merupakan wakil dari penduduk desa berdasarkan keterwakilan wilayah dan ditetapkan secara demokratis.",
+        deskripsi: "BPD merupakan lembaga legislatif desa yang anggotanya adalah wakil dari penduduk desa, berfungsi untuk menyalurkan aspirasi masyarakat, membahas dan menyepakati Peraturan Desa bersama Kepala Desa, serta melakukan pengawasan kinerja Pemerintah Desa.",
         periode: "2021-2027",
         struktur: [
           {
             jabatan: "Ketua BPD",
             nama: "La Ode Mustafa",
-            periode: "2021-2027",
             tugas: [
               "Memimpin dan mengkoordinasikan seluruh kegiatan BPD.",
-              "Membahas dan menyepakati Rancangan Peraturan Desa bersama Kepala Desa.",
-              "Melakukan pengawasan terhadap kinerja Kepala Desa."
+              "Menyelenggarakan musyawarah desa untuk membahas hal-hal strategis.",
+              "Melakukan pengawasan terhadap pelaksanaan Perdes dan APBDes."
             ]
           },
           {
             jabatan: "Wakil Ketua BPD",
             nama: "La Ode Rahim",
-            periode: "2021-2027",
             tugas: [
               "Membantu Ketua BPD dalam melaksanakan tugas.",
-              "Mengkoordinasikan kegiatan komisi-komisi di BPD."
+              "Mengkoordinasikan kegiatan alat kelengkapan BPD."
             ]
           },
           {
             jabatan: "Sekretaris BPD",
             nama: "La Ode Jafar",
-            periode: "2021-2027",
             tugas: [
               "Melaksanakan administrasi dan persuratan BPD.",
               "Menyusun risalah dan notulensi rapat-rapat BPD."
@@ -87,34 +81,34 @@ const StrukturPemerintah = () => {
       title: "Lembaga Kemasyarakatan Desa (LKD)",
       icon: Award,
       content: {
-        deskripsi: "LKD adalah wadah partisipasi masyarakat desa yang dibentuk atas prakarsa masyarakat sebagai mitra Pemerintah Desa.",
-        periode: "2021-2027",
+        deskripsi: "LKD adalah wadah partisipasi masyarakat yang dibentuk atas prakarsa masyarakat sebagai mitra Pemerintah Desa dalam merencanakan dan melaksanakan pembangunan.",
+        periode: "Masa Bakti 2021-2024",
         lembaga: [
           {
             nama: "Lembaga Pemberdayaan Masyarakat Desa (LPMD)",
             ketua: "La Ode Hamid",
             tugas: [
-              "Menyusun rencana pembangunan secara partisipatif.",
-              "Menggerakkan swadaya gotong royong masyarakat.",
-              "Membantu dalam perencanaan dan pelaksanaan pembangunan."
+              "Menyusun rencana pembangunan secara partisipatif melalui Musrenbangdes.",
+              "Menggerakkan swadaya gotong royong masyarakat dalam pembangunan fisik.",
+              "Membantu pengawasan pelaksanaan program pembangunan di tingkat dusun."
             ]
           },
           {
             nama: "Pemberdayaan Kesejahteraan Keluarga (PKK)",
             ketua: "Hj. Aminah",
             tugas: [
-              "Melaksanakan 10 Program Pokok PKK.",
-              "Menggerakkan partisipasi perempuan dalam pembangunan.",
-              "Membina kesejahteraan keluarga."
+              "Melaksanakan 10 Program Pokok PKK dengan fokus pada kesehatan keluarga, pendidikan anak, dan ekonomi keluarga.",
+              "Menggerakkan partisipasi perempuan dalam pembangunan desa.",
+              "Mengelola Posyandu dan program pencegahan stunting."
             ]
           },
           {
-            nama: "Karang Taruna",
+            nama: "Karang Taruna Bahari",
             ketua: "La Ode Fadli",
             tugas: [
-              "Mengembangkan potensi dan kreativitas generasi muda.",
-              "Menyelenggarakan kegiatan kepemudaan, olahraga, dan seni budaya.",
-              "Membantu penanggulangan masalah sosial."
+              "Mengembangkan potensi dan kreativitas pemuda di bidang kelautan dan ekonomi kreatif.",
+              "Menyelenggarakan kegiatan olahraga pesisir, seni budaya, dan pelestarian lingkungan.",
+              "Menjadi pelopor dalam kegiatan sosial dan penanggulangan masalah kenakalan remaja."
             ]
           }
         ]
@@ -173,14 +167,15 @@ const StrukturPemerintah = () => {
                   <div>
                     <h4 className="font-semibold">{item.jabatan}</h4>
                     <p className="text-sm text-muted-foreground">
-                      {item.nama} ({item.periode})
+                      {item.nama}
                     </p>
                   </div>
                   <ul className="space-y-2">
+                     <h5 className="font-medium text-sm text-foreground">Tugas Pokok:</h5>
                     {item.tugas.map((tugas, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Building2 className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{tugas}</span>
+                        <span className="text-muted-foreground text-sm">{tugas}</span>
                       </li>
                     ))}
                   </ul>
@@ -213,14 +208,15 @@ const StrukturPemerintah = () => {
                   <div>
                     <h4 className="font-semibold">{item.jabatan}</h4>
                     <p className="text-sm text-muted-foreground">
-                      {item.nama} ({item.periode})
+                      {item.nama}
                     </p>
                   </div>
-                  <ul className="space-y-2">
+                   <ul className="space-y-2">
+                     <h5 className="font-medium text-sm text-foreground">Tugas Pokok:</h5>
                     {item.tugas.map((tugas, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{tugas}</span>
+                        <span className="text-muted-foreground text-sm">{tugas}</span>
                       </li>
                     ))}
                   </ul>
@@ -236,7 +232,7 @@ const StrukturPemerintah = () => {
             <div>
               <CardTitle>{strukturData.lembaga.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Periode {strukturData.lembaga.content.periode}
+                Masa Bakti {strukturData.lembaga.content.periode}
               </p>
             </div>
           </CardHeader>
@@ -257,10 +253,11 @@ const StrukturPemerintah = () => {
                     </p>
                   </div>
                   <ul className="space-y-2">
+                    <h5 className="font-medium text-sm text-foreground">Tugas Pokok:</h5>
                     {item.tugas.map((tugas, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Award className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{tugas}</span>
+                        <span className="text-muted-foreground text-sm">{tugas}</span>
                       </li>
                     ))}
                   </ul>

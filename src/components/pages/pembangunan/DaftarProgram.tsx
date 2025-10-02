@@ -8,66 +8,61 @@ const DaftarProgram = () => {
       title: "Program Berjalan",
       icon: ListChecks,
       content: {
-        deskripsi: "Program-program yang sedang berjalan di Desa Remau Bako Tuo",
+        deskripsi: "Program-program yang sedang berjalan di Desa Remau Bako Tuo sesuai RKPDes.",
         periode: "2024",
         program: [
           {
-            judul: "Pembangunan Infrastruktur",
-            deskripsi: "Program pembangunan infrastruktur desa",
+            judul: "Pembangunan Infrastruktur Pesisir",
+            deskripsi: "Peningkatan infrastruktur untuk mendukung ekonomi dan mitigasi bencana.",
             kegiatan: [
-              "Pembangunan jalan desa 2 km",
-              "Peningkatan drainase 1 km",
-              "Pembangunan MCK umum 5 unit",
-              "Peningkatan fasilitas air bersih"
+              "Peningkatan Jalan Akses ke Tempat Pelelangan Ikan (TPI)",
+              "Pembangunan Tambatan Perahu dan Dermaga Kecil",
+              "Pembangunan Sumur Bor Air Tawar"
             ],
             progress: "70%",
-            anggaran: "Rp 1.400.000.000"
+            anggaran: "Rp 500.000.000"
           },
           {
-            judul: "Pemberdayaan Masyarakat",
-            deskripsi: "Program pemberdayaan masyarakat desa",
+            judul: "Pemberdayaan Masyarakat Pesisir",
+            deskripsi: "Peningkatan kapasitas dan keterampilan masyarakat.",
             kegiatan: [
-              "Pelatihan UMKM",
-              "Pemberdayaan kelompok tani",
-              "Pengembangan wisata desa",
-              "Peningkatan kapasitas aparatur"
+              "Pelatihan Pengolahan Hasil Laut (Ikan Asin, Kerupuk, Terasi)",
+              "Peningkatan Kapasitas Kelompok Nelayan (Poklayan)"
             ],
             progress: "50%",
-            anggaran: "Rp 500.000.000"
+            anggaran: "Rp 85.000.000"
           }
         ]
       }
     },
     rencana: {
-      title: "Program Rencana",
+      title: "Program Rencana (Usulan)",
       icon: Calendar,
       content: {
-        deskripsi: "Program-program yang direncanakan di Desa Remau Bako Tuo",
-        periode: "2024-2025",
+        deskripsi: "Program-program yang direncanakan untuk periode berikutnya berdasarkan RPJMDes.",
+        periode: "2025-2026",
         program: [
           {
-            judul: "Pengembangan Ekonomi",
-            deskripsi: "Program pengembangan ekonomi desa",
+            judul: "Pengembangan Ekonomi Biru",
+            deskripsi: "Program hilirisasi dan peningkatan nilai tambah produk lokal.",
             kegiatan: [
-              "Pengembangan BUMDes",
-              "Pemberdayaan UMKM",
-              "Pengembangan sektor unggulan",
-              "Peningkatan investasi"
-            ],
-            periode: "2024",
-            anggaran: "Rp 1.000.000.000"
-          },
-          {
-            judul: "Penguatan Kelembagaan",
-            deskripsi: "Program penguatan kelembagaan desa",
-            kegiatan: [
-              "Pengembangan BUMDes",
-              "Pemberdayaan LPMD",
-              "Penguatan PKK",
-              "Pengembangan karang taruna"
+              "Pengembangan BUMDes unit usaha wisata mangrove (Ekowisata).",
+              "Hilirisasi produk turunan kelapa (VCO, Nata de Coco).",
+              "Pengembangan budidaya kepiting bakau dan udang vaname."
             ],
             periode: "2025",
-            anggaran: "Rp 800.000.000"
+            anggaran: "Estimasi Rp 1.000.000.000"
+          },
+          {
+            judul: "Penguatan Ketahanan Pangan dan Lingkungan",
+            deskripsi: "Program untuk menjaga sumber daya alam dan pangan.",
+            kegiatan: [
+              "Pembangunan lumbung pangan desa.",
+              "Program rehabilitasi terumbu karang.",
+              "Peningkatan sistem pengelolaan sampah terpadu."
+            ],
+            periode: "2025-2026",
+            anggaran: "Estimasi Rp 800.000.000"
           }
         ]
       }
@@ -76,32 +71,28 @@ const DaftarProgram = () => {
       title: "Program Selesai",
       icon: FileText,
       content: {
-        deskripsi: "Program-program yang telah selesai di Desa Remau Bako Tuo",
+        deskripsi: "Program-program strategis yang telah selesai dilaksanakan di Desa Remau Bako Tuo.",
         periode: "2021-2023",
         program: [
           {
-            judul: "Pembangunan Infrastruktur",
-            deskripsi: "Program pembangunan infrastruktur desa",
+            judul: "Pembangunan Jalan Poros Desa",
+            deskripsi: "Membuka akses utama antar dusun dan ke kecamatan.",
             kegiatan: [
-              "Pembangunan jalan desa 5 km",
-              "Peningkatan drainase 3 km",
-              "Pembangunan MCK umum 10 unit",
-              "Peningkatan fasilitas air bersih"
+              "Pengaspalan jalan sepanjang 5 km.",
+              "Pembangunan 3 jembatan beton.",
             ],
             tahun: "2023",
             anggaran: "Rp 2.000.000.000"
           },
           {
-            judul: "Pemberdayaan Masyarakat",
-            deskripsi: "Program pemberdayaan masyarakat desa",
+            judul: "Program Listrik Masuk Desa",
+            deskripsi: "Kerja sama dengan PLN untuk elektrifikasi seluruh dusun.",
             kegiatan: [
-              "Pelatihan UMKM",
-              "Pemberdayaan kelompok tani",
-              "Pengembangan wisata desa",
-              "Peningkatan kapasitas aparatur"
+              "Pemasangan jaringan listrik ke 500+ rumah.",
+              "Pemasangan Lampu Penerangan Jalan Umum (LPJU)."
             ],
             tahun: "2022",
-            anggaran: "Rp 1.500.000.000"
+            anggaran: "Rp 1.500.000.000 (Kolaborasi)"
           }
         ]
       }
@@ -112,12 +103,12 @@ const DaftarProgram = () => {
       content: {
         dokumen: [
           {
-            judul: "Dokumen Program 2024",
+            judul: "Dokumen RKPDes 2024",
             tahun: "2024",
             status: "Dokumen Resmi"
           },
           {
-            judul: "Laporan Program 2023",
+            judul: "Laporan Realisasi APBDes 2023",
             tahun: "2023",
             status: "Dokumen Resmi"
           }
@@ -142,7 +133,7 @@ const DaftarProgram = () => {
             <div>
               <CardTitle>{programData.berjalan.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Program yang sedang berjalan
+                Program yang sedang berjalan di tahun {programData.berjalan.content.periode}
               </p>
             </div>
           </CardHeader>
@@ -151,9 +142,6 @@ const DaftarProgram = () => {
               <h4 className="font-semibold mb-2">Deskripsi</h4>
               <p className="text-sm text-muted-foreground">
                 {programData.berjalan.content.deskripsi}
-              </p>
-               <p className="text-sm text-muted-foreground mt-2">
-                Periode: {programData.berjalan.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -176,10 +164,11 @@ const DaftarProgram = () => {
                     </div>
                   </div>
                   <ul className="space-y-2">
+                    <h5 className="font-medium text-sm text-foreground">Kegiatan Utama:</h5>
                     {item.kegiatan.map((kegiatan, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <ListChecks className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{kegiatan}</span>
+                        <span className="text-muted-foreground text-sm">{kegiatan}</span>
                       </li>
                     ))}
                   </ul>
@@ -195,7 +184,7 @@ const DaftarProgram = () => {
             <div>
               <CardTitle>{programData.rencana.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Program yang direncanakan
+                Program yang direncanakan untuk periode {programData.rencana.content.periode}
               </p>
             </div>
           </CardHeader>
@@ -204,9 +193,6 @@ const DaftarProgram = () => {
               <h4 className="font-semibold mb-2">Deskripsi</h4>
               <p className="text-sm text-muted-foreground">
                 {programData.rencana.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Periode: {programData.rencana.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -229,10 +215,11 @@ const DaftarProgram = () => {
                     </div>
                   </div>
                   <ul className="space-y-2">
+                     <h5 className="font-medium text-sm text-foreground">Kegiatan Utama:</h5>
                     {item.kegiatan.map((kegiatan, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Calendar className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{kegiatan}</span>
+                        <span className="text-muted-foreground text-sm">{kegiatan}</span>
                       </li>
                     ))}
                   </ul>
@@ -248,7 +235,7 @@ const DaftarProgram = () => {
             <div>
               <CardTitle>{programData.selesai.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Program yang telah selesai
+                Program yang telah selesai pada periode {programData.selesai.content.periode}
               </p>
             </div>
           </CardHeader>
@@ -257,9 +244,6 @@ const DaftarProgram = () => {
               <h4 className="font-semibold mb-2">Deskripsi</h4>
               <p className="text-sm text-muted-foreground">
                 {programData.selesai.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Periode: {programData.selesai.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -282,10 +266,11 @@ const DaftarProgram = () => {
                     </div>
                   </div>
                   <ul className="space-y-2">
+                     <h5 className="font-medium text-sm text-foreground">Kegiatan Utama:</h5>
                     {item.kegiatan.map((kegiatan, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <FileText className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{kegiatan}</span>
+                        <span className="text-muted-foreground text-sm">{kegiatan}</span>
                       </li>
                     ))}
                   </ul>
@@ -301,7 +286,7 @@ const DaftarProgram = () => {
                 <div>
                 <CardTitle>{programData.dokumen.title}</CardTitle>
                 <p className="text-sm text-muted-foreground">
-                    Dokumen program desa
+                    Dokumen perencanaan dan pelaporan program desa
                 </p>
                 </div>
             </CardHeader>

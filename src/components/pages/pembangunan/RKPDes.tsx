@@ -9,7 +9,7 @@ const RKPDes = () => {
       icon: FileText,
       content: {
         tahun: "2024",
-        deskripsi: "Rencana Kerja Pemerintah Desa (RKPDes) adalah dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan pembangunan desa, memuat prioritas program dan kegiatan yang didanai oleh berbagai sumber pendapatan desa.",
+        deskripsi: "Rencana Kerja Pemerintah Desa (RKPDes) adalah dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan pembangunan desa, memuat prioritas program dan kegiatan yang didanai oleh berbagai sumber pendapatan desa, dengan fokus pada potensi maritim dan pesisir.",
         status: "Berlaku",
         tanggal_penetapan: "15 Desember 2023"
       }
@@ -19,47 +19,59 @@ const RKPDes = () => {
       icon: Building2,
       content: {
         infrastruktur: {
-          nama: "Pembangunan Infrastruktur Desa",
-          deskripsi: "Meningkatkan kualitas dan jangkauan infrastruktur dasar untuk mendukung mobilitas dan layanan publik.",
+          nama: "Pembangunan Infrastruktur Pesisir",
+          deskripsi: "Meningkatkan kualitas dan jangkauan infrastruktur untuk mendukung ekonomi kelautan dan melindungi pemukiman.",
           kegiatan: [
             {
-              nama: "Pembangunan Jalan Usaha Tani",
-              lokasi: "Area Pertanian Dusun I & II",
+              nama: "Peningkatan Jalan Akses ke Tempat Pelelangan Ikan (TPI)",
+              lokasi: "Jalur utama desa",
               anggaran: "Rp 250.000.000",
               sumber: "Dana Desa"
             },
             {
-              nama: "Rehabilitasi Jaringan Irigasi Tersier",
-              lokasi: "Area Persawahan",
+              nama: "Pembangunan Tambatan Perahu dan Dermaga Kecil",
+              lokasi: "Pesisir Dusun Nelayan",
               anggaran: "Rp 150.000.000",
               sumber: "Dana Desa"
             },
             {
-              nama: "Pembangunan Sumur Bor dan Jaringan Air Bersih",
+              nama: "Pembangunan Sumur Bor Air Tawar",
               lokasi: "Dusun III",
               anggaran: "Rp 100.000.000",
-              sumber: "Alokasi Dana Desa"
+              sumber: "Alokasi Dana Desa (ADD)"
             }
           ]
         },
         pemberdayaan: {
-          nama: "Pemberdayaan Masyarakat",
-          deskripsi: "Meningkatkan kapasitas dan partisipasi masyarakat dalam pembangunan desa.",
+          nama: "Pemberdayaan Masyarakat Pesisir",
+          deskripsi: "Meningkatkan kapasitas dan keterampilan masyarakat untuk mengelola sumber daya lokal secara optimal.",
           kegiatan: [
             {
-              nama: "Pelatihan Pengolahan Hasil Pertanian",
+              nama: "Pelatihan Pengolahan Hasil Laut (Ikan Asin, Kerupuk, Terasi)",
               lokasi: "Balai Desa",
               anggaran: "Rp 50.000.000",
               sumber: "Dana Desa"
             },
             {
-              nama: "Peningkatan Kapasitas Kader Posyandu",
-              lokasi: "Puskesmas Pembantu",
-              anggaran: "Rp 25.000.000",
-              sumber: "Alokasi Dana Desa"
+              nama: "Peningkatan Kapasitas Kelompok Nelayan (Poklayan)",
+              lokasi: "Sekretariat Poklayan",
+              anggaran: "Rp 35.000.000",
+              sumber: "Alokasi Dana Desa (ADD)"
             }
           ]
-        }
+        },
+        lingkungan: {
+            nama: "Pelestarian Lingkungan Pesisir",
+            deskripsi: "Menjaga ekosistem mangrove dan kebersihan pantai sebagai aset desa.",
+            kegiatan: [
+              {
+                nama: "Rehabilitasi dan Penanaman Mangrove",
+                lokasi: "Garis Pantai Desa",
+                anggaran: "Rp 75.000.000",
+                sumber: "Dana Desa & CSR"
+              },
+            ]
+          }
       }
     },
     pendanaan: {
@@ -69,16 +81,16 @@ const RKPDes = () => {
         dana_desa: {
           nama: "Dana Desa (DD)",
           jumlah: "Rp 800.000.000",
-          persentase: "80%"
+          persentase: "75%"
         },
-        pad: {
+        add: {
           nama: "Alokasi Dana Desa (ADD)",
-          jumlah: "Rp 150.000.000",
-          persentase: "15%"
+          jumlah: "Rp 215.000.000",
+          persentase: "20%"
         },
-        bantuan: {
-          nama: "Pendapatan Asli Desa (PADes) dan Lainnya",
-          jumlah: "Rp 50.000.000",
+        lainnya: {
+          nama: "PADes, Bagi Hasil Pajak, dan lainnya",
+          jumlah: "Rp 53.000.000",
           persentase: "5%"
         }
       }
@@ -87,7 +99,7 @@ const RKPDes = () => {
       title: "Monitoring dan Evaluasi",
       icon: Users,
       content: {
-        deskripsi: "Proses monitoring dan evaluasi dilakukan secara berkala untuk memastikan program berjalan sesuai rencana.",
+        deskripsi: "Proses monitoring dan evaluasi dilakukan secara berkala melalui Musyawarah Desa untuk memastikan program berjalan sesuai rencana dan memberikan manfaat maksimal bagi masyarakat.",
         jadwal: [
           {
             periode: "Evaluasi Triwulan I",
@@ -95,12 +107,12 @@ const RKPDes = () => {
             fokus: "Realisasi fisik dan keuangan program infrastruktur."
           },
           {
-            periode: "Evaluasi Triwulan II",
+            periode: "Evaluasi Tengah Tahun",
             waktu: "Juli 2024",
             fokus: "Perkembangan program pemberdayaan dan penyerapan anggaran."
           },
           {
-            periode: "Laporan Pertanggungjawaban",
+            periode: "Laporan Pertanggungjawaban (LPJ)",
             waktu: "Januari 2025",
             fokus: "Laporan akhir pelaksanaan RKPDes tahun 2024."
           }
@@ -160,10 +172,10 @@ const RKPDes = () => {
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-4">
+            <div className="space-y-4 border-b pb-4">
               <div>
                 <h4 className="font-semibold">{rkpData.program.content.infrastruktur.nama}</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground mt-1">
                   {rkpData.program.content.infrastruktur.deskripsi}
                 </p>
               </div>
@@ -174,16 +186,16 @@ const RKPDes = () => {
                     <div className="grid grid-cols-2 gap-2 text-sm mt-2">
                         <span>Lokasi: {kegiatan.lokasi}</span>
                         <span>Anggaran: {kegiatan.anggaran}</span>
-                        <span>Sumber: {kegiatan.sumber}</span>
+                        <span className="col-span-2">Sumber: {kegiatan.sumber}</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 border-b pb-4">
               <div>
                 <h4 className="font-semibold">{rkpData.program.content.pemberdayaan.nama}</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground mt-1">
                   {rkpData.program.content.pemberdayaan.deskripsi}
                 </p>
               </div>
@@ -194,7 +206,27 @@ const RKPDes = () => {
                     <div className="grid grid-cols-2 gap-2 text-sm mt-2">
                         <span>Lokasi: {kegiatan.lokasi}</span>
                         <span>Anggaran: {kegiatan.anggaran}</span>
-                        <span>Sumber: {kegiatan.sumber}</span>
+                        <span className="col-span-2">Sumber: {kegiatan.sumber}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+             <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rkpData.program.content.lingkungan.nama}</h4>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {rkpData.program.content.lingkungan.deskripsi}
+                </p>
+              </div>
+              <div className="space-y-4">
+                {rkpData.program.content.lingkungan.kegiatan.map((kegiatan, index) => (
+                   <div key={index} className="p-3 bg-muted/50 rounded-lg">
+                    <h5 className="font-medium">{kegiatan.nama}</h5>
+                    <div className="grid grid-cols-2 gap-2 text-sm mt-2">
+                        <span>Lokasi: {kegiatan.lokasi}</span>
+                        <span>Anggaran: {kegiatan.anggaran}</span>
+                        <span className="col-span-2">Sumber: {kegiatan.sumber}</span>
                     </div>
                   </div>
                 ))}
@@ -223,17 +255,17 @@ const RKPDes = () => {
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">{rkpData.pendanaan.content.pad.nama}</span>
+                <span className="text-muted-foreground">{rkpData.pendanaan.content.add.nama}</span>
                 <div className="text-right">
-                  <span className="font-medium">{rkpData.pendanaan.content.pad.jumlah}</span>
-                  <span className="text-muted-foreground ml-2">({rkpData.pendanaan.content.pad.persentase})</span>
+                  <span className="font-medium">{rkpData.pendanaan.content.add.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rkpData.pendanaan.content.add.persentase})</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">{rkpData.pendanaan.content.bantuan.nama}</span>
+                <span className="text-muted-foreground">{rkpData.pendanaan.content.lainnya.nama}</span>
                 <div className="text-right">
-                  <span className="font-medium">{rkpData.pendanaan.content.bantuan.jumlah}</span>
-                  <span className="text-muted-foreground ml-2">({rkpData.pendanaan.content.bantuan.persentase})</span>
+                  <span className="font-medium">{rkpData.pendanaan.content.lainnya.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rkpData.pendanaan.content.lainnya.persentase})</span>
                 </div>
               </div>
             </div>
