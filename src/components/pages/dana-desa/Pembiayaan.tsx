@@ -1,9 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
-import { DollarSign, ArrowUpDown, PieChart as PieChartIcon } from "lucide-react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { DollarSign } from "lucide-react";
+import Breadcrumb from '@/components/Breadcrumb';
 
 const pembiayaanData = {
   title: "Pembiayaan Desa",
@@ -40,79 +38,64 @@ const pembiayaanData = {
 };
 
 const Pembiayaan: React.FC = () => {
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-  const formatRupiah = (amount: number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(amount);
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case "tersedia":
-      case "terealisasi":
-        return "bg-green-500";
-      case "proses":
-        return "bg-yellow-500";
-      case "dianggarkan":
-        return "bg-blue-500";
-      default:
-        return "bg-gray-500";
-    }
-  };
 
   return (
-    <div className="p-6 space-y-8">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">{pembiayaanData.title}</h1>
-        <p className="text-gray-600 mt-2">{pembiayaanData.description}</p>
-      </div>
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
+      <Breadcrumb items={[{ title: "Dana Desa", path: "/dana-desa" }, { title: "Pembiayaan" }]} />
+      <div className="space-y-8">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold tracking-tight">{pembiayaanData.title}</h1>
+          <p className="text-muted-foreground mt-2">{pembiayaanData.description}</p>
+        </div>
 
-      {/* Penerimaan Pembiayaan */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Penerimaan Pembiayaan</h2>
-        <div className="grid gap-4">
-          {pembiayaanData.penerimaan.map((item, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-green-500">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800">{item.category}</h3>
-                  <p className="text-gray-600 mt-1">{item.details}</p>
-                </div>
-                <div className="text-right">
-                  <span className="text-2xl font-bold text-green-600">{item.amount}</span>
+        {/* Penerimaan Pembiayaan */}
+        <Card>
+          <CardHeader>
+            <CardTitle className='flex items-center gap-2'>
+              <DollarSign className="h-5 w-5 text-green-600" />
+              Penerimaan Pembiayaan
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {pembiayaanData.penerimaan.map((item, index) => (
+              <div key={index} className="bg-gray-50 p-4 rounded-lg border-l-4 border-green-500">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-lg font-semibold">{item.category}</h3>
+                    <p className="text-sm text-muted-foreground">{item.details}</p>
+                  </div>
+                  <span className="text-xl font-bold text-green-600">{item.amount}</span>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
+            ))}
+          </CardContent>
+        </Card>
 
-      {/* Pengeluaran Pembiayaan */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Pengeluaran Pembiayaan</h2>
-        <div className="grid gap-4">
-          {pembiayaanData.pengeluaran.map((item, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border-l-4 border-red-500">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800">{item.category}</h3>
-                  <p className="text-gray-600 mt-1">{item.details}</p>
-                </div>
-                <div className="text-right">
-                  <span className="text-2xl font-bold text-red-600">{item.amount}</span>
+        {/* Pengeluaran Pembiayaan */}
+        <Card>
+          <CardHeader>
+            <CardTitle className='flex items-center gap-2'>
+              <DollarSign className="h-5 w-5 text-red-600" />
+              Pengeluaran Pembiayaan
+              </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {pembiayaanData.pengeluaran.map((item, index) => (
+              <div key={index} className="bg-gray-50 p-4 rounded-lg border-l-4 border-red-500">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-lg font-semibold">{item.category}</h3>
+                    <p className="text-sm text-muted-foreground">{item.details}</p>
+                  </div>
+                  <span className="text-xl font-bold text-red-600">{item.amount}</span>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default Pembiayaan; 
+export default Pembiayaan;

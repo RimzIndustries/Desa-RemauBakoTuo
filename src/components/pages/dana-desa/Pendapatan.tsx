@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DollarSign, TrendingUp, PieChart as PieChartIcon } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import Breadcrumb from '@/components/Breadcrumb';
 
 const pendapatanData = {
   total: 2300000000,
@@ -71,7 +71,8 @@ const Pendapatan: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
+      <Breadcrumb items={[{ title: "Dana Desa", path: "/dana-desa" }, { title: "Pendapatan" }]} />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Pendapatan Desa</h2>
@@ -81,7 +82,7 @@ const Pendapatan: React.FC = () => {
         </div>
 
         {/* Total Pendapatan Card */}
-        <Card className="bg-white shadow-lg">
+        <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-green-600" />
@@ -98,7 +99,7 @@ const Pendapatan: React.FC = () => {
         {/* Grafik dan Tabel */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Distribusi Pendapatan */}
-          <Card className="bg-white shadow-lg">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <PieChartIcon className="h-5 w-5 text-blue-600" />
@@ -132,7 +133,7 @@ const Pendapatan: React.FC = () => {
           </Card>
 
           {/* Trend Pendapatan */}
-          <Card className="bg-white shadow-lg">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-green-600" />
@@ -157,7 +158,7 @@ const Pendapatan: React.FC = () => {
         </div>
 
         {/* Detail Sumber Pendapatan */}
-        <Card className="bg-white shadow-lg">
+        <Card>
           <CardHeader>
             <CardTitle>Rincian Sumber Pendapatan</CardTitle>
           </CardHeader>
@@ -198,4 +199,4 @@ const Pendapatan: React.FC = () => {
   );
 };
 
-export default Pendapatan; 
+export default Pendapatan;

@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingUp, Users, Home, FileText } from "lucide-react";
@@ -122,7 +121,7 @@ const Perkembangan = () => {
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <Breadcrumb
         items={[
-          { title: "Profil Desa", path: "/profil/profil-desa" },
+          { title: "Profil", path: "/profil" },
           { title: "Perkembangan Desa" }
         ]}
       />
@@ -156,10 +155,10 @@ const Perkembangan = () => {
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-lg font-medium mb-4">
+                  <p className="text-sm text-muted-foreground">
                     {perkembanganData.demografi.content.deskripsi}
                   </p>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-sm text-muted-foreground mt-2">
                     Periode: {perkembanganData.demografi.content.periode}
                   </p>
                 </div>
@@ -201,10 +200,10 @@ const Perkembangan = () => {
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-lg font-medium mb-4">
+                  <p className="text-sm text-muted-foreground">
                     {perkembanganData.infrastruktur.content.deskripsi}
                   </p>
-                  <p className="text-sm text-muted-foreground mb-4">
+                   <p className="text-sm text-muted-foreground mt-2">
                     Periode: {perkembanganData.infrastruktur.content.periode}
                   </p>
                 </div>
@@ -246,10 +245,10 @@ const Perkembangan = () => {
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-lg font-medium mb-4">
+                  <p className="text-sm text-muted-foreground">
                     {perkembanganData.ekonomi.content.deskripsi}
                   </p>
-                  <p className="text-sm text-muted-foreground mb-4">
+                   <p className="text-sm text-muted-foreground mt-2">
                     Periode: {perkembanganData.ekonomi.content.periode}
                   </p>
                 </div>
@@ -288,7 +287,7 @@ const Perkembangan = () => {
                   </p>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4">
                 {perkembanganData.dokumen.content.dokumen.map((item, index) => (
                   <div key={index} className="space-y-2">
                     <h4 className="font-semibold">{item.judul}</h4>
@@ -314,5 +313,3 @@ const Perkembangan = () => {
 };
 
 export default Perkembangan;
-
-    

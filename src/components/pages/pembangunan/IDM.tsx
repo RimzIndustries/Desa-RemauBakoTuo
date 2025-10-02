@@ -204,7 +204,7 @@ const IDM = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <Breadcrumb
         items={[
           { title: "Pembangunan", path: "/pembangunan" },
@@ -386,4 +386,4 @@ const IDM = () => {
   );
 };
 
-export default IDM; 
+export default IDM;

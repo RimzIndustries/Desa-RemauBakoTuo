@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Compass, Target, ArrowRight, FileText } from "lucide-react";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const ArahKebijakan = () => {
   const arahKebijakanData = {
@@ -117,6 +118,7 @@ const ArahKebijakan = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
+      <Breadcrumb items={[{ title: "Profil", path: "/profil" }, { title: "Arah Kebijakan" }]} />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Arah Kebijakan Desa</h2>
@@ -134,9 +136,9 @@ const ArahKebijakan = () => {
           </TabsList>
 
           <TabsContent value="arah" className="space-y-4">
-            <Card className="border-none bg-transparent shadow-none">
+            <Card>
               <CardHeader className="flex flex-row items-center gap-4">
-                <Compass className="h-8 w-8 text-emerald-600" />
+                <Compass className="h-8 w-8 text-primary" />
                 <div>
                   <CardTitle>{arahKebijakanData.arah.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
@@ -147,10 +149,10 @@ const ArahKebijakan = () => {
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-lg font-medium mb-4">
+                  <p className="text-sm text-muted-foreground">
                     {arahKebijakanData.arah.content.deskripsi}
                   </p>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-sm text-muted-foreground mt-2">
                     Periode: {arahKebijakanData.arah.content.periode}
                   </p>
                 </div>
@@ -170,9 +172,9 @@ const ArahKebijakan = () => {
           </TabsContent>
 
           <TabsContent value="prioritas" className="space-y-4">
-            <Card className="border-none bg-transparent shadow-none">
+            <Card>
               <CardHeader className="flex flex-row items-center gap-4">
-                <Target className="h-8 w-8 text-emerald-600" />
+                <Target className="h-8 w-8 text-primary" />
                 <div>
                   <CardTitle>{arahKebijakanData.prioritas.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
@@ -180,7 +182,7 @@ const ArahKebijakan = () => {
                   </p>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 {arahKebijakanData.prioritas.content.prioritas.map((item, index) => (
                   <div key={index} className="space-y-4">
                     <div>
@@ -204,9 +206,9 @@ const ArahKebijakan = () => {
           </TabsContent>
 
           <TabsContent value="strategi" className="space-y-4">
-            <Card className="border-none bg-transparent shadow-none">
+            <Card>
               <CardHeader className="flex flex-row items-center gap-4">
-                <ArrowRight className="h-8 w-8 text-emerald-600" />
+                <ArrowRight className="h-8 w-8 text-primary" />
                 <div>
                   <CardTitle>{arahKebijakanData.strategi.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
@@ -214,7 +216,7 @@ const ArahKebijakan = () => {
                   </p>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 {arahKebijakanData.strategi.content.strategi.map((item, index) => (
                   <div key={index} className="space-y-4">
                     <div>
@@ -238,9 +240,9 @@ const ArahKebijakan = () => {
           </TabsContent>
 
           <TabsContent value="dokumen" className="space-y-4">
-            <Card className="border-none bg-transparent shadow-none">
+            <Card>
               <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-emerald-600" />
+                <FileText className="h-8 w-8 text-primary" />
                 <div>
                   <CardTitle>{arahKebijakanData.dokumen.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">

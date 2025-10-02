@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, TrendingDown, PieChart as PieChartIcon } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import Breadcrumb from '@/components/Breadcrumb';
 
 const belanjaData = {
   total: 2300000000,
@@ -76,7 +77,8 @@ const Belanja: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
+       <Breadcrumb items={[{ title: "Dana Desa", path: "/dana-desa" }, { title: "Belanja" }]} />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Belanja Desa</h2>
@@ -86,7 +88,7 @@ const Belanja: React.FC = () => {
         </div>
 
         {/* Total Belanja Card */}
-        <Card className="bg-white shadow-lg">
+        <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-blue-600" />
@@ -103,7 +105,7 @@ const Belanja: React.FC = () => {
         {/* Grafik dan Tabel */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Distribusi Belanja per Bidang */}
-          <Card className="bg-white shadow-lg">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <PieChartIcon className="h-5 w-5 text-blue-600" />
@@ -137,7 +139,7 @@ const Belanja: React.FC = () => {
           </Card>
 
           {/* Trend Belanja */}
-          <Card className="bg-white shadow-lg">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingDown className="h-5 w-5 text-blue-600" />
@@ -162,7 +164,7 @@ const Belanja: React.FC = () => {
         </div>
 
         {/* Rincian Jenis Belanja */}
-        <Card className="bg-white shadow-lg">
+        <Card>
           <CardHeader>
             <CardTitle>Rincian Jenis Belanja</CardTitle>
           </CardHeader>
@@ -181,7 +183,7 @@ const Belanja: React.FC = () => {
         </Card>
 
         {/* Status Belanja per Bidang */}
-        <Card className="bg-white shadow-lg">
+        <Card>
           <CardHeader>
             <CardTitle>Status Belanja per Bidang</CardTitle>
           </CardHeader>
@@ -222,4 +224,4 @@ const Belanja: React.FC = () => {
   );
 };
 
-export default Belanja; 
+export default Belanja;

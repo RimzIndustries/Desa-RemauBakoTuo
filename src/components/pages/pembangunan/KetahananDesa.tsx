@@ -224,17 +224,48 @@ const KetahananDesa = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="aspek" className="space-y-4">
+        <Tabs defaultValue="umum" className="space-y-4">
           <TabsList>
+            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
             <TabsTrigger value="aspek">Aspek</TabsTrigger>
             <TabsTrigger value="perkembangan">Perkembangan</TabsTrigger>
             <TabsTrigger value="strategi">Strategi</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="aspek" className="space-y-4">
+          <TabsContent value="umum" className="space-y-4">
             <Card>
               <CardHeader className="flex flex-row items-center gap-4">
                 <FileText className="h-8 w-8 text-primary" />
+                <div>
+                  <CardTitle>{ketahananData.umum.title}</CardTitle>
+                  <p className="text-sm text-muted-foreground">
+                    Informasi dasar ketahanan desa
+                  </p>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Deskripsi</h4>
+                  <p className="text-sm text-muted-foreground">
+                    {ketahananData.umum.content.deskripsi}
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  {ketahananData.umum.content.data.map((item, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <span className="text-sm font-medium">{item.label}</span>
+                      <span className="text-sm text-muted-foreground">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="aspek" className="space-y-4">
+            <Card>
+              <CardHeader className="flex flex-row items-center gap-4">
+                <Users className="h-8 w-8 text-primary" />
                 <div>
                   <CardTitle>{ketahananData.aspek.title}</CardTitle>
                   <p className="text-sm text-muted-foreground">
