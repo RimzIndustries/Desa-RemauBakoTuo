@@ -1,5 +1,5 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FileText, Target, Users, Leaf, DollarSign, Building2 } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 
@@ -156,10 +156,10 @@ const SDGsDesa = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <Breadcrumb
         items={[
-          { title: "Program", path: "/program" },
+          { title: "Indeks", path: "/indeks" },
           { title: "SDGs Desa" }
         ]}
       />
@@ -171,250 +171,233 @@ const SDGsDesa = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
-            <TabsTrigger value="target">Target</TabsTrigger>
-            <TabsTrigger value="program">Program</TabsTrigger>
-            <TabsTrigger value="pencapaian">Pencapaian</TabsTrigger>
-          </TabsList>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{sdgsData.umum.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Informasi dasar SDGs Desa tahun {sdgsData.umum.content.tahun}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {sdgsData.umum.content.deskripsi}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
-          <TabsContent value="umum" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{sdgsData.umum.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Informasi dasar SDGs Desa tahun {sdgsData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {sdgsData.umum.content.deskripsi}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="target" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Target className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{sdgsData.target.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Target SDGs Desa tahun {sdgsData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">{sdgsData.target.content.kemiskinan.nama}</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.target.content.kemiskinan.target.map((target, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{target}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 space-y-2">
-                      {sdgsData.target.content.kemiskinan.indikator.map((indikator, index) => (
-                        <div key={index} className="flex justify-between items-center">
-                          <div>
-                            <h5 className="font-medium">{indikator.nama}</h5>
-                            <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
-                          </div>
-                          <span className="font-medium">{indikator.nilai}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">{sdgsData.target.content.ekonomi.nama}</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.target.content.ekonomi.target.map((target, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{target}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 space-y-2">
-                      {sdgsData.target.content.ekonomi.indikator.map((indikator, index) => (
-                        <div key={index} className="flex justify-between items-center">
-                          <div>
-                            <h5 className="font-medium">{indikator.nama}</h5>
-                            <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
-                          </div>
-                          <span className="font-medium">{indikator.nilai}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">{sdgsData.target.content.kesehatan.nama}</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.target.content.kesehatan.target.map((target, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{target}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 space-y-2">
-                      {sdgsData.target.content.kesehatan.indikator.map((indikator, index) => (
-                        <div key={index} className="flex justify-between items-center">
-                          <div>
-                            <h5 className="font-medium">{indikator.nama}</h5>
-                            <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
-                          </div>
-                          <span className="font-medium">{indikator.nilai}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">{sdgsData.target.content.lingkungan.nama}</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.target.content.lingkungan.target.map((target, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Leaf className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{target}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 space-y-2">
-                      {sdgsData.target.content.lingkungan.indikator.map((indikator, index) => (
-                        <div key={index} className="flex justify-between items-center">
-                          <div>
-                            <h5 className="font-medium">{indikator.nama}</h5>
-                            <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
-                          </div>
-                          <span className="font-medium">{indikator.nilai}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="program" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Building2 className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{sdgsData.program.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program SDGs Desa tahun {sdgsData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">Program Penanggulangan Kemiskinan</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.program.content.kemiskinan.map((program, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{program}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">Program Pengembangan Ekonomi</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.program.content.ekonomi.map((program, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{program}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">Program Kesehatan</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.program.content.kesehatan.map((program, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{program}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">Program Lingkungan</h4>
-                    <ul className="space-y-2 mt-2">
-                      {sdgsData.program.content.lingkungan.map((program, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <Leaf className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{program}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="pencapaian" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Target className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{sdgsData.pencapaian.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Pencapaian SDGs Desa dari tahun ke tahun
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {sdgsData.pencapaian.content.tahun.map((tahun, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Target className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{sdgsData.target.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Target SDGs Desa tahun {sdgsData.umum.content.tahun}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{sdgsData.target.content.kemiskinan.nama}</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.target.content.kemiskinan.target.map((target, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{target}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 space-y-2">
+                  {sdgsData.target.content.kemiskinan.indikator.map((indikator, index) => (
+                    <div key={index} className="flex justify-between items-center">
                       <div>
-                        <h4 className="font-semibold">Tahun {tahun.tahun}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Target tercapai: {tahun.target_tercapai} dari {tahun.total_target}
-                        </p>
+                        <h5 className="font-medium">{indikator.nama}</h5>
+                        <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
                       </div>
-                      <span className="font-medium">
-                        {Math.round((Number(tahun.target_tercapai) / Number(tahun.total_target)) * 100)}%
-                      </span>
+                      <span className="font-medium">{indikator.nilai}</span>
                     </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{sdgsData.target.content.ekonomi.nama}</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.target.content.ekonomi.target.map((target, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{target}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 space-y-2">
+                  {sdgsData.target.content.ekonomi.indikator.map((indikator, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <div>
+                        <h5 className="font-medium">{indikator.nama}</h5>
+                        <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
+                      </div>
+                      <span className="font-medium">{indikator.nilai}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+             <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{sdgsData.target.content.kesehatan.nama}</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.target.content.kesehatan.target.map((target, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{target}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 space-y-2">
+                  {sdgsData.target.content.kesehatan.indikator.map((indikator, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <div>
+                        <h5 className="font-medium">{indikator.nama}</h5>
+                        <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
+                      </div>
+                      <span className="font-medium">{indikator.nilai}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+             <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{sdgsData.target.content.lingkungan.nama}</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.target.content.lingkungan.target.map((target, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Leaf className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{target}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 space-y-2">
+                  {sdgsData.target.content.lingkungan.indikator.map((indikator, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <div>
+                        <h5 className="font-medium">{indikator.nama}</h5>
+                        <p className="text-sm text-muted-foreground">Target: {indikator.target}</p>
+                      </div>
+                      <span className="font-medium">{indikator.nilai}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Building2 className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{sdgsData.program.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program SDGs Desa tahun {sdgsData.umum.content.tahun}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">Program Penanggulangan Kemiskinan</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.program.content.kemiskinan.map((program, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{program}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">Program Pengembangan Ekonomi</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.program.content.ekonomi.map((program, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{program}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">Program Kesehatan</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.program.content.kesehatan.map((program, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{program}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">Program Lingkungan</h4>
+                <ul className="space-y-2 mt-2">
+                  {sdgsData.program.content.lingkungan.map((program, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Leaf className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{program}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Target className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{sdgsData.pencapaian.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Pencapaian SDGs Desa dari tahun ke tahun
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {sdgsData.pencapaian.content.tahun.map((tahun, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h4 className="font-semibold">Tahun {tahun.tahun}</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Target tercapai: {tahun.target_tercapai} dari {tahun.total_target}
+                    </p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+                  <span className="font-medium">
+                    {Math.round((Number(tahun.target_tercapai) / Number(tahun.total_target)) * 100)}%
+                  </span>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default SDGsDesa; 
+export default SDGsDesa;

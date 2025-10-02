@@ -1,12 +1,12 @@
 
 'use client';
-import SDGsDesa from "@/components/pages/program/SDGsDesa";
+import IDM from "@/components/pages/pembangunan/IDM";
 import PublicLayout from "@/layouts/PublicLayout";
 
-export default function SDGsPage() {
+export default function IDMPage() {
     return (
         <PublicLayout>
-            <SDGsDesa />
+            <IDM />
         </PublicLayout>
     )
 }

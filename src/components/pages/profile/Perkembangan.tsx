@@ -1,5 +1,5 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingUp, Users, Home, FileText } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 
@@ -121,7 +121,7 @@ const Perkembangan = () => {
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <Breadcrumb
         items={[
-          { title: "Profil", path: "/profil" },
+          { title: "Profil", path: "/profil/profil-desa" },
           { title: "Perkembangan Desa" }
         ]}
       />
@@ -132,181 +132,160 @@ const Perkembangan = () => {
             Perkembangan Desa Remau Bako Tuo dari tahun ke tahun
           </p>
         </div>
-
-        <Tabs defaultValue="demografi" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="demografi">Demografi</TabsTrigger>
-            <TabsTrigger value="infrastruktur">Infrastruktur</TabsTrigger>
-            <TabsTrigger value="ekonomi">Ekonomi</TabsTrigger>
-            <TabsTrigger value="dokumen">Dokumen</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="demografi" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Users className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{perkembanganData.demografi.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Perkembangan demografi desa
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {perkembanganData.demografi.content.deskripsi}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Periode: {perkembanganData.demografi.content.periode}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  {perkembanganData.demografi.content.data.map((item, index) => (
-                    <div key={index} className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold">{item.judul}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {item.deskripsi}
-                        </p>
-                      </div>
-                      <ul className="space-y-2">
-                        {item.detail.map((detail, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="infrastruktur" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Home className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{perkembanganData.infrastruktur.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Perkembangan infrastruktur desa
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {perkembanganData.infrastruktur.content.deskripsi}
-                  </p>
-                   <p className="text-sm text-muted-foreground mt-2">
-                    Periode: {perkembanganData.infrastruktur.content.periode}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  {perkembanganData.infrastruktur.content.data.map((item, index) => (
-                    <div key={index} className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold">{item.judul}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {item.deskripsi}
-                        </p>
-                      </div>
-                      <ul className="space-y-2">
-                        {item.detail.map((detail, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <Home className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="ekonomi" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <TrendingUp className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{perkembanganData.ekonomi.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Perkembangan ekonomi desa
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {perkembanganData.ekonomi.content.deskripsi}
-                  </p>
-                   <p className="text-sm text-muted-foreground mt-2">
-                    Periode: {perkembanganData.ekonomi.content.periode}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  {perkembanganData.ekonomi.content.data.map((item, index) => (
-                    <div key={index} className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold">{item.judul}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {item.deskripsi}
-                        </p>
-                      </div>
-                      <ul className="space-y-2">
-                        {item.detail.map((detail, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <TrendingUp className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="dokumen" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{perkembanganData.dokumen.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Dokumen perkembangan desa
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {perkembanganData.dokumen.content.dokumen.map((item, index) => (
-                  <div key={index} className="space-y-2">
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Users className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{perkembanganData.demografi.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Perkembangan demografi desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {perkembanganData.demografi.content.deskripsi}
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Periode: {perkembanganData.demografi.content.periode}
+              </p>
+            </div>
+            <div className="space-y-6">
+              {perkembanganData.demografi.content.data.map((item, index) => (
+                <div key={index} className="space-y-4">
+                  <div>
                     <h4 className="font-semibold">{item.judul}</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Tahun</span>
-                        <span className="font-medium">{item.tahun}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Status</span>
-                        <span className="font-medium">{item.status}</span>
-                      </div>
-                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {item.deskripsi}
+                    </p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+                  <ul className="space-y-2">
+                    {item.detail.map((detail, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Home className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{perkembanganData.infrastruktur.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Perkembangan infrastruktur desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {perkembanganData.infrastruktur.content.deskripsi}
+              </p>
+               <p className="text-sm text-muted-foreground mt-2">
+                Periode: {perkembanganData.infrastruktur.content.periode}
+              </p>
+            </div>
+            <div className="space-y-6">
+              {perkembanganData.infrastruktur.content.data.map((item, index) => (
+                <div key={index} className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold">{item.judul}</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {item.deskripsi}
+                    </p>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.detail.map((detail, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Home className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <TrendingUp className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{perkembanganData.ekonomi.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Perkembangan ekonomi desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {perkembanganData.ekonomi.content.deskripsi}
+              </p>
+               <p className="text-sm text-muted-foreground mt-2">
+                Periode: {perkembanganData.ekonomi.content.periode}
+              </p>
+            </div>
+            <div className="space-y-6">
+              {perkembanganData.ekonomi.content.data.map((item, index) => (
+                <div key={index} className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold">{item.judul}</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {item.deskripsi}
+                    </p>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.detail.map((detail, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <TrendingUp className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{perkembanganData.dokumen.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Dokumen perkembangan desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {perkembanganData.dokumen.content.dokumen.map((item, index) => (
+              <div key={index} className="space-y-2">
+                <h4 className="font-semibold">{item.judul}</h4>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Tahun</span>
+                    <span className="font-medium">{item.tahun}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Status</span>
+                    <span className="font-medium">{item.status}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

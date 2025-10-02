@@ -1,6 +1,6 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Calendar, DollarSign, ListChecks } from "lucide-react";
+import { FileText, Calendar, ListChecks } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 
 const DaftarProgram = () => {
@@ -143,213 +143,196 @@ const DaftarProgram = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="berjalan" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="berjalan">Program Berjalan</TabsTrigger>
-            <TabsTrigger value="rencana">Program Rencana</TabsTrigger>
-            <TabsTrigger value="selesai">Program Selesai</TabsTrigger>
-            <TabsTrigger value="dokumen">Dokumen</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="berjalan" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <ListChecks className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{programData.berjalan.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program yang sedang berjalan
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {programData.berjalan.content.deskripsi}
-                  </p>
-                   <p className="text-sm text-muted-foreground mt-2">
-                    Periode: {programData.berjalan.content.periode}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  {programData.berjalan.content.program.map((item, index) => (
-                    <div key={index} className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold">{item.judul}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {item.deskripsi}
-                        </p>
-                        <div className="grid grid-cols-2 gap-4 mt-2">
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">Progress</span>
-                            <span className="font-medium text-primary">{item.progress}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">Anggaran</span>
-                            <span className="font-medium">{item.anggaran}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <ul className="space-y-2">
-                        {item.kegiatan.map((kegiatan, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <ListChecks className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{kegiatan}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="rencana" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Calendar className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{programData.rencana.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program yang direncanakan
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {programData.rencana.content.deskripsi}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Periode: {programData.rencana.content.periode}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  {programData.rencana.content.program.map((item, index) => (
-                    <div key={index} className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold">{item.judul}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {item.deskripsi}
-                        </p>
-                        <div className="grid grid-cols-2 gap-4 mt-2">
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">Periode</span>
-                            <span className="font-medium">{item.periode}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">Anggaran</span>
-                            <span className="font-medium">{item.anggaran}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <ul className="space-y-2">
-                        {item.kegiatan.map((kegiatan, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <Calendar className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{kegiatan}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="selesai" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{programData.selesai.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program yang telah selesai
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {programData.selesai.content.deskripsi}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Periode: {programData.selesai.content.periode}
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  {programData.selesai.content.program.map((item, index) => (
-                    <div key={index} className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold">{item.judul}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          {item.deskripsi}
-                        </p>
-                        <div className="grid grid-cols-2 gap-4 mt-2">
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">Tahun</span>
-                            <span className="font-medium">{item.tahun}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-muted-foreground">Anggaran</span>
-                            <span className="font-medium">{item.anggaran}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <ul className="space-y-2">
-                        {item.kegiatan.map((kegiatan, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <FileText className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{kegiatan}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="dokumen" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{programData.dokumen.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Dokumen program desa
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {programData.dokumen.content.dokumen.map((item, index) => (
-                  <div key={index} className="space-y-2">
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <ListChecks className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{programData.berjalan.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program yang sedang berjalan
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {programData.berjalan.content.deskripsi}
+              </p>
+               <p className="text-sm text-muted-foreground mt-2">
+                Periode: {programData.berjalan.content.periode}
+              </p>
+            </div>
+            <div className="space-y-6">
+              {programData.berjalan.content.program.map((item, index) => (
+                <div key={index} className="space-y-4">
+                  <div>
                     <h4 className="font-semibold">{item.judul}</h4>
-                    <div className="grid grid-cols-2 gap-4">
+                    <p className="text-sm text-muted-foreground">
+                      {item.deskripsi}
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mt-2">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Progress</span>
+                        <span className="font-medium text-primary">{item.progress}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Anggaran</span>
+                        <span className="font-medium">{item.anggaran}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.kegiatan.map((kegiatan, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <ListChecks className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{kegiatan}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Calendar className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{programData.rencana.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program yang direncanakan
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {programData.rencana.content.deskripsi}
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Periode: {programData.rencana.content.periode}
+              </p>
+            </div>
+            <div className="space-y-6">
+              {programData.rencana.content.program.map((item, index) => (
+                <div key={index} className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold">{item.judul}</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {item.deskripsi}
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mt-2">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Periode</span>
+                        <span className="font-medium">{item.periode}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Anggaran</span>
+                        <span className="font-medium">{item.anggaran}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.kegiatan.map((kegiatan, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Calendar className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{kegiatan}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{programData.selesai.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program yang telah selesai
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {programData.selesai.content.deskripsi}
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Periode: {programData.selesai.content.periode}
+              </p>
+            </div>
+            <div className="space-y-6">
+              {programData.selesai.content.program.map((item, index) => (
+                <div key={index} className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold">{item.judul}</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {item.deskripsi}
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mt-2">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Tahun</span>
                         <span className="font-medium">{item.tahun}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">Status</span>
-                        <span className="font-medium">{item.status}</span>
+                        <span className="text-muted-foreground">Anggaran</span>
+                        <span className="font-medium">{item.anggaran}</span>
                       </div>
                     </div>
                   </div>
+                  <ul className="space-y-2">
+                    {item.kegiatan.map((kegiatan, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <FileText className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{kegiatan}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+            <CardHeader className="flex flex-row items-center gap-4">
+                <FileText className="h-8 w-8 text-primary" />
+                <div>
+                <CardTitle>{programData.dokumen.title}</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                    Dokumen program desa
+                </p>
+                </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+                {programData.dokumen.content.dokumen.map((item, index) => (
+                <div key={index} className="space-y-2">
+                    <h4 className="font-semibold">{item.judul}</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                    <div className="flex justify-between">
+                        <span className="text-muted-foreground">Tahun</span>
+                        <span className="font-medium">{item.tahun}</span>
+                    </div>
+                    <div className="flex justify-between">
+                        <span className="text-muted-foreground">Status</span>
+                        <span className="font-medium">{item.status}</span>
+                    </div>
+                    </div>
+                </div>
                 ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+            </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default DaftarProgram; 
+export default DaftarProgram;

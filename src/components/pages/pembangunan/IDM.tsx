@@ -1,5 +1,5 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FileText, Users, LineChart, Briefcase } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 import { Progress } from "@/components/ui/progress";
@@ -219,168 +219,151 @@ const IDM = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
-            <TabsTrigger value="komponen">Komponen IDM</TabsTrigger>
-            <TabsTrigger value="perkembangan">Perkembangan</TabsTrigger>
-            <TabsTrigger value="strategi">Strategi</TabsTrigger>
-          </TabsList>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{idmData.umum.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Informasi dasar Indeks Desa Membangun
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {idmData.umum.content.deskripsi}
+              </p>
+            </div>
+            <div className="space-y-2">
+              {idmData.umum.content.data.map((item, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <span className="text-sm font-medium">{item.label}</span>
+                  <span className="text-sm text-muted-foreground">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-          <TabsContent value="umum" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Users className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{idmData.komponen.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Komponen dan Indikator IDM
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {idmData.komponen.content.indeks.map((indeks, index) => (
+              <div key={index} className="space-y-4">
                 <div>
-                  <CardTitle>{idmData.umum.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Informasi dasar Indeks Desa Membangun
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {idmData.umum.content.deskripsi}
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  {idmData.umum.content.data.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{item.label}</span>
-                      <span className="text-sm text-muted-foreground">{item.value}</span>
+                  <h4 className="font-semibold">{indeks.nama}</h4>
+                  <div className="mt-2 space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Nilai: {indeks.nilai}</span>
+                      <span>{indeks.persentase}</span>
                     </div>
+                    <Progress value={indeks.nilai * 100} className="h-2" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  {indeks.indikator.map((item, idx) => (
+                    <Card key={idx}>
+                      <CardContent className="pt-6">
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <h5 className="font-medium">{item.nama}</h5>
+                            <span className={`text-sm ${getStatusColor(item.status)}`}>
+                              {item.status}
+                            </span>
+                          </div>
+                          <div className="mt-2 space-y-2">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-muted-foreground">Nilai: {item.nilai}</span>
+                            </div>
+                            <Progress value={item.nilai * 100} className="h-2" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
 
-          <TabsContent value="komponen" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Users className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{idmData.komponen.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Komponen dan Indikator IDM
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {idmData.komponen.content.indeks.map((indeks, index) => (
-                  <div key={index} className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold">{indeks.nama}</h4>
-                      <div className="mt-2 space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Nilai: {indeks.nilai}</span>
-                          <span>{indeks.persentase}</span>
-                        </div>
-                        <Progress value={indeks.nilai * 100} className="h-2" />
-                      </div>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <LineChart className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{idmData.perkembangan.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Perkembangan IDM per tahun
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {idmData.perkembangan.content.tahun.map((tahun, index) => (
+              <Card key={index}>
+                <CardContent className="pt-6">
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <h5 className="font-medium">{tahun.tahun}</h5>
+                      <span className="text-sm text-muted-foreground">{tahun.status}</span>
                     </div>
-                    <div className="space-y-4">
-                      {indeks.indikator.map((item, idx) => (
-                        <Card key={idx}>
-                          <CardContent className="pt-6">
-                            <div className="space-y-2">
-                              <div className="flex justify-between items-center">
-                                <h5 className="font-medium">{item.nama}</h5>
-                                <span className={`text-sm ${getStatusColor(item.status)}`}>
-                                  {item.status}
-                                </span>
-                              </div>
-                              <div className="mt-2 space-y-2">
-                                <div className="flex justify-between text-sm">
-                                  <span className="text-muted-foreground">Nilai: {item.nilai}</span>
-                                </div>
-                                <Progress value={item.nilai * 100} className="h-2" />
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                    <div className="mt-2 space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Nilai: {tahun.nilai}</span>
+                      </div>
+                      <Progress value={tahun.nilai * 100} className="h-2" />
                     </div>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                </CardContent>
+              </Card>
+            ))}
+          </CardContent>
+        </Card>
 
-          <TabsContent value="perkembangan" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <LineChart className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{idmData.perkembangan.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Perkembangan IDM per tahun
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {idmData.perkembangan.content.tahun.map((tahun, index) => (
-                  <Card key={index}>
-                    <CardContent className="pt-6">
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <h5 className="font-medium">{tahun.tahun}</h5>
-                          <span className="text-sm text-muted-foreground">{tahun.status}</span>
-                        </div>
-                        <div className="mt-2 space-y-2">
-                          <div className="flex justify-between text-sm">
-                            <span className="text-muted-foreground">Nilai: {tahun.nilai}</span>
-                          </div>
-                          <Progress value={tahun.nilai * 100} className="h-2" />
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="strategi" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Briefcase className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{idmData.strategi.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Strategi peningkatan IDM
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {idmData.strategi.content.program.map((program, index) => (
-                  <Card key={index}>
-                    <CardContent className="pt-6">
-                      <div className="space-y-4">
-                        <div>
-                          <h4 className="font-semibold">{program.nama}</h4>
-                          <p className="text-sm text-muted-foreground">Target: {program.target}</p>
-                        </div>
-                        <div>
-                          <h5 className="font-medium mb-2">Kegiatan:</h5>
-                          <ul className="list-disc list-inside space-y-1">
-                            {program.kegiatan.map((kegiatan, idx) => (
-                              <li key={idx} className="text-sm text-muted-foreground">
-                                {kegiatan}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Briefcase className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{idmData.strategi.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Strategi peningkatan IDM
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {idmData.strategi.content.program.map((program, index) => (
+              <Card key={index}>
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold">{program.nama}</h4>
+                      <p className="text-sm text-muted-foreground">Target: {program.target}</p>
+                    </div>
+                    <div>
+                      <h5 className="font-medium mb-2">Kegiatan:</h5>
+                      <ul className="list-disc list-inside space-y-1">
+                        {program.kegiatan.map((kegiatan, idx) => (
+                          <li key={idx} className="text-sm text-muted-foreground">
+                            {kegiatan}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

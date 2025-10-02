@@ -1,153 +1,126 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Users, LineChart, Briefcase } from "lucide-react";
+import { FileText, Building2, Users, Leaf, DollarSign, Target } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 
 const RPJMDes = () => {
-  const rpjmdesData = {
+  const rpjmData = {
     umum: {
       title: "Informasi Umum",
       icon: FileText,
       content: {
-        deskripsi: "RPJMDes (Rencana Pembangunan Jangka Menengah Desa) adalah dokumen perencanaan pembangunan desa untuk jangka waktu 6 (enam) tahun yang memuat arah kebijakan keuangan desa, kebijakan umum, program Satuan Kerja Perangkat Desa (SKPD), lintas SKPD, dan program kewilayahan disertai dengan rencana kerja dalam kerangka regulasi dan kerangka pendanaan yang bersifat indikatif.",
-        data: [
-          {
-            label: "Periode",
-            value: "2021 - 2026"
-          },
-          {
-            label: "Status",
-            value: "Disahkan"
-          },
-          {
-            label: "Nomor Peraturan",
-            value: "001/PERDES/2021"
-          },
-          {
-            label: "Tanggal Penetapan",
-            value: "1 Januari 2021"
-          }
-        ]
+        periode: "2021-2026",
+        deskripsi: "Rencana Pembangunan Jangka Menengah Desa",
+        status: "Disetujui",
+        tanggal_persetujuan: "15 Desember 2020"
       }
     },
     program: {
-      title: "Program",
-      icon: Users,
+      title: "Program Pembangunan",
+      icon: Building2,
       content: {
-        kategori: [
-          {
-            nama: "Pembangunan Infrastruktur",
-            program: [
-              "Pembangunan dan Peningkatan Jalan Desa",
-              "Pembangunan dan Peningkatan Drainase",
-              "Pembangunan dan Peningkatan MCK Umum",
-              "Pembangunan dan Peningkatan Taman Desa",
-              "Pembangunan dan Peningkatan Jembatan Desa"
-            ]
-          },
-          {
-            nama: "Pemberdayaan Ekonomi",
-            program: [
-              "Pengembangan UMKM",
-              "Pengembangan BUMDes",
-              "Pengembangan Koperasi",
-              "Pengembangan Wisata Desa",
-              "Pengembangan Pertanian"
-            ]
-          },
-          {
-            nama: "Peningkatan Pelayanan",
-            program: [
-              "Peningkatan Pelayanan Administrasi",
-              "Pengembangan Sistem Informasi Desa",
-              "Peningkatan Kualitas SDM Aparatur",
-              "Pengembangan Layanan Publik",
-              "Peningkatan Kualitas Pendidikan"
-            ]
-          },
-          {
-            nama: "Pengembangan Sosial Budaya",
-            program: [
-              "Peningkatan Kesehatan Masyarakat",
-              "Pengembangan Pendidikan",
-              "Pelestarian Budaya",
-              "Pengembangan Olahraga",
-              "Pemberdayaan Perempuan"
-            ]
-          }
-        ]
+        ekonomi: {
+          nama: "Pengembangan Ekonomi",
+          deskripsi: "Program penguatan ekonomi desa",
+          kegiatan: [
+            {
+              nama: "Pengembangan Wisata Desa",
+              target: "Meningkatkan kunjungan wisatawan",
+              indikator: "Jumlah wisatawan meningkat 50%",
+              waktu: "2021-2026"
+            },
+            {
+              nama: "Pemberdayaan UMKM",
+              target: "Meningkatkan jumlah UMKM",
+              indikator: "Jumlah UMKM meningkat 30%",
+              waktu: "2021-2026"
+            },
+            {
+              nama: "Pengembangan Pertanian",
+              target: "Meningkatkan produksi pertanian",
+              indikator: "Produksi meningkat 40%",
+              waktu: "2021-2026"
+            }
+          ]
+        },
+        sosial: {
+          nama: "Pembangunan Sosial",
+          deskripsi: "Program peningkatan kesejahteraan sosial",
+          kegiatan: [
+            {
+              nama: "Peningkatan Pendidikan",
+              target: "Meningkatkan akses pendidikan",
+              indikator: "Angka partisipasi sekolah 100%",
+              waktu: "2021-2026"
+            },
+            {
+              nama: "Peningkatan Kesehatan",
+              target: "Meningkatkan derajat kesehatan",
+              indikator: "Angka harapan hidup meningkat",
+              waktu: "2021-2026"
+            },
+            {
+              nama: "Penguatan Kelembagaan",
+              target: "Menguatkan kelembagaan desa",
+              indikator: "Semua lembaga berfungsi optimal",
+              waktu: "2021-2026"
+            }
+          ]
+        }
       }
     },
-    anggaran: {
-      title: "Anggaran",
-      icon: LineChart,
+    sasaran: {
+      title: "Sasaran Pembangunan",
+      icon: Target,
       content: {
-        tahun: [
-          {
-            tahun: "2021",
-            total: "Rp 800.000.000",
-            belanja: "Rp 600.000.000",
-            pembiayaan: "Rp 200.000.000"
-          },
-          {
-            tahun: "2022",
-            total: "Rp 850.000.000",
-            belanja: "Rp 650.000.000",
-            pembiayaan: "Rp 200.000.000"
-          },
-          {
-            tahun: "2023",
-            total: "Rp 900.000.000",
-            belanja: "Rp 700.000.000",
-            pembiayaan: "Rp 200.000.000"
-          },
-          {
-            tahun: "2024",
-            total: "Rp 950.000.000",
-            belanja: "Rp 750.000.000",
-            pembiayaan: "Rp 200.000.000"
-          },
-          {
-            tahun: "2025",
-            total: "Rp 1.000.000.000",
-            belanja: "Rp 800.000.000",
-            pembiayaan: "Rp 200.000.000"
-          },
-          {
-            tahun: "2026",
-            total: "Rp 1.050.000.000",
-            belanja: "Rp 850.000.000",
-            pembiayaan: "Rp 200.000.000"
-          }
-        ]
+        ekonomi: {
+          nama: "Sasaran Ekonomi",
+          target: [
+            "Pertumbuhan ekonomi 6% per tahun",
+            "Pengangguran turun 50%",
+            "Pendapatan per kapita meningkat 40%",
+            "Jumlah UMKM meningkat 30%"
+          ]
+        },
+        sosial: {
+          nama: "Sasaran Sosial",
+          target: [
+            "Angka partisipasi sekolah 100%",
+            "Angka harapan hidup meningkat",
+            "Angka kemiskinan turun 50%",
+            "Kesejahteraan masyarakat meningkat"
+          ]
+        },
+        lingkungan: {
+          nama: "Sasaran Lingkungan",
+          target: [
+            "Sanitasi 100%",
+            "Air bersih 100%",
+            "Pengelolaan sampah 100%",
+            "RTH 30%"
+          ]
+        }
       }
     },
-    pengelolaan: {
-      title: "Pengelolaan",
-      icon: Briefcase,
+    pendanaan: {
+      title: "Sumber Pendanaan",
+      icon: DollarSign,
       content: {
-        tahapan: [
-          {
-            nama: "Perencanaan",
-            deskripsi: "Penyusunan RPJMDes berdasarkan visi, misi, dan program kepala desa terpilih"
-          },
-          {
-            nama: "Pembahasan",
-            deskripsi: "Musyawarah Desa untuk membahas dan menyepakati RPJMDes"
-          },
-          {
-            nama: "Penetapan",
-            deskripsi: "Penetapan RPJMDes melalui Peraturan Desa"
-          },
-          {
-            nama: "Pelaksanaan",
-            deskripsi: "Implementasi program dan kegiatan sesuai RPJMDes melalui RKPDes tahunan"
-          },
-          {
-            nama: "Pengawasan",
-            deskripsi: "Monitoring dan evaluasi pelaksanaan RPJMDes secara berkala"
-          }
-        ]
+        dana_desa: {
+          nama: "Dana Desa",
+          jumlah: "Rp 4.000.000.000",
+          persentase: "80%"
+        },
+        pad: {
+          nama: "Pendapatan Asli Desa",
+          jumlah: "Rp 750.000.000",
+          persentase: "15%"
+        },
+        bantuan: {
+          nama: "Bantuan Pemerintah",
+          jumlah: "Rp 250.000.000",
+          persentase: "5%"
+        }
       }
     }
   };
@@ -164,145 +137,207 @@ const RPJMDes = () => {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">RPJMDes</h2>
           <p className="text-muted-foreground">
-            Rencana Pembangunan Jangka Menengah Desa
+            Rencana Pembangunan Jangka Menengah Desa {rpjmData.umum.content.periode}
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
-            <TabsTrigger value="program">Program</TabsTrigger>
-            <TabsTrigger value="anggaran">Anggaran</TabsTrigger>
-            <TabsTrigger value="pengelolaan">Pengelolaan</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="umum" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{rpjmdesData.umum.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Informasi dasar RPJMDes
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {rpjmdesData.umum.content.deskripsi}
-                  </p>
-                </div>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rpjmData.umum.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Informasi dasar RPJMDes {rpjmData.umum.content.periode}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold mb-2">Detail RPJMDes</h4>
                 <div className="space-y-2">
-                  {rpjmdesData.umum.content.data.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{item.label}</span>
-                      <span className="text-sm text-muted-foreground">{item.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="program" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Users className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{rpjmdesData.program.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program-program RPJMDes
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {rpjmdesData.program.content.kategori.map((kategori, index) => (
-                  <div key={index} className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold">{kategori.nama}</h4>
-                      <ul className="space-y-2 mt-2">
-                        {kategori.program.map((program, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{program}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Periode</span>
+                    <span className="font-medium">{rpjmData.umum.content.periode}</span>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Status</span>
+                    <span className="font-medium">{rpjmData.umum.content.status}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Tanggal Persetujuan</span>
+                    <span className="font-medium">{rpjmData.umum.content.tanggal_persetujuan}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-          <TabsContent value="anggaran" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <LineChart className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{rpjmdesData.anggaran.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Anggaran RPJMDes
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-4">
-                  {rpjmdesData.anggaran.content.tahun.map((tahun, index) => (
-                    <div key={index} className="space-y-2">
-                      <h4 className="font-semibold">{tahun.tahun}</h4>
-                      <div className="space-y-1">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium">Total Anggaran</span>
-                          <span className="text-sm text-muted-foreground">{tahun.total}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium">Belanja</span>
-                          <span className="text-sm text-muted-foreground">{tahun.belanja}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium">Pembiayaan</span>
-                          <span className="text-sm text-muted-foreground">{tahun.pembiayaan}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="pengelolaan" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Briefcase className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{rpjmdesData.pengelolaan.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Tahapan pengelolaan RPJMDes
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {rpjmdesData.pengelolaan.content.tahapan.map((tahap, index) => (
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Building2 className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rpjmData.program.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program pembangunan RPJMDes {rpjmData.umum.content.periode}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rpjmData.program.content.ekonomi.nama}</h4>
+                <p className="text-sm text-muted-foreground">
+                  {rpjmData.program.content.ekonomi.deskripsi}
+                </p>
+              </div>
+              <div className="space-y-4">
+                {rpjmData.program.content.ekonomi.kegiatan.map((kegiatan, index) => (
                   <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h4 className="font-semibold">{tahap.nama}</h4>
-                        <p className="text-sm text-muted-foreground">{tahap.deskripsi}</p>
+                    <h5 className="font-medium">{kegiatan.nama}</h5>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Target</span>
+                        <span>{kegiatan.target}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Indikator</span>
+                        <span>{kegiatan.indikator}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Waktu</span>
+                        <span>{kegiatan.waktu}</span>
                       </div>
                     </div>
                   </div>
                 ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rpjmData.program.content.sosial.nama}</h4>
+                <p className="text-sm text-muted-foreground">
+                  {rpjmData.program.content.sosial.deskripsi}
+                </p>
+              </div>
+              <div className="space-y-4">
+                {rpjmData.program.content.sosial.kegiatan.map((kegiatan, index) => (
+                  <div key={index} className="space-y-2">
+                    <h5 className="font-medium">{kegiatan.nama}</h5>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Target</span>
+                        <span>{kegiatan.target}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Indikator</span>
+                        <span>{kegiatan.indikator}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Waktu</span>
+                        <span>{kegiatan.waktu}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Target className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rpjmData.sasaran.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Sasaran pembangunan RPJMDes {rpjmData.umum.content.periode}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rpjmData.sasaran.content.ekonomi.nama}</h4>
+              </div>
+              <ul className="space-y-2">
+                {rpjmData.sasaran.content.ekonomi.target.map((target, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">{target}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rpjmData.sasaran.content.sosial.nama}</h4>
+              </div>
+              <ul className="space-y-2">
+                {rpjmData.sasaran.content.sosial.target.map((target, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">{target}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rpjmData.sasaran.content.lingkungan.nama}</h4>
+              </div>
+              <ul className="space-y-2">
+                {rpjmData.sasaran.content.lingkungan.target.map((target, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <Leaf className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">{target}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <DollarSign className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rpjmData.pendanaan.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Sumber pendanaan RPJMDes {rpjmData.umum.content.periode}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">{rpjmData.pendanaan.content.dana_desa.nama}</span>
+                <div className="text-right">
+                  <span className="font-medium">{rpjmData.pendanaan.content.dana_desa.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rpjmData.pendanaan.content.dana_desa.persentase})</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">{rpjmData.pendanaan.content.pad.nama}</span>
+                <div className="text-right">
+                  <span className="font-medium">{rpjmData.pendanaan.content.pad.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rpjmData.pendanaan.content.pad.persentase})</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">{rpjmData.pendanaan.content.bantuan.nama}</span>
+                <div className="text-right">
+                  <span className="font-medium">{rpjmData.pendanaan.content.bantuan.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rpjmData.pendanaan.content.bantuan.persentase})</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default RPJMDes; 
+export default RPJMDes;

@@ -1,123 +1,119 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Users, LineChart, Briefcase } from "lucide-react";
+import { FileText, Building2, Users, DollarSign } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
 
 const RKPDes = () => {
-  const rkpdesData = {
+  const rkpData = {
     umum: {
       title: "Informasi Umum",
       icon: FileText,
       content: {
-        deskripsi: "RKPDes (Rencana Kerja Pemerintah Desa) adalah dokumen perencanaan tahunan yang berisi program dan kegiatan yang akan dilaksanakan oleh Pemerintah Desa dalam satu tahun anggaran. RKPDes disusun berdasarkan RPJMDes dan mempertimbangkan ketersediaan sumber daya.",
-        data: [
-          {
-            label: "Tahun Anggaran",
-            value: "2024"
-          },
-          {
-            label: "Periode",
-            value: "Januari - Desember 2024"
-          },
-          {
-            label: "Status",
-            value: "Disahkan"
-          },
-          {
-            label: "Nomor Peraturan",
-            value: "001/PERDES/2024"
-          }
-        ]
+        tahun: "2024",
+        periode: "1 Januari - 31 Desember 2024",
+        deskripsi: "Rencana Kerja Pemerintah Desa tahun 2024",
+        status: "Disetujui",
+        tanggal_persetujuan: "15 Desember 2023"
       }
     },
     program: {
-      title: "Program",
+      title: "Program dan Kegiatan",
+      icon: Building2,
+      content: {
+        infrastruktur: {
+          nama: "Pembangunan Infrastruktur",
+          deskripsi: "Pembangunan dan perbaikan sarana prasarana desa",
+          kegiatan: [
+            {
+              nama: "Pembangunan Jalan Desa",
+              lokasi: "Dusun I",
+              anggaran: "Rp 200.000.000",
+              target: "500 meter",
+              waktu: "Januari - Maret 2024"
+            },
+            {
+              nama: "Perbaikan Drainase",
+              lokasi: "Dusun II",
+              anggaran: "Rp 150.000.000",
+              target: "300 meter",
+              waktu: "Februari - April 2024"
+            },
+            {
+              nama: "Pembangunan MCK Umum",
+              lokasi: "Dusun III",
+              anggaran: "Rp 100.000.000",
+              target: "2 unit",
+              waktu: "Maret - Mei 2024"
+            }
+          ]
+        },
+        pemberdayaan: {
+          nama: "Pemberdayaan Masyarakat",
+          deskripsi: "Program peningkatan kapasitas masyarakat",
+          kegiatan: [
+            {
+              nama: "Pelatihan UMKM",
+              lokasi: "Balai Desa",
+              anggaran: "Rp 50.000.000",
+              target: "50 peserta",
+              waktu: "April - Juni 2024"
+            },
+            {
+              nama: "Pendampingan Kelompok Tani",
+              lokasi: "Lahan Pertanian",
+              anggaran: "Rp 75.000.000",
+              target: "5 kelompok",
+              waktu: "Mei - Juli 2024"
+            }
+          ]
+        }
+      }
+    },
+    pendanaan: {
+      title: "Sumber Pendanaan",
+      icon: DollarSign,
+      content: {
+        dana_desa: {
+          nama: "Dana Desa",
+          jumlah: "Rp 800.000.000",
+          persentase: "80%"
+        },
+        pad: {
+          nama: "Pendapatan Asli Desa",
+          jumlah: "Rp 150.000.000",
+          persentase: "15%"
+        },
+        bantuan: {
+          nama: "Bantuan Pemerintah",
+          jumlah: "Rp 50.000.000",
+          persentase: "5%"
+        }
+      }
+    },
+    monitoring: {
+      title: "Monitoring dan Evaluasi",
       icon: Users,
       content: {
-        kategori: [
+        jadwal: [
           {
-            nama: "Pembangunan",
-            program: [
-              "Pembangunan Jalan Desa",
-              "Pembangunan Drainase",
-              "Pembangunan MCK Umum",
-              "Pembangunan Taman Desa"
-            ]
+            periode: "Triwulan I",
+            waktu: "Maret 2024",
+            fokus: "Evaluasi program infrastruktur"
           },
           {
-            nama: "Pemberdayaan",
-            program: [
-              "Pelatihan UMKM",
-              "Pendampingan Kelompok Tani",
-              "Pengembangan BUMDes",
-              "Pemberdayaan Perempuan"
-            ]
+            periode: "Triwulan II",
+            waktu: "Juni 2024",
+            fokus: "Evaluasi program pemberdayaan"
           },
           {
-            nama: "Pelayanan",
-            program: [
-              "Peningkatan Pelayanan Administrasi",
-              "Pengembangan Sistem Informasi Desa",
-              "Peningkatan Kualitas SDM Aparatur",
-              "Pengembangan Layanan Publik"
-            ]
+            periode: "Triwulan III",
+            waktu: "September 2024",
+            fokus: "Evaluasi keseluruhan program"
           },
           {
-            nama: "Sosial Budaya",
-            program: [
-              "Pengembangan Pendidikan",
-              "Peningkatan Kesehatan",
-              "Pelestarian Budaya",
-              "Pengembangan Olahraga"
-            ]
-          }
-        ]
-      }
-    },
-    anggaran: {
-      title: "Anggaran",
-      icon: LineChart,
-      content: {
-        tahun: [
-          {
-            tahun: "2024",
-            total: "Rp 1.000.000.000",
-            belanja: "Rp 800.000.000",
-            pembiayaan: "Rp 200.000.000",
-            sumber: [
-              "Dana Desa",
-              "APBD",
-              "APBN",
-              "Swadaya Masyarakat"
-            ]
-          }
-        ]
-      }
-    },
-    pengelolaan: {
-      title: "Pengelolaan",
-      icon: Briefcase,
-      content: {
-        tahapan: [
-          {
-            nama: "Perencanaan",
-            deskripsi: "Penyusunan RKPDes berdasarkan RPJMDes dan aspirasi masyarakat"
-          },
-          {
-            nama: "Pembahasan",
-            deskripsi: "Musyawarah Desa untuk membahas dan menyepakati RKPDes"
-          },
-          {
-            nama: "Penetapan",
-            deskripsi: "Penetapan RKPDes melalui Peraturan Desa"
-          },
-          {
-            nama: "Pelaksanaan",
-            deskripsi: "Implementasi program dan kegiatan sesuai RKPDes"
-          },
-          {
-            nama: "Pengawasan",
-            deskripsi: "Monitoring dan evaluasi pelaksanaan RKPDes"
+            periode: "Triwulan IV",
+            waktu: "Desember 2024",
+            fokus: "Evaluasi akhir tahun"
           }
         ]
       }
@@ -136,155 +132,191 @@ const RKPDes = () => {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">RKPDes</h2>
           <p className="text-muted-foreground">
-            Rencana Kerja Pemerintah Desa
+            Rencana Kerja Pemerintah Desa tahun {rkpData.umum.content.tahun}
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
-            <TabsTrigger value="program">Program</TabsTrigger>
-            <TabsTrigger value="anggaran">Anggaran</TabsTrigger>
-            <TabsTrigger value="pengelolaan">Pengelolaan</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="umum" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{rkpdesData.umum.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Informasi dasar RKPDes
-                  </p>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {rkpdesData.umum.content.deskripsi}
-                  </p>
-                        </div>
-                        <div className="space-y-2">
-                  {rkpdesData.umum.content.data.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{item.label}</span>
-                      <span className="text-sm text-muted-foreground">{item.value}</span>
-                        </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="program" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Users className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{rkpdesData.program.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program-program RKPDes
-                  </p>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rkpData.umum.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Informasi dasar RKPDes {rkpData.umum.content.tahun}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold mb-2">Detail RKPDes</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Tahun</span>
+                    <span className="font-medium">{rkpData.umum.content.tahun}</span>
                   </div>
-                </CardHeader>
-              <CardContent className="space-y-6">
-                {rkpdesData.program.content.kategori.map((kategori, index) => (
-                  <div key={index} className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold">{kategori.nama}</h4>
-                      <ul className="space-y-2 mt-2">
-                        {kategori.program.map((program, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{program}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Periode</span>
+                    <span className="font-medium">{rkpData.umum.content.periode}</span>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="anggaran" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <LineChart className="h-8 w-8 text-primary" />
-                  <div>
-                  <CardTitle>{rkpdesData.anggaran.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Anggaran RKPDes
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-4">
-                  {rkpdesData.anggaran.content.tahun.map((tahun, index) => (
-                    <div key={index} className="space-y-2">
-                      <h4 className="font-semibold">{tahun.tahun}</h4>
-                      <div className="space-y-1">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium">Total Anggaran</span>
-                          <span className="text-sm text-muted-foreground">{tahun.total}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium">Belanja</span>
-                          <span className="text-sm text-muted-foreground">{tahun.belanja}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium">Pembiayaan</span>
-                          <span className="text-sm text-muted-foreground">{tahun.pembiayaan}</span>
-                        </div>
-                        <div className="mt-4">
-                          <h5 className="text-sm font-medium mb-2">Sumber Dana</h5>
-                          <ul className="space-y-1">
-                            {tahun.sumber.map((sumber, idx) => (
-                              <li key={idx} className="text-sm text-muted-foreground">
-                                {sumber}
-                        </li>
-                      ))}
-                    </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Status</span>
+                    <span className="font-medium">{rkpData.umum.content.status}</span>
                   </div>
-                </CardContent>
-              </Card>
-          </TabsContent>
-
-          <TabsContent value="pengelolaan" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Briefcase className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{rkpdesData.pengelolaan.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Tahapan pengelolaan RKPDes
-                  </p>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Tanggal Persetujuan</span>
+                    <span className="font-medium">{rkpData.umum.content.tanggal_persetujuan}</span>
+                  </div>
                 </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {rkpdesData.pengelolaan.content.tahapan.map((tahap, index) => (
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Building2 className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rkpData.program.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program dan kegiatan RKPDes {rkpData.umum.content.tahun}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rkpData.program.content.infrastruktur.nama}</h4>
+                <p className="text-sm text-muted-foreground">
+                  {rkpData.program.content.infrastruktur.deskripsi}
+                </p>
+              </div>
+              <div className="space-y-4">
+                {rkpData.program.content.infrastruktur.kegiatan.map((kegiatan, index) => (
                   <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h4 className="font-semibold">{tahap.nama}</h4>
-                        <p className="text-sm text-muted-foreground">{tahap.deskripsi}</p>
+                    <h5 className="font-medium">{kegiatan.nama}</h5>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Lokasi</span>
+                        <span>{kegiatan.lokasi}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Anggaran</span>
+                        <span>{kegiatan.anggaran}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Target</span>
+                        <span>{kegiatan.target}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Waktu</span>
+                        <span>{kegiatan.waktu}</span>
                       </div>
                     </div>
                   </div>
                 ))}
-                </CardContent>
-              </Card>
-          </TabsContent>
-        </Tabs>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold">{rkpData.program.content.pemberdayaan.nama}</h4>
+                <p className="text-sm text-muted-foreground">
+                  {rkpData.program.content.pemberdayaan.deskripsi}
+                </p>
+              </div>
+              <div className="space-y-4">
+                {rkpData.program.content.pemberdayaan.kegiatan.map((kegiatan, index) => (
+                  <div key={index} className="space-y-2">
+                    <h5 className="font-medium">{kegiatan.nama}</h5>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Lokasi</span>
+                        <span>{kegiatan.lokasi}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Anggaran</span>
+                        <span>{kegiatan.anggaran}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Target</span>
+                        <span>{kegiatan.target}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Waktu</span>
+                        <span>{kegiatan.waktu}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <DollarSign className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rkpData.pendanaan.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Sumber pendanaan RKPDes {rkpData.umum.content.tahun}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">{rkpData.pendanaan.content.dana_desa.nama}</span>
+                <div className="text-right">
+                  <span className="font-medium">{rkpData.pendanaan.content.dana_desa.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rkpData.pendanaan.content.dana_desa.persentase})</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">{rkpData.pendanaan.content.pad.nama}</span>
+                <div className="text-right">
+                  <span className="font-medium">{rkpData.pendanaan.content.pad.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rkpData.pendanaan.content.pad.persentase})</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">{rkpData.pendanaan.content.bantuan.nama}</span>
+                <div className="text-right">
+                  <span className="font-medium">{rkpData.pendanaan.content.bantuan.jumlah}</span>
+                  <span className="text-muted-foreground ml-2">({rkpData.pendanaan.content.bantuan.persentase})</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Users className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{rkpData.monitoring.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Jadwal monitoring dan evaluasi RKPDes {rkpData.umum.content.tahun}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {rkpData.monitoring.content.jadwal.map((jadwal, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h4 className="font-semibold">{jadwal.periode}</h4>
+                    <p className="text-sm text-muted-foreground">{jadwal.fokus}</p>
+                  </div>
+                  <span className="text-muted-foreground">{jadwal.waktu}</span>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default RKPDes; 
+export default RKPDes;
