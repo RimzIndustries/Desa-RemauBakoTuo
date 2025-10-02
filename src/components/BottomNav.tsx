@@ -406,9 +406,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
               <SheetDescription className="sr-only">Menu untuk mengakses informasi profil dan kelembagaan desa</SheetDescription>
               <ScrollArea className="h-full">
                 <div className="space-y-3 sm:space-y-4 py-6 sm:py-8">
-                  <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
+                  <Accordion type="single" collapsible defaultValue="Profil" className="w-full">
                     {Object.entries(profileMenuItems).map(([category, items], index) => (
-                      <AccordionItem key={index} value={`item-${index}`} className="border-black/10">
+                      <AccordionItem key={index} value={category} className="border-black/10">
                         <AccordionTrigger className="px-2 sm:px-3 text-black hover:text-black hover:no-underline border-b border-black/10 pb-2 transition-all hover:bg-black/10">
                           <span className="font-poppins font-semibold text-sm sm:text-base">{category}</span>
                         </AccordionTrigger>
@@ -468,9 +468,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
               <SheetDescription className="sr-only">Menu untuk mengakses informasi pembangunan desa</SheetDescription>
               <ScrollArea className="h-full">
                 <div className="space-y-3 sm:space-y-4 py-6 sm:py-8">
-                <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
+                <Accordion type="single" collapsible defaultValue="Pembangunan" className="w-full">
                     {Object.entries(pembangunanMenuItems).map(([category, items], index) => (
-                      <AccordionItem key={index} value={`item-${index}`} className="border-black/10">
+                      <AccordionItem key={index} value={category} className="border-black/10">
                         <AccordionTrigger className="px-2 sm:px-3 text-black hover:text-black hover:no-underline border-b border-black/10 pb-2 transition-all hover:bg-black/10">
                           <span className="font-poppins font-semibold text-sm sm:text-base">{category}</span>
                         </AccordionTrigger>
@@ -519,9 +519,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
               <SheetDescription className="sr-only">Menu untuk mengakses informasi dana desa dan ekonomi</SheetDescription>
               <ScrollArea className="h-full">
                 <div className="space-y-3 sm:space-y-4 py-6 sm:py-8">
-                   <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
+                   <Accordion type="single" collapsible defaultValue="Dana Desa" className="w-full">
                     {Object.entries(danaDesaMenuItems).map(([category, items], index) => (
-                      <AccordionItem key={index} value={`item-${index}`} className="border-black/10">
+                      <AccordionItem key={index} value={category} className="border-black/10">
                         <AccordionTrigger className="px-2 sm:px-3 text-black hover:text-black hover:no-underline border-b border-black/10 pb-2 transition-all hover:bg-black/10">
                           <span className="font-poppins font-semibold text-sm sm:text-base">{category}</span>
                         </AccordionTrigger>
@@ -570,9 +570,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
               <SheetDescription className="sr-only">Menu untuk mengakses informasi indeks dan aktivitas desa</SheetDescription>
               <ScrollArea className="h-full">
                 <div className="space-y-3 sm:space-y-4 py-6 sm:py-8">
-                  <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
+                  <Accordion type="single" collapsible defaultValue="Indeks Desa" className="w-full">
                     {Object.entries(indeksMenuItems).map(([category, items], index) => (
-                      <AccordionItem key={index} value={`item-${index}`} className="border-black/10">
+                      <AccordionItem key={index} value={category} className="border-black/10">
                         <AccordionTrigger className="px-2 sm:px-3 text-black hover:text-black hover:no-underline border-b border-black/10 pb-2 transition-all hover:bg-black/10">
                           <span className="font-poppins font-semibold text-sm sm:text-base">{category}</span>
                         </AccordionTrigger>
@@ -615,6 +615,7 @@ export default BottomNav;
 
 
 
+    
     
     
     

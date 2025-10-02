@@ -152,9 +152,9 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
                 <SheetDescription className="sr-only">Menu utama untuk mengakses berbagai layanan dan informasi desa</SheetDescription>
                 <ScrollArea className="h-full">
                   <div className="space-y-3 sm:space-y-4 py-6 sm:py-8">
-                    <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
+                    <Accordion type="single" collapsible defaultValue="Layanan" className="w-full">
                       {menuItems.map((category, index) => (
-                        <AccordionItem key={index} value={`item-${index}`} className="border-black/10">
+                        <AccordionItem key={index} value={category.title} className="border-black/10">
                           <AccordionTrigger className="px-2 sm:px-3 text-black hover:text-black hover:no-underline border-b border-black/10 pb-2 transition-all hover:bg-black/10">
                             <span className="font-poppins font-semibold text-sm sm:text-base">{category.title}</span>
                           </AccordionTrigger>
@@ -229,4 +229,5 @@ const TopNav: React.FC<TopNavProps> = ({ className, hasNewNews = false }) => {
 
 export default TopNav;
 
+    
     
