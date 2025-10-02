@@ -8,7 +8,7 @@ const ProfilDesa = () => {
       title: "Profil Umum",
       icon: Home,
       content: {
-        deskripsi: "Desa Remau Bako Tuo adalah sebuah desa yang terletak di Kecamatan Sadu, Kabupaten Tanjung Jabung Timur, Jambi. Desa ini memiliki luas wilayah 12.000 hektar dan berpenduduk 2.900 jiwa.",
+        deskripsi: "Desa kami merupakan sebuah komunitas yang hidup dan berkembang, terletak di wilayah pedesaan yang subur. Sebagian besar penduduknya menggantungkan hidup dari sektor pertanian, perkebunan, dan perikanan, memanfaatkan kekayaan alam yang melimpah.",
         data: [
           { label: "Nama Desa", value: "Remau Bako Tuo" },
           { label: "Kecamatan", value: "Sadu" },
@@ -21,12 +21,12 @@ const ProfilDesa = () => {
       title: "Demografi",
       icon: Users,
       content: {
-        deskripsi: "Data kependudukan Desa Remau Bako Tuo",
+        deskripsi: "Berikut adalah data kependudukan Desa Remau Bako Tuo berdasarkan sensus terakhir.",
         data: [
-          { label: "Jumlah Penduduk", value: "2.900 Jiwa" },
-          { label: "Jumlah Laki-laki", value: "1.500 Jiwa" },
-          { label: "Jumlah Perempuan", value: "1.400 Jiwa" },
-          { label: "Jumlah KK", value: "800 KK" }
+          { label: "Jumlah Penduduk", value: "Sekitar 2.900 Jiwa" },
+          { label: "Jumlah Laki-laki", value: "Sekitar 1.500 Jiwa" },
+          { label: "Jumlah Perempuan", value: "Sekitar 1.400 Jiwa" },
+          { label: "Jumlah Kepala Keluarga", value: "Sekitar 800 KK" }
         ]
       }
     },
@@ -34,7 +34,7 @@ const ProfilDesa = () => {
       title: "Geografi",
       icon: MapPin,
       content: {
-        deskripsi: "Letak geografis dan batas wilayah Desa Remau Bako Tuo",
+        deskripsi: "Desa kami memiliki letak geografis yang strategis dengan batas-batas wilayah yang jelas.",
         data: [
           { label: "Batas Utara", value: "Desa Labuhan Pering" },
           { label: "Batas Selatan", value: "Desa Sungai Cemara" },
@@ -48,8 +48,8 @@ const ProfilDesa = () => {
       icon: FileText,
       content: {
         dokumen: [
-          { judul: "Profil Desa 2024", tahun: "2024", status: "Dokumen Resmi" },
-          { judul: "Data Statistik Desa 2024", tahun: "2024", status: "Dokumen Resmi" }
+          { judul: "Profil Desa Lengkap", tahun: "2024", status: "Dokumen Resmi" },
+          { judul: "Data Statistik Desa", tahun: "2024", status: "Dokumen Resmi" }
         ]
       }
     }

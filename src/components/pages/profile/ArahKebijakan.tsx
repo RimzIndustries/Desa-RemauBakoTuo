@@ -5,17 +5,17 @@ import { Compass, Target, ArrowRight, FileText } from "lucide-react";
 const ArahKebijakan = () => {
   const arahKebijakanData = {
     arah: {
-      title: "Arah Kebijakan",
+      title: "Arah Kebijakan Pembangunan Desa",
       icon: Compass,
       content: {
-        deskripsi: "Arah kebijakan pembangunan Desa Remau Bakotuo untuk mencapai visi dan misi yang telah ditetapkan",
+        deskripsi: "Arah kebijakan pembangunan desa dirancang sebagai pedoman strategis untuk mewujudkan visi dan misi desa dalam periode RPJMDes.",
         periode: "2021-2027",
         poin: [
-          "Penguatan kelembagaan desa dan masyarakat",
-          "Pengembangan ekonomi berbasis potensi lokal",
-          "Pembangunan infrastruktur yang berkelanjutan",
-          "Peningkatan kualitas sumber daya manusia",
-          "Pengembangan wisata desa yang berkelanjutan"
+          "Peningkatan Kualitas Sumber Daya Manusia.",
+          "Penguatan Ekonomi Lokal yang Berdaya Saing.",
+          "Pembangunan Infrastruktur yang Merata dan Berwawasan Lingkungan.",
+          "Reformasi Tata Kelola Pemerintahan Desa.",
+          "Pemeliharaan Kerukunan Sosial dan Budaya."
         ]
       }
     },
@@ -25,71 +25,30 @@ const ArahKebijakan = () => {
       content: {
         prioritas: [
           {
-            judul: "Penguatan Ekonomi",
-            deskripsi: "Mengembangkan ekonomi desa berbasis potensi lokal",
+            judul: "Sektor Pendidikan dan Kesehatan",
+            deskripsi: "Meningkatkan akses dan mutu layanan pendidikan dan kesehatan sebagai fondasi utama pembangunan manusia.",
             program: [
-              "Pengembangan UMKM",
-              "Pemberdayaan nelayan dan petani",
-              "Pengembangan wisata desa",
-              "Peningkatan akses permodalan"
+              "Rehabilitasi gedung sekolah dan posyandu.",
+              "Pemberian beasiswa bagi siswa berprestasi dan kurang mampu.",
+              "Program desa siaga sehat dan pencegahan stunting."
             ]
           },
           {
-            judul: "Pembangunan Infrastruktur",
-            deskripsi: "Membangun infrastruktur yang berkelanjutan",
+            judul: "Sektor Ekonomi Kerakyatan",
+            deskripsi: "Menggerakkan potensi ekonomi lokal untuk meningkatkan pendapatan dan kesejahteraan masyarakat.",
             program: [
-              "Pembangunan jalan desa",
-              "Pengembangan fasilitas umum",
-              "Peningkatan akses air bersih",
-              "Pengembangan listrik desa"
+              "Penguatan BUMDes dengan unit usaha baru.",
+              "Pelatihan digital marketing bagi pelaku UMKM.",
+              "Pengembangan produk unggulan desa."
             ]
           },
           {
-            judul: "Pemberdayaan Masyarakat",
-            deskripsi: "Meningkatkan kualitas sumber daya manusia",
+            judul: "Sektor Infrastruktur Dasar",
+            deskripsi: "Memenuhi kebutuhan infrastruktur dasar untuk mendukung konektivitas dan aktivitas warga.",
             program: [
-              "Peningkatan pendidikan",
-              "Pelatihan keterampilan",
-              "Penguatan kelembagaan",
-              "Peningkatan kesehatan"
-            ]
-          }
-        ]
-      }
-    },
-    strategi: {
-      title: "Strategi Implementasi",
-      icon: ArrowRight,
-      content: {
-        strategi: [
-          {
-            judul: "Penguatan Kelembagaan",
-            deskripsi: "Memperkuat kelembagaan desa dan masyarakat",
-            indikator: [
-              "Terbentuknya BUMDes yang kuat",
-              "Penguatan LPMD",
-              "Pemberdayaan PKK",
-              "Penguatan kelompok masyarakat"
-            ]
-          },
-          {
-            judul: "Pengembangan Ekonomi",
-            deskripsi: "Mengembangkan ekonomi desa berbasis potensi",
-            indikator: [
-              "Peningkatan UMKM",
-              "Pengembangan wisata",
-              "Peningkatan pertanian",
-              "Pengembangan perikanan"
-            ]
-          },
-          {
-            judul: "Pembangunan Berkelanjutan",
-            deskripsi: "Membangun desa secara berkelanjutan",
-            indikator: [
-              "Infrastruktur yang baik",
-              "Lingkungan yang bersih",
-              "Sumber daya yang terjaga",
-              "Masyarakat yang sehat"
+              "Pembangunan jalan usaha tani dan jalan lingkungan.",
+              "Perluasan jaringan air bersih perpipaan.",
+              "Pembangunan sarana olahraga dan ruang terbuka hijau."
             ]
           }
         ]
@@ -103,12 +62,12 @@ const ArahKebijakan = () => {
           {
             judul: "RPJMDes 2021-2027",
             tahun: "2021",
-            status: "Dokumen Resmi"
+            status: "Dokumen Induk Perencanaan"
           },
           {
-            judul: "RKPDes 2024",
-            tahun: "2024",
-            status: "Dokumen Resmi"
+            judul: "RKPDes Tahunan",
+            tahun: "Setiap Tahun",
+            status: "Dokumen Operasional Tahunan"
           }
         ]
       }
@@ -131,22 +90,19 @@ const ArahKebijakan = () => {
             <div>
               <CardTitle>{arahKebijakanData.arah.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Arah kebijakan pembangunan Desa Remau Bakotuo
+                Periode {arahKebijakanData.arah.content.periode}
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {arahKebijakanData.arah.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Periode: {arahKebijakanData.arah.content.periode}
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-2">Poin-poin Arah Kebijakan</h4>
+              <h4 className="font-semibold mb-2">Lima Pilar Kebijakan</h4>
               <ul className="space-y-2">
                 {arahKebijakanData.arah.content.poin.map((item, index) => (
                   <li key={index} className="flex items-start gap-2">
@@ -165,7 +121,7 @@ const ArahKebijakan = () => {
             <div>
               <CardTitle>{arahKebijakanData.prioritas.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Prioritas pembangunan Desa Remau Bakotuo
+                Fokus utama pembangunan desa
               </p>
             </div>
           </CardHeader>
@@ -179,6 +135,7 @@ const ArahKebijakan = () => {
                   </p>
                 </div>
                 <ul className="space-y-2">
+                  <h5 className="font-medium text-sm text-foreground">Contoh Program:</h5>
                   {item.program.map((program, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <Target className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
@@ -193,43 +150,11 @@ const ArahKebijakan = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center gap-4">
-            <ArrowRight className="h-8 w-8 text-primary" />
-            <div>
-              <CardTitle>{arahKebijakanData.strategi.title}</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Strategi implementasi kebijakan Desa Remau Bakotuo
-              </p>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {arahKebijakanData.strategi.content.strategi.map((item, index) => (
-              <div key={index} className="space-y-4">
-                <div>
-                  <h4 className="font-semibold">{item.judul}</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {item.deskripsi}
-                  </p>
-                </div>
-                <ul className="space-y-2">
-                  {item.indikator.map((indikator, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <ArrowRight className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground">{indikator}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-4">
             <FileText className="h-8 w-8 text-primary" />
             <div>
               <CardTitle>{arahKebijakanData.dokumen.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Dokumen kebijakan Desa Remau Bakotuo
+                Landasan hukum perencanaan pembangunan
               </p>
             </div>
           </CardHeader>
@@ -239,12 +164,12 @@ const ArahKebijakan = () => {
                 <h4 className="font-semibold">{item.judul}</h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tahun</span>
-                    <span className="font-medium">{item.tahun}</span>
+                    <span className="text-muted-foreground">Keterangan</span>
+                    <span className="font-medium">{item.status}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Status</span>
-                    <span className="font-medium">{item.status}</span>
+                    <span className="text-muted-foreground">Frekuensi</span>
+                    <span className="font-medium">{item.tahun}</span>
                   </div>
                 </div>
               </div>

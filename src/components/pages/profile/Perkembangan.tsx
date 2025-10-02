@@ -8,29 +8,27 @@ const Perkembangan = () => {
       title: "Perkembangan Demografi",
       icon: Users,
       content: {
-        deskripsi: "Perkembangan jumlah penduduk dan komposisi demografi Desa Remau Bako Tuo",
-        periode: "2020-2024",
+        deskripsi: "Dinamika kependudukan Desa Remau Bako Tuo menunjukkan tren pertumbuhan penduduk yang stabil, didorong oleh angka kelahiran dan migrasi masuk dari daerah sekitar.",
+        periode: "Data 5 Tahun Terakhir",
         data: [
           {
-            judul: "Jumlah Penduduk",
-            deskripsi: "Perkembangan jumlah penduduk desa",
+            judul: "Pertumbuhan Penduduk",
+            deskripsi: "Jumlah penduduk desa terus bertambah seiring dengan perkembangan desa.",
             detail: [
               "2020: 2.500 jiwa",
               "2021: 2.600 jiwa",
               "2022: 2.700 jiwa",
               "2023: 2.800 jiwa",
-              "2024: 2.900 jiwa"
+              "2024: 2.900 jiwa (Proyeksi)"
             ]
           },
           {
-            judul: "Komposisi Penduduk",
-            deskripsi: "Komposisi penduduk berdasarkan usia dan jenis kelamin",
+            judul: "Struktur Usia",
+            deskripsi: "Komposisi penduduk didominasi oleh usia produktif, yang menjadi modal penting pembangunan.",
             detail: [
-              "Usia 0-14 tahun: 25%",
-              "Usia 15-64 tahun: 65%",
-              "Usia 65+ tahun: 10%",
-              "Laki-laki: 48%",
-              "Perempuan: 52%"
+              "Usia Produktif (15-64 tahun): ~65%",
+              "Usia Anak (0-14 tahun): ~25%",
+              "Usia Lanjut (65+ tahun): ~10%"
             ]
           }
         ]
@@ -40,27 +38,25 @@ const Perkembangan = () => {
       title: "Perkembangan Infrastruktur",
       icon: Home,
       content: {
-        deskripsi: "Perkembangan infrastruktur desa dari tahun ke tahun",
-        periode: "2020-2024",
+        deskripsi: "Pembangunan infrastruktur terus digalakkan untuk meningkatkan konektivitas dan kualitas hidup masyarakat.",
+        periode: "Capaian 5 Tahun Terakhir",
         data: [
           {
-            judul: "Infrastruktur Dasar",
-            deskripsi: "Perkembangan infrastruktur dasar desa",
+            judul: "Infrastruktur Transportasi",
+            deskripsi: "Peningkatan aksesibilitas antar dusun dan ke pusat kecamatan.",
             detail: [
-              "Pembangunan jalan desa 5 km",
-              "Peningkatan drainase 3 km",
-              "Pembangunan MCK umum 10 unit",
-              "Peningkatan fasilitas air bersih"
+              "Pembangunan jalan desa sepanjang 5 km.",
+              "Perbaikan jembatan dan gorong-gorong.",
+              "Pemasangan lampu penerangan jalan umum di 50 titik."
             ]
           },
           {
-            judul: "Infrastruktur Sosial",
-            deskripsi: "Perkembangan infrastruktur sosial desa",
+            judul: "Infrastruktur Layanan Dasar",
+            deskripsi: "Peningkatan akses terhadap layanan dasar bagi masyarakat.",
             detail: [
-              "Pembangunan posyandu",
-              "Peningkatan fasilitas pendidikan",
-              "Pembangunan lapangan olahraga",
-              "Peningkatan fasilitas ibadah"
+              "Rehabilitasi 3 gedung Posyandu.",
+              "Pembangunan 10 unit MCK umum.",
+              "Perluasan jaringan pipa air bersih ke 100 rumah tangga."
             ]
           }
         ]
@@ -70,27 +66,25 @@ const Perkembangan = () => {
       title: "Perkembangan Ekonomi",
       icon: TrendingUp,
       content: {
-        deskripsi: "Perkembangan ekonomi dan kesejahteraan masyarakat desa",
-        periode: "2020-2024",
+        deskripsi: "Perekonomian desa menunjukkan tren positif dengan diversifikasi usaha dan peningkatan pendapatan masyarakat.",
+        periode: "Data 5 Tahun Terakhir",
         data: [
           {
-            judul: "Pertumbuhan Ekonomi",
-            deskripsi: "Perkembangan ekonomi desa",
+            judul: "Peningkatan Sektor Ekonomi",
+            deskripsi: "Pertumbuhan di berbagai sektor ekonomi lokal.",
             detail: [
-              "Peningkatan UMKM 20%",
-              "Pengembangan sektor pertanian",
-              "Peningkatan sektor jasa",
-              "Pengembangan wisata desa"
+              "Peningkatan jumlah UMKM sebesar 20%.",
+              "Pengembangan BUMDes dengan unit usaha baru (misal: pengelolaan sampah).",
+              "Peningkatan produktivitas hasil pertanian dan perikanan."
             ]
           },
           {
-            judul: "Kesejahteraan",
-            deskripsi: "Perkembangan kesejahteraan masyarakat",
+            judul: "Peningkatan Kesejahteraan",
+            deskripsi: "Dampak positif perkembangan ekonomi terhadap kesejahteraan masyarakat.",
             detail: [
-              "Penurunan angka kemiskinan",
-              "Peningkatan pendapatan per kapita",
-              "Peningkatan akses pendidikan",
-              "Peningkatan akses kesehatan"
+              "Penurunan angka keluarga prasejahtera.",
+              "Peningkatan rata-rata pendapatan per kapita.",
+              "Meningkatnya partisipasi masyarakat dalam program pembangunan."
             ]
           }
         ]
@@ -102,14 +96,14 @@ const Perkembangan = () => {
       content: {
         dokumen: [
           {
-            judul: "Laporan Perkembangan Desa 2024",
-            tahun: "2024",
-            status: "Dokumen Resmi"
+            judul: "Laporan Perkembangan Desa (LPD)",
+            tahun: "Setiap Akhir Tahun Anggaran",
+            status: "Dokumen Publik"
           },
           {
-            judul: "Data Statistik Desa 2020-2024",
-            tahun: "2024",
-            status: "Dokumen Resmi"
+            judul: "Data Pokok Desa (Prodeskel)",
+            tahun: "Diperbarui secara berkala",
+            status: "Sistem Informasi Kemendagri"
           }
         ]
       }
@@ -122,7 +116,7 @@ const Perkembangan = () => {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Perkembangan Desa</h2>
           <p className="text-muted-foreground">
-            Perkembangan Desa Remau Bako Tuo dari tahun ke tahun
+            Potret perkembangan Desa Remau Bako Tuo dari berbagai sektor.
           </p>
         </div>
         <Card>
@@ -131,18 +125,15 @@ const Perkembangan = () => {
             <div>
               <CardTitle>{perkembanganData.demografi.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Perkembangan demografi desa
+                Dinamika Kependudukan Desa
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {perkembanganData.demografi.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Periode: {perkembanganData.demografi.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -173,18 +164,15 @@ const Perkembangan = () => {
             <div>
               <CardTitle>{perkembanganData.infrastruktur.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Perkembangan infrastruktur desa
+                Pembangunan Sarana dan Prasarana
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {perkembanganData.infrastruktur.content.deskripsi}
-              </p>
-               <p className="text-sm text-muted-foreground mt-2">
-                Periode: {perkembanganData.infrastruktur.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -215,18 +203,15 @@ const Perkembangan = () => {
             <div>
               <CardTitle>{perkembanganData.ekonomi.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Perkembangan ekonomi desa
+                Peningkatan Kesejahteraan Masyarakat
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {perkembanganData.ekonomi.content.deskripsi}
-              </p>
-               <p className="text-sm text-muted-foreground mt-2">
-                Periode: {perkembanganData.ekonomi.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -257,7 +242,7 @@ const Perkembangan = () => {
             <div>
               <CardTitle>{perkembanganData.dokumen.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Dokumen perkembangan desa
+                Dokumen resmi perkembangan desa
               </p>
             </div>
           </CardHeader>
@@ -267,11 +252,11 @@ const Perkembangan = () => {
                 <h4 className="font-semibold">{item.judul}</h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tahun</span>
+                    <span className="text-muted-foreground">Frekuensi</span>
                     <span className="font-medium">{item.tahun}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Status</span>
+                    <span className="text-muted-foreground">Sumber</span>
                     <span className="font-medium">{item.status}</span>
                   </div>
                 </div>

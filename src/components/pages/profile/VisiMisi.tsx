@@ -8,17 +8,17 @@ const VisiMisi = () => {
       title: "Visi Desa",
       icon: Target,
       content: {
-        deskripsi: "Visi Desa Remau Bako Tuo untuk periode 2021-2027",
+        deskripsi: "Visi pembangunan Desa Remau Bako Tuo untuk periode 2021-2027 adalah cita-cita bersama yang ingin diwujudkan oleh seluruh elemen masyarakat dan pemerintah desa.",
         periode: "2021-2027",
         visi: [
           {
             judul: "Visi Utama",
-            deskripsi: "Terwujudnya Desa Remau Bako Tuo yang Mandiri, Maju, dan Sejahtera",
+            deskripsi: "“Terwujudnya Desa Remau Bako Tuo yang Maju, Mandiri, dan Sejahtera Berlandaskan Gotong Royong”",
             poin: [
-              "Desa yang mandiri dalam pengelolaan sumber daya",
-              "Masyarakat yang maju dalam pendidikan dan teknologi",
-              "Kesejahteraan yang merata bagi seluruh warga",
-              "Lingkungan yang lestari dan berkelanjutan"
+              "Maju dalam pemikiran, pemanfaatan teknologi, dan kualitas sumber daya manusia.",
+              "Mandiri secara ekonomi dengan mengoptimalkan potensi lokal.",
+              "Sejahtera secara merata bagi seluruh lapisan masyarakat.",
+              "Berlandaskan semangat gotong royong sebagai modal sosial utama."
             ]
           }
         ]
@@ -28,77 +28,34 @@ const VisiMisi = () => {
       title: "Misi Desa",
       icon: ListChecks,
       content: {
-        deskripsi: "Misi Desa Remau Bako Tuo untuk mencapai visi 2021-2027",
+        deskripsi: "Untuk mencapai visi tersebut, dirumuskan beberapa misi sebagai berikut:",
         periode: "2021-2027",
         misi: [
           {
-            judul: "Penguatan Ekonomi",
-            deskripsi: "Mengembangkan perekonomian desa yang berkelanjutan",
+            judul: "Meningkatkan Kualitas Pelayanan Publik",
+            deskripsi: "Mewujudkan tata kelola pemerintahan yang baik, transparan, dan akuntabel berbasis teknologi informasi.",
             program: [
-              "Pengembangan UMKM dan koperasi",
-              "Pemberdayaan ekonomi masyarakat",
-              "Pengembangan sektor pertanian",
-              "Pengembangan wisata desa"
+              "Reformasi birokrasi dan digitalisasi layanan administrasi.",
+              "Peningkatan kapasitas aparatur desa.",
+              "Keterbukaan informasi publik terkait anggaran dan program desa."
             ]
           },
           {
-            judul: "Pembangunan Infrastruktur",
-            deskripsi: "Membangun infrastruktur desa yang modern dan berkelanjutan",
+            judul: "Mengembangkan Perekonomian Desa",
+            deskripsi: "Memperkuat ekonomi lokal melalui pemberdayaan UMKM, BUMDes, dan sektor unggulan desa.",
             program: [
-              "Pembangunan jalan desa",
-              "Peningkatan fasilitas umum",
-              "Pengembangan teknologi informasi",
-              "Peningkatan sanitasi"
+              "Pengembangan BUMDes sebagai motor penggerak ekonomi.",
+              "Pelatihan dan pendampingan bagi pelaku UMKM.",
+              "Optimalisasi potensi pertanian, perikanan, dan pariwisata."
             ]
           },
           {
-            judul: "Pemberdayaan Masyarakat",
-            deskripsi: "Meningkatkan kualitas hidup masyarakat",
+            judul: "Membangun Infrastruktur yang Merata dan Berkelanjutan",
+            deskripsi: "Meningkatkan kualitas dan kuantitas infrastruktur dasar untuk mendukung aktivitas sosial dan ekonomi masyarakat.",
             program: [
-              "Peningkatan pendidikan",
-              "Pengembangan kesehatan",
-              "Pemberdayaan perempuan",
-              "Penguatan kelembagaan"
-            ]
-          }
-        ]
-      }
-    },
-    strategi: {
-      title: "Strategi",
-      icon: ArrowRight,
-      content: {
-        deskripsi: "Strategi pencapaian visi dan misi desa",
-        periode: "2021-2027",
-        strategi: [
-          {
-            judul: "Strategi Ekonomi",
-            deskripsi: "Strategi pengembangan ekonomi desa",
-            program: [
-              "Pengembangan BUMDes",
-              "Pemberdayaan UMKM",
-              "Pengembangan sektor unggulan",
-              "Peningkatan investasi"
-            ]
-          },
-          {
-            judul: "Strategi Pembangunan",
-            deskripsi: "Strategi pembangunan infrastruktur",
-            program: [
-              "Perencanaan partisipatif",
-              "Pemanfaatan teknologi",
-              "Pengelolaan sumber daya",
-              "Pemeliharaan berkelanjutan"
-            ]
-          },
-          {
-            judul: "Strategi Pemberdayaan",
-            deskripsi: "Strategi pemberdayaan masyarakat",
-            program: [
-              "Peningkatan kapasitas",
-              "Penguatan kelembagaan",
-              "Pemberdayaan kelompok",
-              "Pengembangan inovasi"
+              "Pembangunan dan pemeliharaan jalan desa dan lingkungan.",
+              "Peningkatan akses air bersih dan sanitasi layak.",
+              "Pengembangan jaringan irigasi untuk pertanian."
             ]
           }
         ]
@@ -110,12 +67,7 @@ const VisiMisi = () => {
       content: {
         dokumen: [
           {
-            judul: "Dokumen Visi Misi 2021-2027",
-            tahun: "2021",
-            status: "Dokumen Resmi"
-          },
-          {
-            judul: "Lampiran Visi Misi 2021-2027",
+            judul: "Dokumen RPJMDes 2021-2027",
             tahun: "2021",
             status: "Dokumen Resmi"
           }
@@ -130,7 +82,7 @@ const VisiMisi = () => {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Visi dan Misi Desa</h2>
           <p className="text-muted-foreground">
-            Visi dan Misi Desa Remau Bako Tuo periode 2021-2027
+            Visi dan Misi Desa Remau Bako Tuo periode {visiMisiData.visi.content.periode}
           </p>
         </div>
 
@@ -140,28 +92,19 @@ const VisiMisi = () => {
             <div>
               <CardTitle>{visiMisiData.visi.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Visi Desa periode 2021-2027
+                Cita-cita bersama Desa Remau Bako Tuo
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
-                {visiMisiData.visi.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {visiMisiData.visi.content.periode}
-              </p>
-            </div>
             <div className="space-y-6">
               {visiMisiData.visi.content.visi.map((item, index) => (
                 <div key={index} className="space-y-4">
                   <div>
                     <h4 className="font-semibold">{item.judul}</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <blockquote className="mt-2 border-l-2 pl-6 italic text-muted-foreground">
                       {item.deskripsi}
-                    </p>
+                    </blockquote>
                   </div>
                   <ul className="space-y-2">
                     {item.poin.map((poin, idx) => (
@@ -183,20 +126,11 @@ const VisiMisi = () => {
             <div>
               <CardTitle>{visiMisiData.misi.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Misi Desa periode 2021-2027
+                Langkah-langkah strategis untuk mencapai visi
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
-                {visiMisiData.misi.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {visiMisiData.misi.content.periode}
-              </p>
-            </div>
             <div className="space-y-6">
               {visiMisiData.misi.content.misi.map((item, index) => (
                 <div key={index} className="space-y-4">
@@ -222,54 +156,11 @@ const VisiMisi = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center gap-4">
-            <ArrowRight className="h-8 w-8 text-primary" />
-            <div>
-              <CardTitle>{visiMisiData.strategi.title}</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Strategi pencapaian visi dan misi
-              </p>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
-                {visiMisiData.strategi.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {visiMisiData.strategi.content.periode}
-              </p>
-            </div>
-            <div className="space-y-6">
-              {visiMisiData.strategi.content.strategi.map((item, index) => (
-                <div key={index} className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold">{item.judul}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.deskripsi}
-                    </p>
-                  </div>
-                  <ul className="space-y-2">
-                    {item.program.map((program, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <ArrowRight className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{program}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-4">
             <FileText className="h-8 w-8 text-primary" />
             <div>
               <CardTitle>{visiMisiData.dokumen.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Dokumen visi dan misi Desa Remau Bako Tuo
+                Dokumen resmi Visi dan Misi Desa
               </p>
             </div>
           </CardHeader>

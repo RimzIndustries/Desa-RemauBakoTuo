@@ -8,102 +8,99 @@ const SejarahDesa = () => {
       title: "Asal Usul Desa",
       icon: History,
       content: {
-        deskripsi: "Sejarah dan asal usul terbentuknya Desa Remau Bako Tuo",
-        periode: "Tahun 1900",
+        deskripsi: "Sejarah Desa Remau Bako Tuo berakar dari semangat gotong royong para perintis yang membuka lahan permukiman di tengah alam yang subur. Nama desa ini sendiri memiliki makna filosofis yang mendalam.",
+        periode: "Awal Abad ke-20",
         asal: [
           {
             judul: "Pendirian Desa",
-            deskripsi: "Desa Remau Bako Tuo didirikan pada tahun 1900 oleh sekelompok masyarakat yang bermigrasi dari daerah sekitarnya",
+            deskripsi: "Didorong oleh keinginan untuk mencari kehidupan yang lebih baik, sekelompok masyarakat perantau memulai permukiman baru yang kini dikenal sebagai Desa Remau Bako Tuo.",
             detail: [
-              "Pendirian oleh tokoh masyarakat",
-              "Pembentukan struktur pemerintahan",
-              "Penetapan batas wilayah",
-              "Pembentukan adat istiadat"
+              "Dipimpin oleh tokoh masyarakat yang dihormati.",
+              "Membentuk struktur pemerintahan desa sederhana berbasis adat.",
+              "Menetapkan batas-batas wilayah secara musyawarah.",
+              "Membangun nilai-nilai kebersamaan dan gotong royong."
             ]
           },
           {
-            judul: "Nama Desa",
-            deskripsi: "Asal usul penamaan Desa Remau Bako Tuo",
+            judul: "Makna Nama Desa",
+            deskripsi: "Nama 'Remau Bako Tuo' merupakan gabungan kata dari bahasa lokal yang sarat akan harapan dan sejarah.",
             detail: [
-              "Remau: nama sungai yang mengalir di desa",
-              "Bako: nama pohon yang banyak tumbuh",
-              "Tuo: berarti tua/awal",
-              "Gabungan ketiga kata tersebut menjadi nama desa"
+              "'Remau' melambangkan kekuatan dan keberanian.",
+              "'Bako' merujuk pada pohon bakau yang kokoh di pesisir.",
+              "'Tuo' berarti 'tua' atau 'awal', menandakan sebagai permukiman perintis.",
+              "Nama ini mencerminkan harapan agar desa menjadi komunitas yang kuat, tangguh, dan sejahtera."
             ]
           }
         ]
       }
     },
     perkembangan: {
-      title: "Perkembangan Desa",
+      title: "Perkembangan Desa dari Masa ke Masa",
       icon: Calendar,
       content: {
-        deskripsi: "Perkembangan Desa Remau Bako Tuo dari masa ke masa",
+        deskripsi: "Perjalanan Desa Remau Bako Tuo dari sebuah permukiman kecil hingga menjadi desa yang terus berkembang.",
         periode: "1900 - Sekarang",
         perkembangan: [
           {
-            periode: "1900-1945",
-            judul: "Masa Kolonial",
-            deskripsi: "Periode awal pembentukan desa hingga kemerdekaan",
+            periode: "Masa Perintisan (Awal 1900-an)",
+            judul: "Fase Pembentukan Komunitas",
+            deskripsi: "Fokus utama pada masa ini adalah bertahan hidup, membuka lahan pertanian, dan membangun fondasi sosial masyarakat.",
             peristiwa: [
-              "Pembentukan struktur pemerintahan desa",
-              "Pengembangan pertanian",
-              "Pembentukan adat istiadat",
-              "Perjuangan kemerdekaan"
+              "Pembukaan lahan pertanian dan perkebunan secara gotong royong.",
+              "Pembangunan rumah-rumah panggung sederhana.",
+              "Pengenalan sistem irigasi tradisional.",
+              "Pembentukan lembaga adat sebagai pengatur kehidupan sosial."
             ]
           },
           {
-            periode: "1945-2000",
-            judul: "Masa Kemerdekaan",
-            deskripsi: "Periode perkembangan desa pasca kemerdekaan",
+            periode: "Masa Pembangunan (Pasca-Kemerdekaan)",
+            judul: "Fase Pembangunan Infrastruktur dan Layanan Dasar",
+            deskripsi: "Seiring dengan stabilitas nasional, desa mulai membangun fasilitas dasar untuk meningkatkan kualitas hidup warganya.",
             peristiwa: [
-              "Pembangunan infrastruktur dasar",
-              "Pengembangan pendidikan",
-              "Peningkatan perekonomian",
-              "Modernisasi desa"
+              "Pembangunan jalan setapak dan jembatan kayu.",
+              "Pendirian sekolah dasar pertama (Sekolah Rakyat).",
+              "Pembangunan surau/mushola sebagai pusat kegiatan keagamaan.",
+              "Masuknya program pemerintah seperti Bimas dan Inpres Desa."
             ]
           },
           {
-            periode: "2000-Sekarang",
-            judul: "Masa Modern",
-            deskripsi: "Periode perkembangan desa di era modern",
+            periode: "Masa Modern (2000-an - Sekarang)",
+            judul: "Fase Transformasi dan Digitalisasi",
+            deskripsi: "Desa mulai beradaptasi dengan kemajuan zaman, memanfaatkan teknologi untuk pelayanan dan pembangunan.",
             peristiwa: [
-              "Pembangunan infrastruktur modern",
-              "Pengembangan teknologi",
-              "Peningkatan kesejahteraan",
-              "Pengembangan wisata"
+              "Pengerasan jalan desa dengan aspal dan beton.",
+              "Masuknya listrik dan jaringan telekomunikasi.",
+              "Pendirian Badan Usaha Milik Desa (BUMDes).",
+              "Implementasi Sistem Informasi Desa untuk pelayanan publik."
             ]
           }
         ]
       }
     },
     tokoh: {
-      title: "Tokoh Penting",
+      title: "Tokoh-Tokoh Penting",
       icon: Users,
       content: {
-        deskripsi: "Tokoh-tokoh penting dalam sejarah Desa Remau Bako Tuo",
-        periode: "1900 - Sekarang",
+        deskripsi: "Beberapa tokoh yang berjasa besar dalam sejarah dan perkembangan desa.",
         tokoh: [
           {
-            nama: "Tokoh Pendiri",
-            periode: "1900",
-            peran: "Pendiri Desa",
+            nama: "Para Tetua Pendiri",
+            periode: "Awal 1900-an",
+            peran: "Perintis dan Pemimpin Adat",
             kontribusi: [
-              "Memimpin pembentukan desa",
-              "Menetapkan batas wilayah",
-              "Membentuk struktur pemerintahan",
-              "Mengembangkan adat istiadat"
+              "Memimpin migrasi dan pembukaan lahan.",
+              "Meletakkan dasar-dasar hukum adat dan norma sosial.",
+              "Menjaga kerukunan dan semangat gotong royong."
             ]
           },
           {
-            nama: "Tokoh Pembangunan",
-            periode: "1945-2000",
-            peran: "Pembangun Desa",
+            nama: "Generasi Pembangun",
+            periode: "1950-2000",
+            peran: "Kepala Desa dan Aktivis Pembangunan",
             kontribusi: [
-              "Memimpin pembangunan infrastruktur",
-              "Mengembangkan pendidikan",
-              "Meningkatkan perekonomian",
-              "Memodernisasi desa"
+              "Menginisiasi pembangunan sekolah dan tempat ibadah.",
+              "Menjalin kerja sama dengan pemerintah untuk program pembangunan.",
+              "Memperjuangkan perbaikan infrastruktur desa."
             ]
           }
         ]
@@ -115,14 +112,14 @@ const SejarahDesa = () => {
       content: {
         dokumen: [
           {
-            judul: "Buku Sejarah Desa",
-            tahun: "2020",
+            judul: "Buku Monografi Desa",
+            tahun: "Terakhir diperbarui 2023",
             status: "Dokumen Resmi"
           },
           {
-            judul: "Arsip Sejarah Desa",
-            tahun: "1900-2020",
-            status: "Dokumen Arsip"
+            judul: "Arsip Foto dan Catatan Sejarah",
+            tahun: "Dikumpulkan secara berkala",
+            status: "Arsip Desa"
           }
         ]
       }
@@ -135,7 +132,7 @@ const SejarahDesa = () => {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Sejarah Desa</h2>
           <p className="text-muted-foreground">
-            Sejarah dan perkembangan Desa Remau Bako Tuo dari masa ke masa
+            Perjalanan sejarah dan perkembangan Desa Remau Bako Tuo dari masa ke masa
           </p>
         </div>
 
@@ -152,11 +149,8 @@ const SejarahDesa = () => {
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {sejarahData.asal.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {sejarahData.asal.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -195,21 +189,15 @@ const SejarahDesa = () => {
           <CardContent className="space-y-4">
             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {sejarahData.perkembangan.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {sejarahData.perkembangan.content.periode}
               </p>
             </div>
             <div className="space-y-6">
               {sejarahData.perkembangan.content.perkembangan.map((item, index) => (
                 <div key={index} className="space-y-4">
                   <div>
-                    <h4 className="font-semibold">{item.judul}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.periode}
-                    </p>
+                    <h4 className="font-semibold">{item.judul} ({item.periode})</h4>
                     <p className="text-sm text-muted-foreground">
                       {item.deskripsi}
                     </p>
@@ -239,13 +227,10 @@ const SejarahDesa = () => {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
+             <div>
               <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-lg font-medium mb-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {sejarahData.tokoh.content.deskripsi}
-              </p>
-              <p className="text-sm text-muted-foreground mb-4">
-                Periode: {sejarahData.tokoh.content.periode}
               </p>
             </div>
             <div className="space-y-6">
@@ -254,10 +239,7 @@ const SejarahDesa = () => {
                   <div>
                     <h4 className="font-semibold">{item.nama}</h4>
                     <p className="text-sm text-muted-foreground">
-                      Periode: {item.periode}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Peran: {item.peran}
+                      Peran: {item.peran} ({item.periode})
                     </p>
                   </div>
                   <ul className="space-y-2">
@@ -290,12 +272,12 @@ const SejarahDesa = () => {
                 <h4 className="font-semibold">{item.judul}</h4>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tahun</span>
-                    <span className="font-medium">{item.tahun}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Status</span>
+                    <span className="text-muted-foreground">Sumber</span>
                     <span className="font-medium">{item.status}</span>
+                  </div>
+                   <div className="flex justify-between">
+                    <span className="text-muted-foreground">Keterangan</span>
+                    <span className="font-medium">{item.tahun}</span>
                   </div>
                 </div>
               </div>

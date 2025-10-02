@@ -5,85 +5,79 @@ import { FileText, Building2, Users, DollarSign } from "lucide-react";
 const RKPDes = () => {
   const rkpData = {
     umum: {
-      title: "Informasi Umum",
+      title: "Informasi Umum RKPDes",
       icon: FileText,
       content: {
         tahun: "2024",
-        periode: "1 Januari - 31 Desember 2024",
-        deskripsi: "Rencana Kerja Pemerintah Desa tahun 2024",
-        status: "Disetujui",
-        tanggal_persetujuan: "15 Desember 2023"
+        deskripsi: "Rencana Kerja Pemerintah Desa (RKPDes) adalah dokumen perencanaan tahunan yang menjadi pedoman pelaksanaan pembangunan desa, memuat prioritas program dan kegiatan yang didanai oleh berbagai sumber pendapatan desa.",
+        status: "Berlaku",
+        tanggal_penetapan: "15 Desember 2023"
       }
     },
     program: {
-      title: "Program dan Kegiatan",
+      title: "Program Prioritas dan Kegiatan",
       icon: Building2,
       content: {
         infrastruktur: {
-          nama: "Pembangunan Infrastruktur",
-          deskripsi: "Pembangunan dan perbaikan sarana prasarana desa",
+          nama: "Pembangunan Infrastruktur Desa",
+          deskripsi: "Meningkatkan kualitas dan jangkauan infrastruktur dasar untuk mendukung mobilitas dan layanan publik.",
           kegiatan: [
             {
-              nama: "Pembangunan Jalan Desa",
-              lokasi: "Dusun I",
-              anggaran: "Rp 200.000.000",
-              target: "500 meter",
-              waktu: "Januari - Maret 2024"
+              nama: "Pembangunan Jalan Usaha Tani",
+              lokasi: "Area Pertanian Dusun I & II",
+              anggaran: "Rp 250.000.000",
+              sumber: "Dana Desa"
             },
             {
-              nama: "Perbaikan Drainase",
-              lokasi: "Dusun II",
+              nama: "Rehabilitasi Jaringan Irigasi Tersier",
+              lokasi: "Area Persawahan",
               anggaran: "Rp 150.000.000",
-              target: "300 meter",
-              waktu: "Februari - April 2024"
+              sumber: "Dana Desa"
             },
             {
-              nama: "Pembangunan MCK Umum",
+              nama: "Pembangunan Sumur Bor dan Jaringan Air Bersih",
               lokasi: "Dusun III",
               anggaran: "Rp 100.000.000",
-              target: "2 unit",
-              waktu: "Maret - Mei 2024"
+              sumber: "Alokasi Dana Desa"
             }
           ]
         },
         pemberdayaan: {
           nama: "Pemberdayaan Masyarakat",
-          deskripsi: "Program peningkatan kapasitas masyarakat",
+          deskripsi: "Meningkatkan kapasitas dan partisipasi masyarakat dalam pembangunan desa.",
           kegiatan: [
             {
-              nama: "Pelatihan UMKM",
+              nama: "Pelatihan Pengolahan Hasil Pertanian",
               lokasi: "Balai Desa",
               anggaran: "Rp 50.000.000",
-              target: "50 peserta",
-              waktu: "April - Juni 2024"
+              sumber: "Dana Desa"
             },
             {
-              nama: "Pendampingan Kelompok Tani",
-              lokasi: "Lahan Pertanian",
-              anggaran: "Rp 75.000.000",
-              target: "5 kelompok",
-              waktu: "Mei - Juli 2024"
+              nama: "Peningkatan Kapasitas Kader Posyandu",
+              lokasi: "Puskesmas Pembantu",
+              anggaran: "Rp 25.000.000",
+              sumber: "Alokasi Dana Desa"
             }
           ]
         }
       }
     },
     pendanaan: {
-      title: "Sumber Pendanaan",
+      title: "Sumber Pendanaan RKPDes",
       icon: DollarSign,
       content: {
         dana_desa: {
-          nama: "Dana Desa",
+          nama: "Dana Desa (DD)",
           jumlah: "Rp 800.000.000",
           persentase: "80%"
         },
         pad: {
-          nama: "Pendapatan Asli Desa",
+          nama: "Alokasi Dana Desa (ADD)",
           jumlah: "Rp 150.000.000",
           persentase: "15%"
         },
         bantuan: {
-          nama: "Bantuan Pemerintah",
+          nama: "Pendapatan Asli Desa (PADes) dan Lainnya",
           jumlah: "Rp 50.000.000",
           persentase: "5%"
         }
@@ -93,26 +87,22 @@ const RKPDes = () => {
       title: "Monitoring dan Evaluasi",
       icon: Users,
       content: {
+        deskripsi: "Proses monitoring dan evaluasi dilakukan secara berkala untuk memastikan program berjalan sesuai rencana.",
         jadwal: [
           {
-            periode: "Triwulan I",
-            waktu: "Maret 2024",
-            fokus: "Evaluasi program infrastruktur"
+            periode: "Evaluasi Triwulan I",
+            waktu: "April 2024",
+            fokus: "Realisasi fisik dan keuangan program infrastruktur."
           },
           {
-            periode: "Triwulan II",
-            waktu: "Juni 2024",
-            fokus: "Evaluasi program pemberdayaan"
+            periode: "Evaluasi Triwulan II",
+            waktu: "Juli 2024",
+            fokus: "Perkembangan program pemberdayaan dan penyerapan anggaran."
           },
           {
-            periode: "Triwulan III",
-            waktu: "September 2024",
-            fokus: "Evaluasi keseluruhan program"
-          },
-          {
-            periode: "Triwulan IV",
-            waktu: "Desember 2024",
-            fokus: "Evaluasi akhir tahun"
+            periode: "Laporan Pertanggungjawaban",
+            waktu: "Januari 2025",
+            fokus: "Laporan akhir pelaksanaan RKPDes tahun 2024."
           }
         ]
       }
@@ -123,9 +113,9 @@ const RKPDes = () => {
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <div className="space-y-6">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">RKPDes</h2>
+          <h2 className="text-3xl font-bold tracking-tight">RKPDes {rkpData.umum.content.tahun}</h2>
           <p className="text-muted-foreground">
-            Rencana Kerja Pemerintah Desa tahun {rkpData.umum.content.tahun}
+            Rencana Kerja Pemerintah Desa
           </p>
         </div>
 
@@ -140,28 +130,21 @@ const RKPDes = () => {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-semibold mb-2">Detail RKPDes</h4>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tahun</span>
-                    <span className="font-medium">{rkpData.umum.content.tahun}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Periode</span>
-                    <span className="font-medium">{rkpData.umum.content.periode}</span>
-                  </div>
-                  <div className="flex justify-between">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {rkpData.umum.content.deskripsi}
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="flex justify-between">
                     <span className="text-muted-foreground">Status</span>
                     <span className="font-medium">{rkpData.umum.content.status}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tanggal Persetujuan</span>
-                    <span className="font-medium">{rkpData.umum.content.tanggal_persetujuan}</span>
-                  </div>
                 </div>
-              </div>
+                <div className="flex justify-between">
+                    <span className="text-muted-foreground">Tanggal Penetapan</span>
+                    <span className="font-medium">{rkpData.umum.content.tanggal_penetapan}</span>
+                </div>
             </div>
           </CardContent>
         </Card>
@@ -172,7 +155,7 @@ const RKPDes = () => {
             <div>
               <CardTitle>{rkpData.program.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Program dan kegiatan RKPDes {rkpData.umum.content.tahun}
+                Kegiatan pembangunan tahun {rkpData.umum.content.tahun}
               </p>
             </div>
           </CardHeader>
@@ -186,25 +169,12 @@ const RKPDes = () => {
               </div>
               <div className="space-y-4">
                 {rkpData.program.content.infrastruktur.kegiatan.map((kegiatan, index) => (
-                  <div key={index} className="space-y-2">
+                  <div key={index} className="p-3 bg-muted/50 rounded-lg">
                     <h5 className="font-medium">{kegiatan.nama}</h5>
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Lokasi</span>
-                        <span>{kegiatan.lokasi}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Anggaran</span>
-                        <span>{kegiatan.anggaran}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Target</span>
-                        <span>{kegiatan.target}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Waktu</span>
-                        <span>{kegiatan.waktu}</span>
-                      </div>
+                    <div className="grid grid-cols-2 gap-2 text-sm mt-2">
+                        <span>Lokasi: {kegiatan.lokasi}</span>
+                        <span>Anggaran: {kegiatan.anggaran}</span>
+                        <span>Sumber: {kegiatan.sumber}</span>
                     </div>
                   </div>
                 ))}
@@ -219,25 +189,12 @@ const RKPDes = () => {
               </div>
               <div className="space-y-4">
                 {rkpData.program.content.pemberdayaan.kegiatan.map((kegiatan, index) => (
-                  <div key={index} className="space-y-2">
+                   <div key={index} className="p-3 bg-muted/50 rounded-lg">
                     <h5 className="font-medium">{kegiatan.nama}</h5>
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Lokasi</span>
-                        <span>{kegiatan.lokasi}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Anggaran</span>
-                        <span>{kegiatan.anggaran}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Target</span>
-                        <span>{kegiatan.target}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Waktu</span>
-                        <span>{kegiatan.waktu}</span>
-                      </div>
+                    <div className="grid grid-cols-2 gap-2 text-sm mt-2">
+                        <span>Lokasi: {kegiatan.lokasi}</span>
+                        <span>Anggaran: {kegiatan.anggaran}</span>
+                        <span>Sumber: {kegiatan.sumber}</span>
                     </div>
                   </div>
                 ))}
@@ -289,11 +246,14 @@ const RKPDes = () => {
             <div>
               <CardTitle>{rkpData.monitoring.title}</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Jadwal monitoring dan evaluasi RKPDes {rkpData.umum.content.tahun}
+                Jadwal monitoring dan evaluasi RKPDes
               </p>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
+             <p className="text-sm text-muted-foreground leading-relaxed">
+                {rkpData.monitoring.content.deskripsi}
+              </p>
             {rkpData.monitoring.content.jadwal.map((jadwal, index) => (
               <div key={index} className="space-y-2">
                 <div className="flex justify-between items-center">
