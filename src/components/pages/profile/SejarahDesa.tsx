@@ -1,7 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { History, FileText, Calendar, Users } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const SejarahDesa = () => {
   const sejarahData = {
@@ -132,12 +131,6 @@ const SejarahDesa = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb
-        items={[
-          { title: "Profil", path: "/profil/profil-desa" },
-          { title: "Sejarah Desa" }
-        ]}
-      />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Sejarah Desa</h2>

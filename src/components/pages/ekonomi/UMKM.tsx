@@ -1,16 +1,10 @@
+
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const UMKM = () => {
     return (
         <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-            <Breadcrumb
-                items={[
-                    { title: "Ekonomi", path: "/ekonomi" },
-                    { title: "UMKM" }
-                ]}
-            />
             <Card>
                 <CardHeader>
                     <CardTitle>Usaha Mikro, Kecil, dan Menengah (UMKM)</CardTitle>

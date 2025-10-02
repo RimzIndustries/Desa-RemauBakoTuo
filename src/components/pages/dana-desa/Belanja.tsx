@@ -1,8 +1,8 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, TrendingDown, PieChart as PieChartIcon } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import Breadcrumb from '@/components/Breadcrumb';
 
 const belanjaData = {
   total: 2300000000,
@@ -78,7 +78,6 @@ const Belanja: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-       <Breadcrumb items={[{ title: "Dana Desa", path: "/dana-desa" }, { title: "Belanja" }]} />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Belanja Desa</h2>

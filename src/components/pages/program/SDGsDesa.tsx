@@ -1,7 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Target, Users, Leaf, DollarSign, Building2 } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const SDGsDesa = () => {
   const sdgsData = {
@@ -157,12 +156,6 @@ const SDGsDesa = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb
-        items={[
-          { title: "Indeks", path: "/indeks" },
-          { title: "SDGs Desa" }
-        ]}
-      />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">SDGs Desa</h2>

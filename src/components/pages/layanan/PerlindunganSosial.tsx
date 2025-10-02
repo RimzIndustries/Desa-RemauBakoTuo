@@ -1,7 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Heart, Users, Shield } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const PerlindunganSosial = () => {
   const perlindunganData = {
@@ -96,12 +95,6 @@ const PerlindunganSosial = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb
-        items={[
-          { title: "Layanan", path: "/layanan" },
-          { title: "Perlindungan Sosial" }
-        ]}
-      />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Perlindungan Sosial</h2>

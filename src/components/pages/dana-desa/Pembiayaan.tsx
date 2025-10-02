@@ -1,7 +1,7 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign } from "lucide-react";
-import Breadcrumb from '@/components/Breadcrumb';
 
 const pembiayaanData = {
   title: "Pembiayaan Desa",
@@ -41,7 +41,6 @@ const Pembiayaan: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb items={[{ title: "Dana Desa", path: "/dana-desa" }, { title: "Pembiayaan" }]} />
       <div className="space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold tracking-tight">{pembiayaanData.title}</h1>

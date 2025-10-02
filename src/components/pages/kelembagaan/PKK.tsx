@@ -1,17 +1,10 @@
 
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const PKK = () => {
     return (
         <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-            <Breadcrumb
-                items={[
-                    { title: "Kelembagaan", path: "/kelembagaan" },
-                    { title: "PKK" }
-                ]}
-            />
             <Card>
                 <CardHeader>
                     <CardTitle>Pemberdayaan Kesejahteraan Keluarga (PKK)</CardTitle>

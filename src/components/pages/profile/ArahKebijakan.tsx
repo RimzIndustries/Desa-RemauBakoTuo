@@ -1,7 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Compass, Target, ArrowRight, FileText } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const ArahKebijakan = () => {
   const arahKebijakanData = {
@@ -118,7 +117,6 @@ const ArahKebijakan = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb items={[{ title: "Profil", path: "/profil/profil-desa" }, { title: "Arah Kebijakan" }]} />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Arah Kebijakan Desa</h2>
