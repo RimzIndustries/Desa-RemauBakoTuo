@@ -1,7 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, History, MapPin, Users } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
+import { History, MapPin, Users } from "lucide-react";
 
 const Sejarah = () => {
   const sejarahData = {
@@ -82,13 +80,7 @@ const Sejarah = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Breadcrumb
-        items={[
-          { title: "Profil Desa", path: "/profile" },
-          { title: "Sejarah" }
-        ]}
-      />
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Sejarah Desa</h2>
@@ -97,80 +89,63 @@ const Sejarah = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
-            <TabsTrigger value="periode">Periode Kepemimpinan</TabsTrigger>
-            <TabsTrigger value="perkembangan">Perkembangan Desa</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="umum">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <History className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>Sejarah Desa</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    {sejarahData.umum.content.deskripsi}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Tahun Berdiri</span>
-                    <span className="text-sm">{sejarahData.umum.content.tahun}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="periode">
-            <div className="space-y-4">
-              {sejarahData.periode.content.periode.map((item, index) => (
-                <Card key={index}>
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    <Users className="h-6 w-6 text-primary" />
-                    <div>
-                      <CardTitle>{item.nama}</CardTitle>
-                      <p className="text-sm text-muted-foreground">
-                        Periode: {item.tahun}
-                      </p>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm">{item.deskripsi}</p>
-                  </CardContent>
-                </Card>
-              ))}
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <History className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>Sejarah Desa</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                {sejarahData.umum.content.deskripsi}
+              </p>
             </div>
-          </TabsContent>
-
-          <TabsContent value="perkembangan">
-            <div className="space-y-4">
-              {sejarahData.perkembangan.content.perkembangan.map((item, index) => (
-                <Card key={index}>
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    <MapPin className="h-6 w-6 text-primary" />
-                    <div>
-                      <CardTitle>{item.judul}</CardTitle>
-                      <p className="text-sm text-muted-foreground">
-                        Tahun: {item.tahun}
-                      </p>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm">{item.deskripsi}</p>
-                  </CardContent>
-                </Card>
-              ))}
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">Tahun Berdiri</span>
+                <span className="text-sm">{sejarahData.umum.content.tahun}</span>
+              </div>
             </div>
-          </TabsContent>
-        </Tabs>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Users className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{sejarahData.periode.title}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {sejarahData.periode.content.periode.map((item, index) => (
+              <div key={index} className="space-y-1">
+                <h4 className="font-semibold">{item.nama}</h4>
+                <p className="text-sm text-muted-foreground">Periode: {item.tahun}</p>
+                <p className="text-sm">{item.deskripsi}</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <MapPin className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{sejarahData.perkembangan.title}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {sejarahData.perkembangan.content.perkembangan.map((item, index) => (
+              <div key={index} className="space-y-1">
+                <h4 className="font-semibold">{item.judul} ({item.tahun})</h4>
+                <p className="text-sm">{item.deskripsi}</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default Sejarah; 
+export default Sejarah;

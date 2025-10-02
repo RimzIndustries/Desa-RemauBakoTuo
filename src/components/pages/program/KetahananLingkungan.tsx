@@ -1,7 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FileText, Leaf, TrendingUp, Building2, TreePine } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const KetahananLingkungan = () => {
   const lingkunganData = {
@@ -104,13 +102,7 @@ const KetahananLingkungan = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Breadcrumb
-        items={[
-          { title: "Program", path: "/program" },
-          { title: "Ketahanan Lingkungan" }
-        ]}
-      />
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Ketahanan Lingkungan</h2>
@@ -119,125 +111,108 @@ const KetahananLingkungan = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
-            <TabsTrigger value="indikator">Indikator</TabsTrigger>
-            <TabsTrigger value="program">Program</TabsTrigger>
-            <TabsTrigger value="pencapaian">Pencapaian</TabsTrigger>
-          </TabsList>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{lingkunganData.umum.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Informasi dasar ketahanan lingkungan desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {lingkunganData.umum.content.deskripsi}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
-          <TabsContent value="umum" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{lingkunganData.umum.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Informasi dasar ketahanan lingkungan desa tahun {lingkunganData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {lingkunganData.umum.content.deskripsi}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="indikator" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <TrendingUp className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{lingkunganData.indikator.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Nilai: {lingkunganData.indikator.content.nilai} ({lingkunganData.indikator.content.status})
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {lingkunganData.indikator.content.aspek.map((aspek, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h4 className="font-semibold">{aspek.nama}</h4>
-                        <p className="text-sm text-muted-foreground">{aspek.deskripsi}</p>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-medium">{aspek.nilai}</span>
-                        <p className="text-sm text-muted-foreground">Target: {aspek.target}</p>
-                      </div>
-                    </div>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <TrendingUp className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{lingkunganData.indikator.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Nilai: {lingkunganData.indikator.content.nilai} ({lingkunganData.indikator.content.status})
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {lingkunganData.indikator.content.aspek.map((aspek, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h4 className="font-semibold">{aspek.nama}</h4>
+                    <p className="text-sm text-muted-foreground">{aspek.deskripsi}</p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="program" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Building2 className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{lingkunganData.program.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program penguatan lingkungan desa tahun {lingkunganData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {lingkunganData.program.content.kategori.map((kategori, index) => (
-                  <div key={index} className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold">{kategori.nama}</h4>
-                      <ul className="space-y-2 mt-2">
-                        {kategori.program.map((program, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <Leaf className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{program}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className="text-right">
+                    <span className="font-medium">{aspek.nilai}</span>
+                    <p className="text-sm text-muted-foreground">Target: {aspek.target}</p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="pencapaian" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <TreePine className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{lingkunganData.pencapaian.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Pencapaian ketahanan lingkungan desa dari tahun ke tahun
-                  </p>
                 </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {lingkunganData.pencapaian.content.tahun.map((tahun, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <div>
-                      <h4 className="font-semibold">Tahun {tahun.tahun}</h4>
-                      <p className="text-sm text-muted-foreground">Status: {tahun.status}</p>
-                    </div>
-                    <span className="font-medium">Nilai: {tahun.nilai}</span>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Building2 className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{lingkunganData.program.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program penguatan lingkungan desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {lingkunganData.program.content.kategori.map((kategori, index) => (
+              <div key={index} className="space-y-4">
+                <div>
+                  <h4 className="font-semibold">{kategori.nama}</h4>
+                  <ul className="space-y-2 mt-2">
+                    {kategori.program.map((program, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Leaf className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{program}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <TreePine className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{lingkunganData.pencapaian.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Pencapaian ketahanan lingkungan desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {lingkunganData.pencapaian.content.tahun.map((tahun, index) => (
+              <div key={index} className="flex justify-between items-center">
+                <div>
+                  <h4 className="font-semibold">Tahun {tahun.tahun}</h4>
+                  <p className="text-sm text-muted-foreground">Status: {tahun.status}</p>
+                </div>
+                <span className="font-medium">Nilai: {tahun.nilai}</span>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default KetahananLingkungan; 
+export default KetahananLingkungan;

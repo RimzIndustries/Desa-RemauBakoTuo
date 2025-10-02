@@ -1,8 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Wallet, List, TrendingUp } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
+import { Wallet, List, TrendingUp } from "lucide-react";
 
 const Belanja = () => {
   const belanjaData = {
@@ -87,12 +85,6 @@ const Belanja = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
-      <Breadcrumb
-        items={[
-          { title: "Pembangunan", path: "/pembangunan" },
-          { title: "Belanja" }
-        ]}
-      />
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Belanja Desa</h2>
@@ -101,97 +93,93 @@ const Belanja = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Overview</TabsTrigger>
-            <TabsTrigger value="kategori">Kategori</TabsTrigger>
-            <TabsTrigger value="realisasi">Realisasi</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="umum">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Wallet className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>Informasi Umum Belanja</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Tahun Anggaran: {belanjaData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">Total Anggaran</span>
-                    <span className="text-sm font-semibold">{belanjaData.umum.content.total}</span>
-                  </div>
-                  <p className="text-sm">{belanjaData.umum.content.deskripsi}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="kategori">
-            <div className="space-y-4">
-              {belanjaData.kategori.content.kategori.map((item, index) => (
-                <Card key={index}>
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    <List className="h-6 w-6 text-primary" />
-                    <div>
-                      <CardTitle>{item.judul}</CardTitle>
-                      <p className="text-sm text-muted-foreground">
-                        {item.persentase} dari total anggaran
-                      </p>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">Jumlah</span>
-                        <span className="text-sm font-semibold">{item.jumlah}</span>
-                      </div>
-                      <p className="text-sm">{item.deskripsi}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Wallet className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>Informasi Umum Belanja</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Tahun Anggaran: {belanjaData.umum.content.tahun}
+              </p>
             </div>
-          </TabsContent>
-
-          <TabsContent value="realisasi">
+          </CardHeader>
+          <CardContent>
             <div className="space-y-4">
-              {belanjaData.realisasi.content.triwulan.map((item, index) => (
-                <Card key={index}>
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    <TrendingUp className="h-6 w-6 text-primary" />
-                    <div>
-                      <CardTitle>{item.periode}</CardTitle>
-                      <p className="text-sm text-muted-foreground">
-                        Realisasi: {item.persentase}
-                      </p>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">Total Anggaran</span>
+                <span className="text-sm font-semibold">{belanjaData.umum.content.total}</span>
+              </div>
+              <p className="text-sm">{belanjaData.umum.content.deskripsi}</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <List className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{belanjaData.kategori.title}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {belanjaData.kategori.content.kategori.map((item, index) => (
+              <Card key={index}>
+                <CardHeader>
+                    <CardTitle>{item.judul}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                        {item.persentase} dari total anggaran
+                    </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">Jumlah</span>
+                      <span className="text-sm font-semibold">{item.jumlah}</span>
                     </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">Target</span>
-                        <span className="text-sm">{item.target}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
+                    <p className="text-sm">{item.deskripsi}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <TrendingUp className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{belanjaData.realisasi.title}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {belanjaData.realisasi.content.triwulan.map((item, index) => (
+              <Card key={index}>
+                <CardHeader>
+                    <CardTitle>{item.periode}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                        Realisasi: {item.persentase}
+                    </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">Target</span>
+                      <span className="text-sm">{item.target}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
                         <span className="text-sm font-medium">Realisasi</span>
                         <span className="text-sm font-semibold">{item.realisasi}</span>
-                      </div>
-                      <p className="text-sm">{item.deskripsi}</p>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+                    <p className="text-sm">{item.deskripsi}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default Belanja; 
+export default Belanja;

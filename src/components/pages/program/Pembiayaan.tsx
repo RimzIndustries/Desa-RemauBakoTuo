@@ -1,7 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FileText, TrendingUp, Building2, DollarSign, Wallet } from "lucide-react";
-import Breadcrumb from "@/components/Breadcrumb";
 
 const Pembiayaan = () => {
   const pembiayaanData = {
@@ -89,13 +87,7 @@ const Pembiayaan = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Breadcrumb
-        items={[
-          { title: "Program", path: "/program" },
-          { title: "Pembiayaan" }
-        ]}
-      />
+    <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <div className="space-y-6">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Pembiayaan Desa</h2>
@@ -104,125 +96,108 @@ const Pembiayaan = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="umum" className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="umum">Informasi Umum</TabsTrigger>
-            <TabsTrigger value="kategori">Kategori</TabsTrigger>
-            <TabsTrigger value="program">Program</TabsTrigger>
-            <TabsTrigger value="realisasi">Realisasi</TabsTrigger>
-          </TabsList>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <FileText className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{pembiayaanData.umum.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Informasi dasar pembiayaan desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Deskripsi</h4>
+              <p className="text-sm text-muted-foreground">
+                {pembiayaanData.umum.content.deskripsi}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
-          <TabsContent value="umum" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{pembiayaanData.umum.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Informasi dasar pembiayaan desa tahun {pembiayaanData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Deskripsi</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {pembiayaanData.umum.content.deskripsi}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="kategori" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <TrendingUp className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{pembiayaanData.kategori.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Total pembiayaan: {pembiayaanData.kategori.content.total}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {pembiayaanData.kategori.content.kategori.map((kategori, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h4 className="font-semibold">{kategori.nama}</h4>
-                        <p className="text-sm text-muted-foreground">{kategori.deskripsi}</p>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-medium">{kategori.jumlah}</span>
-                        <p className="text-sm text-muted-foreground">{kategori.persentase}</p>
-                      </div>
-                    </div>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <TrendingUp className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{pembiayaanData.kategori.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Total pembiayaan: {pembiayaanData.kategori.content.total}
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {pembiayaanData.kategori.content.kategori.map((kategori, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h4 className="font-semibold">{kategori.nama}</h4>
+                    <p className="text-sm text-muted-foreground">{kategori.deskripsi}</p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="program" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Building2 className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{pembiayaanData.program.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Program pembiayaan desa tahun {pembiayaanData.umum.content.tahun}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {pembiayaanData.program.content.kategori.map((kategori, index) => (
-                  <div key={index} className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold">{kategori.nama}</h4>
-                      <ul className="space-y-2 mt-2">
-                        {kategori.program.map((program, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-muted-foreground">{program}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className="text-right">
+                    <span className="font-medium">{kategori.jumlah}</span>
+                    <p className="text-sm text-muted-foreground">{kategori.persentase}</p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="realisasi" className="space-y-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Wallet className="h-8 w-8 text-primary" />
-                <div>
-                  <CardTitle>{pembiayaanData.realisasi.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Realisasi pembiayaan desa dari tahun ke tahun
-                  </p>
                 </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {pembiayaanData.realisasi.content.tahun.map((tahun, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <div>
-                      <h4 className="font-semibold">Tahun {tahun.tahun}</h4>
-                      <p className="text-sm text-muted-foreground">Total: {tahun.total}</p>
-                    </div>
-                    <span className="font-medium">Realisasi: {tahun.realisasi}</span>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Building2 className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{pembiayaanData.program.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Program pembiayaan desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {pembiayaanData.program.content.kategori.map((kategori, index) => (
+              <div key={index} className="space-y-4">
+                <div>
+                  <h4 className="font-semibold">{kategori.nama}</h4>
+                  <ul className="space-y-2 mt-2">
+                    {kategori.program.map((program, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <DollarSign className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{program}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <Wallet className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{pembiayaanData.realisasi.title}</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Realisasi pembiayaan desa
+              </p>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {pembiayaanData.realisasi.content.tahun.map((tahun, index) => (
+              <div key={index} className="flex justify-between items-center">
+                <div>
+                  <h4 className="font-semibold">Tahun {tahun.tahun}</h4>
+                  <p className="text-sm text-muted-foreground">Total: {tahun.total}</p>
+                </div>
+                <span className="font-medium">Realisasi: {tahun.realisasi}</span>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default Pembiayaan; 
+export default Pembiayaan;
