@@ -5,6 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Baby, Activity, Syringe, Scale, BookOpen } from "lucide-react";
 
 const Posyandu = () => {
+  // Dummy icon for missing ones
+  const Utensils = (props: any) => <BookOpen {...props} />;
+  
   const posyanduData = {
     umum: {
       title: "Pos Pelayanan Terpadu (Posyandu)",
@@ -34,9 +37,6 @@ const Posyandu = () => {
       ]
     }
   };
-
-  // Dummy icon for missing ones
-  const Utensils = (props: any) => <BookOpen {...props} />;
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
