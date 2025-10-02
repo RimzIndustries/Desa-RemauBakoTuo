@@ -47,8 +47,8 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
       "Kelembagaan": [
         { title: "LKMD", path: "/kelembagaan/lkmd", icon: Users },
         { title: "PKK", path: "/kelembagaan/pkk", icon: Users },
-        { title: "Posyandu", path: "/layanan/posyandu", icon: Activity },
-        { title: "MPG", path: "/layanan/mpg", icon: Activity }
+        { title: "Posyandu", path: "/pembangunan/posyandu", icon: Activity },
+        { title: "MPG", path: "/pembangunan/mpg", icon: Activity }
       ]
   };
 
