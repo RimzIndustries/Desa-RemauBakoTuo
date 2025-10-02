@@ -1,270 +1,107 @@
 
+'use client';
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Users, LineChart, Briefcase } from "lucide-react";
+import { Baby, Activity, Syringe, Scale, BookOpen } from "lucide-react";
 
 const Posyandu = () => {
   const posyanduData = {
     umum: {
-      title: "Informasi Umum",
-      icon: FileText,
-      content: {
-        deskripsi: "Posyandu adalah pusat pelayanan kesehatan dasar yang dikelola oleh masyarakat untuk meningkatkan derajat kesehatan ibu dan anak, serta keluarga berencana.",
-        data: [
-          {
-            label: "Jumlah Posyandu",
-            value: "10 Unit"
-          },
-          {
-            label: "Jumlah Kader",
-            value: "50 Orang"
-          },
-          {
-            label: "Jumlah Sasaran",
-            value: "500 Jiwa"
-          },
-          {
-            label: "Status",
-            value: "Aktif"
-          }
-        ]
-      }
+      title: "Pos Pelayanan Terpadu (Posyandu)",
+      icon: Activity,
+      deskripsi: "Posyandu merupakan salah satu bentuk Upaya Kesehatan Bersumber Daya Masyarakat (UKBM) yang dikelola dan diselenggarakan dari, oleh, untuk, dan bersama masyarakat dalam penyelenggaraan pembangunan kesehatan guna memberdayakan masyarakat dan memberikan kemudahan kepada masyarakat dalam memperoleh pelayanan kesehatan dasar, terutama untuk mempercepat penurunan angka kematian ibu dan bayi."
     },
     layanan: {
-      title: "Layanan",
-      icon: Users,
-      content: {
-        kategori: [
-          {
-            nama: "Kesehatan Ibu",
-            layanan: [
-              "Pemeriksaan Kehamilan",
-              "Pemeriksaan Nifas",
-              "Konsultasi Gizi",
-              "Pendampingan Persalinan"
-            ]
-          },
-          {
-            nama: "Kesehatan Anak",
-            layanan: [
-              "Pemeriksaan Bayi",
-              "Pemeriksaan Balita",
-              "Imunisasi",
-              "Penimbangan"
-            ]
-          },
-          {
-            nama: "Keluarga Berencana",
-            layanan: [
-              "Konsultasi KB",
-              "Pemberian Alat KB",
-              "Pendampingan KB",
-              "Pemantauan KB"
-            ]
-          },
-          {
-            nama: "Promotif Preventif",
-            layanan: [
-              "Penyuluhan Kesehatan",
-              "Pencegahan Stunting",
-              "Peningkatan Gizi",
-              "Kesehatan Lingkungan"
-            ]
-          }
-        ]
-      }
+      title: "Lima Layanan Utama Posyandu (5 Meja)",
+      icon: Activity,
+      items: [
+        { icon: BookOpen, title: "Meja 1: Pendaftaran", description: "Pendaftaran balita, ibu hamil, dan ibu nifas." },
+        { icon: Scale, title: "Meja 2: Penimbangan", description: "Penimbangan berat badan dan pengukuran tinggi badan balita untuk memantau pertumbuhan." },
+        { icon: BookOpen, title: "Meja 3: Pencatatan", description: "Pencatatan hasil penimbangan dan pengukuran ke dalam KMS (Kartu Menuju Sehat)." },
+        { icon: Utensils, title: "Meja 4: Penyuluhan dan Gizi", description: "Penyuluhan kesehatan, pemberian makanan tambahan (PMT), dan konsultasi gizi." },
+        { icon: Syringe, title: "Meja 5: Pelayanan Kesehatan", description: "Pelayanan oleh tenaga kesehatan seperti imunisasi, pemeriksaan kehamilan, dan pelayanan KB." }
+      ]
     },
-    kinerja: {
-      title: "Kinerja",
-      icon: LineChart,
-      content: {
-        tahun: [
-          {
-            tahun: "2020",
-            kunjungan: 1200,
-            layanan: 1500,
-            anggaran: "Rp 50.000.000",
-            manfaat: "Peningkatan Kesehatan Ibu dan Anak"
-          },
-          {
-            tahun: "2021",
-            kunjungan: 1500,
-            layanan: 1800,
-            anggaran: "Rp 75.000.000",
-            manfaat: "Penurunan Angka Kematian Ibu"
-          },
-          {
-            tahun: "2022",
-            kunjungan: 1800,
-            layanan: 2000,
-            anggaran: "Rp 100.000.000",
-            manfaat: "Peningkatan Kualitas Layanan"
-          },
-          {
-            tahun: "2023",
-            kunjungan: 2000,
-            layanan: 2500,
-            anggaran: "Rp 125.000.000",
-            manfaat: "Peningkatan Akses Kesehatan"
-          }
-        ]
-      }
-    },
-    pengelolaan: {
-      title: "Pengelolaan",
-      icon: Briefcase,
-      content: {
-        struktur: [
-          {
-            nama: "Ketua Posyandu",
-            tugas: "Memimpin dan mengkoordinasikan seluruh kegiatan Posyandu"
-          },
-          {
-            nama: "Kader Kesehatan",
-            tugas: "Melaksanakan pelayanan kesehatan dasar"
-          },
-          {
-            nama: "Bidan Desa",
-            tugas: "Melaksanakan pelayanan kesehatan ibu dan anak"
-          },
-          {
-            nama: "Petugas Gizi",
-            tugas: "Melaksanakan pelayanan gizi"
-          },
-          {
-            nama: "Petugas KB",
-            tugas: "Melaksanakan pelayanan KB"
-          }
-        ]
-      }
+    sasaran: {
+      title: "Sasaran Utama Posyandu",
+      icon: Baby,
+      items: [
+        "Bayi (usia 0-11 bulan)",
+        "Anak balita (usia 12-59 bulan)",
+        "Ibu hamil",
+        "Ibu nifas dan menyusui",
+        "Pasangan Usia Subur (PUS)"
+      ]
     }
   };
+
+  // Dummy icon for missing ones
+  const Utensils = (props: any) => <BookOpen {...props} />;
 
   return (
     <div className="container mx-auto px-4 py-8 mt-16 mb-20">
       <div className="space-y-6">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Posyandu</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Pos Pelayanan Terpadu (Posyandu)</h2>
           <p className="text-muted-foreground">
-            Pos Pelayanan Terpadu
+            Ujung Tombak Kesehatan Ibu dan Anak di Desa Remau Bako Tuo
           </p>
         </div>
 
         <Card>
           <CardHeader className="flex flex-row items-center gap-4">
-            <FileText className="h-8 w-8 text-primary" />
+            <posyanduData.umum.icon className="h-8 w-8 text-primary" />
             <div>
               <CardTitle>{posyanduData.umum.title}</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Informasi dasar Posyandu
-              </p>
             </div>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <h4 className="font-semibold mb-2">Deskripsi</h4>
-              <p className="text-sm text-muted-foreground">
-                {posyanduData.umum.content.deskripsi}
-              </p>
-            </div>
-            <div className="space-y-2">
-              {posyanduData.umum.content.data.map((item, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <span className="text-sm font-medium">{item.label}</span>
-                  <span className="text-sm text-muted-foreground">{item.value}</span>
-                </div>
-              ))}
-            </div>
+          <CardContent>
+            <p className="text-sm text-muted-foreground leading-relaxed">{posyanduData.umum.deskripsi}</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center gap-4">
-            <Users className="h-8 w-8 text-primary" />
+            <posyanduData.sasaran.icon className="h-8 w-8 text-primary" />
+            <div>
+              <CardTitle>{posyanduData.sasaran.title}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+                {posyanduData.sasaran.items.map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                        <Baby className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{item}</span>
+                    </li>
+                ))}
+            </ul>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-4">
+            <posyanduData.layanan.icon className="h-8 w-8 text-primary" />
             <div>
               <CardTitle>{posyanduData.layanan.title}</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Layanan kesehatan yang tersedia
-              </p>
             </div>
           </CardHeader>
-          <CardContent className="space-y-6">
-            {posyanduData.layanan.content.kategori.map((kategori, index) => (
-              <div key={index} className="space-y-4">
-                <div>
-                  <h4 className="font-semibold">{kategori.nama}</h4>
-                  <ul className="space-y-2 mt-2">
-                    {kategori.layanan.map((layanan, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <Users className="h-5 w-5 mt-0.5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{layanan}</span>
-                      </li>
-                    ))}
-                  </ul>
+          <CardContent className="space-y-4">
+            {posyanduData.layanan.items.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={index} className="p-3 bg-muted/50 rounded-lg flex items-start gap-4">
+                    <Icon className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                        <h4 className="font-semibold">{item.title}</h4>
+                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-4">
-            <LineChart className="h-8 w-8 text-primary" />
-            <div>
-              <CardTitle>{posyanduData.kinerja.title}</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Kinerja Posyandu per tahun
-              </p>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {posyanduData.kinerja.content.tahun.map((tahun, index) => (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <h5 className="font-medium">{tahun.tahun}</h5>
-                    </div>
-                    <div className="mt-2 space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Kunjungan: {tahun.kunjungan}</span>
-                        <span className="text-muted-foreground">Layanan: {tahun.layanan}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Anggaran: {tahun.anggaran}</span>
-                        <span className="text-muted-foreground">Manfaat: {tahun.manfaat}</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-4">
-            <Briefcase className="h-8 w-8 text-primary" />
-            <div>
-              <CardTitle>{posyanduData.pengelolaan.title}</CardTitle>
-              <p className="text-sm text-muted-foreground">
-                Struktur pengelolaan Posyandu
-              </p>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {posyanduData.pengelolaan.content.struktur.map((item, index) => (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="space-y-2">
-                    <h4 className="font-semibold">{item.nama}</h4>
-                    <p className="text-sm text-muted-foreground">{item.tugas}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
