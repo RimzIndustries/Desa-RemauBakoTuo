@@ -47,8 +47,8 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
       "Kelembagaan": [
         { title: "LKMD", path: "/kelembagaan/lkmd", icon: Users },
         { title: "PKK", path: "/kelembagaan/pkk", icon: Users },
-        { title: "Posyandu", path: "/pembangunan/posyandu", icon: Activity },
-        { title: "MPG", path: "/pembangunan/mpg", icon: Activity }
+        { title: "Posyandu", path: "/kelembagaan/posyandu", icon: Activity },
+        { title: "MPG", path: "/kelembagaan/mpg", icon: Activity }
       ]
   };
 
@@ -79,7 +79,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   };
 
   const isProfilRoute = pathname.startsWith('/profil') || pathname.startsWith('/pustaka');
-  const isPembangunanRoute = pathname.startsWith('/pembangunan') || pathname.startsWith('/kelembagaan') || pathname.startsWith('/layanan/posyandu') || pathname.startsWith('/layanan/mpg');
+  const isPembangunanRoute = pathname.startsWith('/pembangunan') || pathname.startsWith('/kelembagaan');
   const isDanaDesaRoute = pathname.startsWith('/dana-desa') || pathname.startsWith('/ekonomi');
   const isIndeksRoute = pathname.startsWith('/indeks') || pathname.startsWith('/aktivitas');
 
@@ -619,3 +619,4 @@ export default BottomNav;
     
     
     
+

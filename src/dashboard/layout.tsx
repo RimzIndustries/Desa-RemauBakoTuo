@@ -38,9 +38,7 @@ import {
   FileSpreadsheet,
   ScrollText,
   ChevronDown,
-  Palette,
-  Newspaper,
-  LayoutGrid
+  Palette
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
@@ -88,7 +86,61 @@ const DashboardLayout = ({
     router.push('/');
   };
 
-  const webControlMenuItems: any[] = [];
+  const webControlMenuItems = [
+    {
+      title: "Profil Desa",
+      items: [
+        { title: "Profil Desa", path: "/dashboard/profil/profil-desa", icon: Home },
+        { title: "Sejarah Desa", path: "/dashboard/profil/sejarah-desa", icon: History },
+        { title: "Perkembangan", path: "/dashboard/profil/perkembangan", icon: ChevronRight },
+        { title: "Visi dan Misi", path: "/dashboard/profil/visi-misi", icon: Target },
+        { title: "Arah Kebijakan", path: "/dashboard/profil/arah-kebijakan", icon: Compass },
+        { title: "Pemerintahan Desa", path: "/dashboard/profil/struktur-pemerintah", icon: Building2 },
+      ]
+    },
+    {
+      title: "Layanan",
+      items: [
+        { title: "Persuratan", path: "/dashboard/layanan/persuratan", icon: ScrollText },
+        { title: "Perlindungan Sosial", path: "/dashboard/layanan/perlindungan-sosial", icon: HeartHandshake },
+        { title: "Penanganan Keluhan", path: "/dashboard/layanan/penanganan-keluhan", icon: MessageSquareWarning },
+        { title: "Monografi Desa", path: "/dashboard/layanan/monografi-desa", icon: BookOpen },
+        { title: "Peraturan Desa", path: "/dashboard/layanan/peraturan-desa", icon: Scale }
+      ]
+    },
+    {
+      title: "Ekonomi",
+      items: [
+        { title: "BUMDes", path: "/dashboard/ekonomi/bumdes", icon: Building2 },
+        { title: "Koperasi Merah Putih", path: "/dashboard/ekonomi/koperasi", icon: HandshakeIcon },
+        { title: "UMKM", path: "/dashboard/ekonomi/umkm", icon: Store }
+      ]
+    },
+    {
+      title: "Kelembagaan",
+      items: [
+        { title: "LKMD", path: "/dashboard/kelembagaan/lkmd", icon: Users },
+        { title: "PKK", path: "/dashboard/kelembagaan/pkk", icon: Users },
+        { title: "Posyandu", path: "/dashboard/kelembagaan/posyandu", icon: Activity },
+        { title: "MPG", path: "/dashboard/kelembagaan/mpg", icon: Activity }
+      ]
+    },
+    {
+      title: "Aktivitas",
+      items: [
+        { title: "Kalender Pangan", path: "/dashboard/aktivitas/kalender-pangan", icon: Apple },
+        { title: "Kalender Kegiatan", path: "/dashboard/aktivitas/kalender-kegiatan", icon: Calendar },
+        { title: "Agenda", path: "/dashboard/aktivitas/agenda", icon: ListTodo }
+      ]
+    },
+    {
+      title: "Literasi",
+      items: [
+        { title: "Pustaka Desa", path: "/dashboard/pustaka/pustaka-desa", icon: Library },
+        { title: "Publikasi", path: "/dashboard/pustaka/publikasi", icon: FileSpreadsheet }
+      ]
+    }
+  ];
 
   return (
     <ProtectedRoute>
@@ -103,52 +155,40 @@ const DashboardLayout = ({
             </SidebarHeader>
             <SidebarContent>
               <nav className="space-y-1 px-2 py-4">
-                {webControlMenuItems.length > 0 && (
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white">
-                      <Globe size={18} className="text-white" />
-                      <span>Kontrol Web</span>
-                    </div>
-                    <div className="space-y-1 pl-4">
-                      <Accordion type="single" collapsible defaultValue="category-0" className="w-full">
-                        {webControlMenuItems.map((category, index) => {
-                          if (category.items) {
-                            return (
-                              <AccordionItem key={index} value={`category-${index}`} className="border-none">
-                                <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors">
-                                  <span className="text-white">{category.title}</span>
-                                </AccordionTrigger>
-                                <AccordionContent>
-                                  <ul className="space-y-1 pl-4">
-                                    {category.items.map((item: any, itemIndex: number) => (
-                                      <li key={itemIndex}>
-                                        <Link
-                                          href={item.path}
-                                          className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white"
-                                        >
-                                          <item.icon size={16} className="text-white" />
-                                          <span>{item.title}</span>
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </AccordionContent>
-                              </AccordionItem>
-                            );
-                          }
-                          return (
-                            <Link key={index} href={category.path!} className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
-                              <category.icon size={16} className="text-white" />
-                              <span>{category.title}</span>
-                            </Link>
-                          );
-                        })}
-                      </Accordion>
-                    </div>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white">
+                    <Globe size={18} className="text-white" />
+                    <span>Kontrol Web</span>
                   </div>
-                )}
+                  <div className="space-y-1 pl-4">
+                    <Accordion type="single" collapsible className="w-full">
+                      {webControlMenuItems.map((category, index) => (
+                        <AccordionItem key={index} value={`category-${index}`} className="border-none">
+                          <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors">
+                            <span className="text-white">{category.title}</span>
+                          </AccordionTrigger>
+                          <AccordionContent>
+                            <ul className="space-y-1 pl-4">
+                              {category.items.map((item, itemIndex) => (
+                                <li key={itemIndex}>
+                                  <Link
+                                    href={item.path}
+                                    className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white"
+                                  >
+                                    <item.icon size={16} className="text-white" />
+                                    <span>{item.title}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </div>
+                </div>
 
-                <Accordion type="single" collapsible defaultValue="apps" className="w-full">
+                <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="apps" className="border-none">
                     <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors">
                       <div className="flex items-center gap-2">
@@ -198,6 +238,57 @@ const DashboardLayout = ({
                           <FileText size={16} className="text-white" />
                           <span>Surat Pindah</span>
                         </Link></li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                <Link href="/dashboard/map-control" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                  <Map size={18} className="text-white" />
+                  <span>Kontrol Peta</span>
+                </Link>
+
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="settings" className="border-none">
+                    <AccordionTrigger className="px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors">
+                      <div className="flex items-center gap-2">
+                        <Settings2 size={18} className="text-white" />
+                        <span className="text-white">Pengaturan</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="space-y-1 pl-4">
+                        <li><Link href="/dashboard/settings/users" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                          <Users size={16} className="text-white" />
+                          <span>Pengguna</span>
+                        </Link></li>
+                        <li><Link href="/dashboard/settings/backup" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                          <FileText size={16} className="text-white" />
+                          <span>Backup Data</span>
+                        </Link></li>
+                        <li><Link href="/dashboard/settings/activity-log" className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                          <Activity size={16} className="text-white" />
+                          <span>Log Aktivitas</span>
+                        </Link></li>
+                        <li>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <button className="w-full flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-emerald-100/10 transition-colors text-white">
+                                <Palette size={16} className="text-white" />
+                                <span>Tema</span>
+                                <ChevronDown size={16} className="ml-auto" />
+                              </button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent side="right" align="start">
+                              <DropdownMenuItem onClick={() => setTheme("light")}>
+                                Terang
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                                Gelap
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </li>
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
